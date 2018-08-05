@@ -6,5 +6,4 @@
 upload
 /upload
 .ebignore
-/assets/*
 /.vscode
