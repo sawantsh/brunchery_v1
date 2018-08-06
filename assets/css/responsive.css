@@ -490,6 +490,9 @@ font-size:30px;
 {
 display:block;
 }
+.item_not_available a.menu-item{
+    display: none !important;
+}
 
 .section-how-it-works .steps
 {

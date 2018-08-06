@@ -49,26 +49,26 @@ dump($merchant_tax);*/
           <p><?php echo stripslashes($val_item['item_description'])?></p>
           <div class="food-price-wrap">
            <?php echo FunctionsV3::getItemFirstPrice($val_item['prices'],$val_item['discount'],$merchant_apply_tax,$merchant_tax) ?>
-           <div class="pull-right relative food-price-wrap addto-cart">
+           <div class="pull-right relative food-price-wrap addto-cart <?php echo $val_item['not_available']==2?"item_not_available":''?>">
           <?php if ( $disabled_addcart==""):?>
-          
-          <a href="javascript:;" class="dsktop menu-item <?php echo $val_item['not_available']==2?"item_not_available":''?>" 
+          <a href="javascript:;" class="dsktop menu-item" 
             rel="<?php echo $val_item['item_id']?>"
             data-single="<?php echo $val_item['single_item']?>" 
             <?php echo $atts;?>
             data-category_id="<?php echo $val['category_id']?>"
            >
-           <i class="ion-ios-plus-outline green-color bold"></i>
+           <i class="ion-plus" style="color: #ffb49a; font-size:25px"></i>           
           </a>
          
-          <a href="javascript:;" class="mbile menu-item <?php echo $val_item['not_available']==2?"item_not_available":''?>" 
+          <a href="javascript:;" class="mbile menu-item" 
             rel="<?php echo $val_item['item_id']?>"
             data-single="<?php echo $val_item['single_item']?>" 
             <?php echo $atts;?>
             data-category_id="<?php echo $val['category_id']?>"
            >
-           <i class="ion-ios-plus-outline green-color bold"></i>
+           <i class="ion-plus" style="color: #ffb49a; font-size:25px"></i>           
           </a>
+          <span class="soldout">Sold Out</span>
           
           <?php endif;?>
         </div>

@@ -1685,7 +1685,7 @@ color:#999;
 font-size:11px;
 }
 .addto-cart{
-  margin-right: 50px;
+  margin-right: 20px;
 }
 
 .items-row .row.even
@@ -3912,6 +3912,14 @@ padding: 0
   .bruncherry-story-page .mast{
     background: #c6fcd8;
   }
-  .section-custom-page p:empty{
+  .section-custom-page p:empty, .item_not_available a.menu-item, .soldout{
     display: none
+  }
+  .item_not_available .soldout{
+    display: block;
+    background-color: #ccc;
+    color: #fff;
+    padding: 5px;
+    font-size: 15px;
+
   }
