@@ -75,7 +75,7 @@ class FunctionsV3
     {
     	$top_menu_activated=self::getTopMenuActivated();
     
-    	$top_menu[]=array('tag'=>"signup",'label'=>'<span class="brun-nearby brunicon"></span>',
+    	$top_menu[]=array('label'=>'<span class="brun-nearby brunicon"></span>',
 				'url'=> websiteUrl() );
 		                                      
         // $top_menu[]=array('tag'=>"browse",
@@ -87,6 +87,11 @@ class FunctionsV3
 		'visible'=>in_array('browse',(array)$top_menu_activated)?true:false,
 		'label'=>'<span class="brun-order-history brunicon"></span>',
 		'url'=>array('/store/orderHistory'));
+
+		$top_menu[]=array('tag'=>"maps",
+		'visible'=>in_array('browse',(array)$top_menu_activated)?true:false,
+		'label'=>'<span class="brun-maps brunicon"></span>',
+		'url'=>array('/store/restaurantMaps'));
 		
 		$top_menu[]=array('tag'=>"Profile",
 		'visible'=>in_array('browse',(array)$top_menu_activated)?true:false,
@@ -157,7 +162,7 @@ class FunctionsV3
                
         return array(  		    
 			'id'=>$class,
-			'itemCssClass'=>'col-md-4',
+			'itemCssClass'=>'col-md-3 col-xs-3',
 		    'activeCssClass'=>'active', 
 		    'encodeLabel'=>false,
 		    'items'=>$top_menu                      

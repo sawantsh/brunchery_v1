@@ -2898,6 +2898,9 @@ padding: 10px;
 .bruncherry-footer #menu a span.brun-nearby{
   background-image: url("../images/plates.png");
 }
+.bruncherry-footer #menu a span.brun-maps{
+  background-image: url("../images/resturant.png");
+}
 .bruncherry-footer #menu li.active a span.brunicon{
   opacity: 1;
 }

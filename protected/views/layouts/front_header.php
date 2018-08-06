@@ -19,6 +19,15 @@
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 <link rel="shortcut icon" href="<?php echo  Yii::app()->request->baseUrl; ?>/favicon.ico?ver=1.1" />
 <script src="<?php echo Yii::app()->request->baseUrl;?>/assets/vendor/jquery-1.10.2.min.js" type="text/javascript"></script>
+
+<!--Google Maps-->
+<?php $apikey=getOptionA('google_geo_api_key');?>
+<?php if (!empty($apikey)):?>
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&key=<?php echo $apikey?>"></script>
+<?php else :?>
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&"></script>
+<?php endif;?>
+<!--END Google Maps-->
 <!-- <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7112176/7510372/css/fonts.css" /> -->
 <?php 
 /*add the analytic codes */
