@@ -6909,6 +6909,12 @@ $params['cart_tip_value']=$raw['total']['tips'];
 			$this->code=1;
 			$this->msg=Yii::t("default",'Thanks for your interest.');
 		}
+
+		public function getNearbyRestaurants() {
+			$this->details = Yii::app()->functions->searchNearByRestaurants($this->data);
+			$this->code=1;
+			$this->msg=Yii::t("default","search for nearby restaurants completed");
+		}
 	    
 	    public function contacUsSubmit()
 	    {	    	

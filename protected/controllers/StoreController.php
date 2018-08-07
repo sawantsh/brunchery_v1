@@ -1078,6 +1078,10 @@ class StoreController extends CController
 	{
 		$this->render('order-history');
 	}
+
+	public function actionRestaurantMaps() {
+		$this->render('restaurant-maps');
+	}
 	
 	public function actionProfile()
 	{

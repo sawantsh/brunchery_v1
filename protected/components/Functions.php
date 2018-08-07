@@ -3126,6 +3126,84 @@ class Functions extends CApplicationComponent
 		}
 		return false;
 	}
+
+	public function searchNearByRestaurants($location=[])
+	{		
+		$and='';
+		$sort_by="restaurant_name ASC";
+		
+		$DbExt=new DbExt;
+				
+		$and.="AND status='active' ";
+		$and.="AND is_ready='2' ";
+		
+		$and0='';
+		$sort_by0=" ORDER BY is_sponsored DESC";		
+		
+		$sort_combine="$sort_by0,$sort_by";
+		if (isset($_GET['sort_filter'])){
+			if (!empty($_GET['sort_filter'])){
+				$sort_combine="ORDER BY ".$sort_by;
+			}		
+		}	
+					
+		$home_search_unit_type=Yii::app()->functions->getOptionAdmin('home_search_unit_type');
+		$home_search_radius=Yii::app()->functions->getOptionAdmin('home_search_radius');
+				
+		if (empty($home_search_unit_type)){
+			$home_search_unit_type='mi';
+		}	
+		if (!is_numeric($home_search_radius)){
+			$home_search_radius=10;
+		}			
+				
+		$count_query=false;
+		
+		$lat=$location['lat'];
+		$long=$location['lng'];
+		//HAVING distance < 25 		
+		
+		$distance_exp=3959;
+		if ($home_search_unit_type=="km"){
+			$distance_exp=6371;
+		}		
+		
+		if (empty($lat)){
+			$lat=0;
+		}		
+		if (empty($long)){
+			$long=0;
+		}					
+		$stmt="
+		SELECT SQL_CALC_FOUND_ROWS a.*, ( $distance_exp * acos( cos( radians($lat) ) * cos( radians( latitude ) ) 
+		* cos( radians( lontitude ) - radians($long) ) 
+		+ sin( radians($lat) ) * sin( radians( latitude ) ) ) ) 
+		AS distance								
+		
+		FROM {{view_merchant}} a 
+		HAVING distance < $home_search_radius
+		$and0
+		$and
+		$sort_combine
+		";
+	
+		if (isset($_GET['debug'])){
+			dump($this->data);
+			dump($stmt);
+		}
+		// dump($stmt);
+					
+		$DbExt->qry("SET SQL_BIG_SELECTS=1");
+		
+		if ( $res=$DbExt->rst($stmt)){			
+			if (isset($_GET['debug'])){
+			    dump($res);
+			}
+			
+			return $res;
+		}
+		return false;
+	}
 	
 		
 	public function geodecodeAddress($address='')
