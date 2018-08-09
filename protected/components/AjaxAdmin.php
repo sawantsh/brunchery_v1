@@ -2790,6 +2790,7 @@ $resto_info.="<p><span class=\"uk-text-bold\">".Yii::t("default","Delivery Est")
 			$_SESSION['kr_delivery_options']['delivery_time'] = $this->data['delivery_time'];
 			$_SESSION['kr_delivery_options']['delivery_type'] = $this->data['delivery_type'];
 			$_SESSION['kr_delivery_options']['total_price'] = $this->data['total_price'];
+			$_SESSION['kr_delivery_options']['delivery_date'] = date('Y-m-d');
 	    	
 	    	/*CHECK IF CLOSING TIME ALREADY*/
 	    	$order_delivery_date=isset($_SESSION['kr_delivery_options']['delivery_date'])?$_SESSION['kr_delivery_options']['delivery_date']:'';
