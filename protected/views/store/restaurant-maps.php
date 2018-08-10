@@ -11,7 +11,7 @@
 <script type="text/javascript">
   var markLocations = function(position, locations) {
     var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
+        zoom: 15,
         center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
@@ -54,6 +54,13 @@
           })(marker, i));
         }
         map.fitBounds(bounds);
+        zoomChangeBoundsListener = 
+          google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+            if (this.getZoom()){
+              this.setZoom(16);
+            }
+        });
+        setTimeout(function(){google.maps.event.removeListener(zoomChangeBoundsListener)}, 2000);
       }
   }
 
@@ -89,7 +96,7 @@
           apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
     })
     .fail(function(err) {
-      alert("API Geolocation error! \n\n"+err);
+      alert("Unable to render the Google Map. Please check the Google API key is correctly configured");
       // apiGeolocationSuccess({coords: {latitude: '19.210831', longitude: '72.874741'}});
     });
   };
