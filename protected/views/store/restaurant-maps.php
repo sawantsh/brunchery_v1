@@ -96,8 +96,8 @@
           apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
     })
     .fail(function(err) {
-      // alert("API Geolocation error! \n\n"+err);
-      apiGeolocationSuccess({coords: {latitude: '19.210831', longitude: '72.874741'}});
+      alert("Unable to render the Google Map. Please check the Google API key is correctly configured");
+      // apiGeolocationSuccess({coords: {latitude: '19.210831', longitude: '72.874741'}});
     });
   };
 
