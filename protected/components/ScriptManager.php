@@ -227,6 +227,9 @@ class ScriptManager
 
 		$cs->registerScriptFile($baseUrl."/assets/js/slick.min.js"
 		,CClientScript::POS_END);
+
+		$cs->registerScriptFile($baseUrl."/assets/js/equalHeights.js"
+		,CClientScript::POS_END);
 	}
 	
 	public static function registerAllCSSFiles()

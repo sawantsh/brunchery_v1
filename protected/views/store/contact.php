@@ -26,6 +26,8 @@ if (!empty($fields)){
      <div class="">
         <div class="row bruncherry-contact">
           
+        <div class="ttl-img contact-pg"></div>
+
            <div class="col-md-12 ">
              <form class="uk-form uk-form-horizontal forms" id="forms" onsubmit="return false;">   
              <?php echo CHtml::hiddenField('action','contacUsSubmit')?>

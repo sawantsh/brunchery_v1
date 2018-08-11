@@ -6,7 +6,7 @@
 						<div class="trim-text text-center"><a class="pull-left" href="/profile"><i class="ion-ios-arrow-back"></i></a>Partner With Us</div>          </div>
           </div>
   <div class="row " style="background-color: #fff">  
-  
+    <div class="ttl-img prtnr-pg"></div>
     <div class="" style="padding-bottom: 70px;">
    
     <form class="forms" id="forms" onsubmit="return false;">
