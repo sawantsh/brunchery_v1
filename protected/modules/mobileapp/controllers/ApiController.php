@@ -79,7 +79,27 @@ class ApiController extends CController
 	   	   echo CJSON::encode($resp);
 	   } else echo $_GET['callback'] . '('.CJSON::encode($resp).')';		    	   	   	  
 	   Yii::app()->end();
-    }	
+	}
+	
+	public function actionDashboardLinks() {
+		$links=FunctionsV3::getDashboardLinks();
+		$this->code=1;
+	 	$this->msg=$this->t("Successful");
+		if ($links) {
+			foreach ($links as $val) {
+				$data[]=array(
+					'link'=>$val['link'],
+					'logo'=>AddonMobileApp::getImage($val['photo'])
+				);
+			}
+							
+			$this->details=array(
+				'total'=>count($links),
+				'data'=>$data
+			);
+		} else $this->msg=$this->t("No links found");
+		$this->output();
+	}
 	
 	public function actionSearch()
 	{		
@@ -94,32 +114,45 @@ class ApiController extends CController
 		} else $limit_page = "0,".$this->paginate_limit;
 				
 		$services_filter='';
-		if (isset($this->data['services'])){					
-			switch ($this->data['services']) {
-				case 1:
-					$and.= "AND ( service='1' OR service ='2' OR service='3' OR service='4' OR service='5' OR service='6' )";
-					break;			
-				case 2:
-					$and.= "AND ( service ='2')";
-					break;
-				case 3:
-					$and.= "AND ( service ='3')";
-					break;		
-				case 4:
-					//$and = "AND ( service='1' OR service ='2' OR service ='3' OR service ='4' )";
-					break;			
-				case 5:
-					$and.= "AND ( service='1' OR service ='2' OR service ='4' OR service ='7' )";
-					break;									
-				case 6:
-					$and.= "AND ( service='3' OR service ='4' OR service ='6' OR service ='7' )";
-					break;										
-				case 7:
-					$and.= "AND ( service='7' )";
-					break;											
-				default:
-					break;
-			}		
+		if (isset($this->data['services'])){
+			$service_type=!empty($this->data['services'])?explode(",",$this->data['services']):false;
+			if ($service_type!=false){
+				$x=1;
+				foreach (array_filter($service_type) as $service_type_val) {							
+					if ( $x==1){
+					   $services_filter.=" =".$service_type_val;
+				    } else $services_filter.=" OR service =".$service_type_val;
+					$x++;
+			    }			
+			    if (!empty($services_filter)){
+		           $and.=" AND (service $services_filter)";
+		         }			
+			}			
+			// switch ($this->data['services']) {
+				// case 1:
+				// 	$and.= "AND ( service='1' OR service ='2' OR service='3' OR service='4' OR service='5' OR service='6' )";
+				// 	break;			
+				// case 2:
+				// 	$and.= "AND ( service ='2')";
+				// 	break;
+				// case 3:
+				// 	$and.= "AND ( service ='3')";
+				// 	break;		
+				// case 4:
+				// 	//$and = "AND ( service='1' OR service ='2' OR service ='3' OR service ='4' )";
+				// 	break;			
+				// case 5:
+				// 	$and.= "AND ( service='1' OR service ='2' OR service ='4' OR service ='7' )";
+				// 	break;									
+				// case 6:
+				// 	$and.= "AND ( service='3' OR service ='4' OR service ='6' OR service ='7' )";
+				// 	break;										
+				// case 7:
+				// 	$and.= "AND ( service='7' )";
+				// 	break;											
+				// default:
+				// 	break;
+			// }		
 		}
 		
 		$filter_cuisine='';
@@ -207,12 +240,19 @@ class ApiController extends CController
 						
 			default: /* SEARCH BY ADDRESS*/
 				
+				$stmt="
+				SELECT SQL_CALC_FOUND_ROWS a.*,
+					concat(street,' ',city,' ',state,' ',post_code) as merchant_address
+				FROM {{view_merchant}} a
+				WHERE 1	
+				$and
+				ORDER BY is_sponsored DESC, restaurant_name ASC
+				LIMIT $limit_page
+				";
 				if (!isset($this->data['address'])){
-					$this->msg=$this->t("Address is required");
-					$this->output();
-				}
-				
-				if ( $res_geo=Yii::app()->functions->geodecodeAddress($this->data['address'])){
+					// $this->msg=$this->t("Address is required");
+					// $this->output();
+				} else if ( $res_geo=Yii::app()->functions->geodecodeAddress($this->data['address'])){
 					
 					$home_search_unit_type=Yii::app()->functions->getOptionAdmin('home_search_unit_type');
 			 	
@@ -245,8 +285,9 @@ class ApiController extends CController
 				 	ORDER BY is_sponsored DESC, distance ASC
 					LIMIT $limit_page
 					";				 	
-				} else $this->msg=$this->t("Error has occured failed geocoding address");
-				
+				} else {
+					$this->msg=$this->t("Error has occured failed geocoding address");
+				}				
 				break;
 				
 		} /*end switch*/
@@ -308,8 +349,18 @@ class ApiController extends CController
 		        		$tag=$this->t("pre-order");
 		        		$tag_raw='pre-order';
 		        	}
-		        }			 		
-		        
+				}
+				$isOpen = false;
+				$openTimings = '';
+				if ( $openHrs=FunctionsV3::getMerchantOpeningHours($merchant_id)) {
+					foreach ($openHrs as $o) {
+						if (strtolower(date('l')) == $o['day']) {
+							$isOpen = true;
+							$openTimings = $o['hours'];
+						}
+					}
+				}
+				
 		        
 		        // get distance			
 		        $distance='';	 $distance_type=''; $delivery_distance='';
@@ -423,8 +474,10 @@ class ApiController extends CController
 			    					    
 	 			$data[]=array(
 	 			  'merchant_id'=>$val['merchant_id'],
-	 			  'restaurant_name'=>stripslashes($val['restaurant_name']),
-	 			  'address'=>$val['street']." ".$val['city']." ".$val['state']." ".$val['post_code'],
+				  'restaurant_name'=>stripslashes($val['restaurant_name']),
+				  'description'=>getOption($val['merchant_id'],'merchant_information'),
+				  'address'=>$val['street']." ".$val['city']." ".$val['state']." ".$val['post_code'],
+				  'openTimings'=> $openTimings,
 	 			  'ratings'=>Yii::app()->functions->getRatings($val['merchant_id']),
 	 			  'cuisine'=>AddonMobileApp::prettyCuisineList($val['cuisine']),
 	 			  //'delivery_fee'=>!empty($delivery_fee)?$delivery_fee:'-',
@@ -4430,6 +4483,20 @@ class ApiController extends CController
 		
 		$this->output();
 	}
+
+	public function actionGetGeoLocationApiKey() {
+		$this->code=1;
+		$this->msg="OK";
+		$this->details = getOptionA("google_geo_api_key");
+		$this->output();
+	}
+
+	public function actionGetNearbyRestaurants() {
+		$this->details = Yii::app()->functions->searchNearByRestaurants($this->data);
+		$this->code=1;
+		$this->msg="search for nearby restaurants completed";
+		$this->output();
+	}
 	
 	public function actionApplyVoucher()
 	{		
@@ -5990,31 +6057,44 @@ class ApiController extends CController
 		
 		$services_filter='';
 		if (isset($this->data['services'])){					
-			switch ($this->data['services']) {
-				case 1:
-					$and.= "AND ( service='1' OR service ='2' OR service='3' OR service='4' OR service='5' OR service='6' )";
-					break;			
-				case 2:
-					$and.= "AND ( service ='2')";
-					break;
-				case 3:
-					$and.= "AND ( service ='3')";
-					break;		
-				case 4:
-					//$and = "AND ( service='1' OR service ='2' OR service ='3' OR service ='4' )";
-					break;			
-				case 5:
-					$and.= "AND ( service='1' OR service ='2' OR service ='4' OR service ='7' )";
-					break;									
-				case 6:
-					$and.= "AND ( service='3' OR service ='4' OR service ='6' OR service ='7' )";
-					break;										
-				case 7:
-					$and.= "AND ( service='7' )";
-					break;											
-				default:
-					break;
-			}		
+			$service_type=!empty($this->data['services'])?explode(",",$this->data['services']):false;
+			if ($service_type!=false){
+				$x=1;
+				foreach (array_filter($service_type) as $service_type_val) {							
+					if ( $x==1){
+					   $services_filter.=" =".$service_type_val;
+				    } else $services_filter.=" OR service =".$service_type_val;
+					$x++;
+			    }			
+			    if (!empty($services_filter)){
+		           $and.=" AND (service $services_filter)";
+		         }			
+			}
+			// switch ($this->data['services']) {
+			// 	case 1:
+			// 		$and.= "AND ( service='1' OR service ='2' OR service='3' OR service='4' OR service='5' OR service='6' )";
+			// 		break;			
+			// 	case 2:
+			// 		$and.= "AND ( service ='2')";
+			// 		break;
+			// 	case 3:
+			// 		$and.= "AND ( service ='3')";
+			// 		break;		
+			// 	case 4:
+			// 		//$and = "AND ( service='1' OR service ='2' OR service ='3' OR service ='4' )";
+			// 		break;			
+			// 	case 5:
+			// 		$and.= "AND ( service='1' OR service ='2' OR service ='4' OR service ='7' )";
+			// 		break;									
+			// 	case 6:
+			// 		$and.= "AND ( service='3' OR service ='4' OR service ='6' OR service ='7' )";
+			// 		break;										
+			// 	case 7:
+			// 		$and.= "AND ( service='7' )";
+			// 		break;											
+			// 	default:
+			// 		break;
+			// }		
 		}
 		
 		$filter_cuisine='';
@@ -6101,13 +6181,20 @@ class ApiController extends CController
 			   break;
 						
 			default: /* SEARCH BY ADDRESS*/
-				
+				$stmt="
+				SELECT SQL_CALC_FOUND_ROWS a.*,
+					concat(street,' ',city,' ',state,' ',post_code) as merchant_address
+				FROM {{view_merchant}} a
+				WHERE 1
+				$and
+				ORDER BY is_sponsored DESC, restaurant_name ASC
+				LIMIT 0,1
+				";
 				if (!isset($this->data['address'])){
-					$this->msg=$this->t("Address is required");
-					$this->output();
-				}
-				
-				if ( $res_geo=Yii::app()->functions->geodecodeAddress($this->data['address'])){
+					// $this->msg=$this->t("Address is required");
+					// $this->output();
+					
+				} else if ( $res_geo=Yii::app()->functions->geodecodeAddress($this->data['address'])){
 					
 					$home_search_unit_type=Yii::app()->functions->getOptionAdmin('home_search_unit_type');
 			 	
@@ -6140,8 +6227,9 @@ class ApiController extends CController
 				 	ORDER BY is_sponsored DESC, distance ASC
 					LIMIT 0,1
 					";				 	
-				} else $this->msg=$this->t("Error has occured failed geocoding address");
-				
+				} else {
+					$this->msg=$this->t("Error has occured failed geocoding address");
+				}				
 				break;
 				
 		} /*end switch*/
@@ -6149,8 +6237,10 @@ class ApiController extends CController
 		if (isset($_GET['debug'])){
 		   dump($this->data);
 	 	   dump($stmt);	
-	 	}
-	 	
+		 }
+
+		//  dump($stmt);
+		
 	 	if ( $res=$DbExt->rst($stmt)){					 		
 	 		$stmtc="SELECT FOUND_ROWS() as total_records";
 	 		
@@ -6172,7 +6262,8 @@ class ApiController extends CController
 	 		  'total_raw'=>$total_raw
 	 		);
 	 		
-	 	} else $this->msg=$this->t("No restaurant found");	 
+		 } else $this->msg=$this->t("No restaurant found");
+		//  $this->msg=$this->t($stmt);	 
 	 	$this->output();
 	}
 	

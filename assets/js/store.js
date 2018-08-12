@@ -136,12 +136,26 @@ jQuery(document).ready(function() {
 });	
 
 $(window).scroll(function() {   
+
+
+	if($(window).scrollTop() == 0){
+		$(".search-wraps.single-search").removeClass("fixed-to-top");
+	}
+	else{
+		$(".search-wraps.single-search").addClass("fixed-to-top");
+	}
 	
 	if ( hl_get_scroll_position() ) {		
 		$(".back-top").show();
 	} else {		
 		$(".back-top").fadeOut("slow");
 	}
+
+
+	// $(window).scrollTop() > $(".search-wraps.single-search").top ? (
+	// 	$(".search-wraps.single-search").addClass("fixed-to-top")) : 
+	// 	($(".search-wraps.single-search").removeClass("fixed-to-top"));
+
 });
 
 function hl_get_scroll_position()

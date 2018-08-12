@@ -7,16 +7,16 @@
   <!-- <form method="GET" class="forms-search" id="forms-search" action="<?php //echo Yii::app()->createUrl('store/searcharea')?>"> -->
   <form method="GET" class="forms-search" id="forms-search">
   <!-- <form method="GET" class="forms-search" id="forms-search" action="#"> -->
-  <div class="search-input-wraps ui-border-bottom">
+  <div class="search-input-wraps">
      <div class="row">
-        <div class="col-md-11 col-xs-10 relative search-textbox">
+        <div class="col-md-11 col-sm-10 col-xs-10 relative search-textbox">
           <?php echo CHtml::textField('s',$kr_search_adrress,array(
           'placeholder'=>$placholder_search,
           // 'required'=>true
           ))?> 
         <button type="submit" class="bruncherry-search"><i class="ion-ios-search"></i></button>                
         </div>        
-        <div class="col-md-1 col-xs-1 relative">
+        <div class="col-md-1  col-sm-2 col-xs-2 relative search-settings-holder">
           <a href="#" class="search-settings">
             <i class="ion-ios-settings"></i>
           </a>         

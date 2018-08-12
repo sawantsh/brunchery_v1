@@ -29,7 +29,7 @@ echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCou
 		
   <div class="bruncherry-branding">
 	  <img src="/assets/images/bruncherry-logo.png" alt="">
-		<h1>BRUNCHERRY</h1>	
+		<h1>BRUNCHERY</h1>	
 		<p>Dine In or Dash Out</p>
   </div>
 	

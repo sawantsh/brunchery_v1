@@ -535,7 +535,8 @@ jQuery(document).ready(function() {
    	   $.cookie('kr_cookie_law', '2', { expires: 500, path: '/' }); 
    });
    
-   $( document ).on( "click", ".search-settings", function() { 
+   $( document ).on( "click", ".search-settings", function(evt) { 
+	   evt.preventDefault();
 	$(".search-filters").slideToggle();
 });
 

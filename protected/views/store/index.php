@@ -22,9 +22,9 @@ $placholder_search=Yii::t("default",$placholder_search);
 <?php if ( $home_search_mode=="address" || $home_search_mode=="") :?>
 <!-- <img class="mobile-home-banner" src="<?php //echo assetsURL()."/images/banner.jpg"?>"> -->
 <!--bruncherry-container-->
+
 <div class="bruncherry-container home">
-
-
+<div class="home-backdrop"></div>
 <?php else :?>
 
 <!--SEARCH USING LOCATION-->

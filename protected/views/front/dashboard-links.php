@@ -1,5 +1,5 @@
 <?php if ($links=FunctionsV3::getDashboardLinks()):?>
-<div class="links-slider home-hero">
+<div class="links-slider home-hero container">
 <?php foreach ($links as $link):?>
     <a href="<?php echo $link['link']?>" target="_blank">
         <img class="logo-small" src="<?php echo FunctionsV3::getDashboardLinkImage($link['photo']);?>">
@@ -15,6 +15,9 @@ jQuery(document).ready(function() {
         arrows: true,
         nextArrow: '<i class="ion-ios-arrow-forward slide-next">',
         prevArrow: '<i class="ion-ios-arrow-back slide-back">',
+    });
+    $('.resto-tile-content').equalHeight({
+        resizeTimeout: 5
     });
 });
 </script>

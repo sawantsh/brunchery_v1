@@ -304,6 +304,9 @@ width:auto;
 
 }
   @media screen and (max-width: 991px){
+    .home-backdrop{
+        height: 400px;
+    }
     .store-topbar.search-wraps{
       width: 750px;
     }
@@ -346,12 +349,17 @@ width:auto;
 
 
   @media only screen and (max-width : 768px) {
+        
+    .home-backdrop{
+        height: 375px;
+    }
+
 .search-wraps.single-search.store-topbar{
     width: 100%;
     left: 0;
     top: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
   }
   .store-topbar, .category-list-content{
       width: 100%;
@@ -599,6 +607,9 @@ html, body{
 }
 
 @media only screen and (max-width : 540px) {
+    .home-backdrop{
+        height: 350px;
+    }
     #edit-order-pop{
         width: 100%;
     }
@@ -615,14 +626,20 @@ html, body{
         font-size: 30px;
         letter-spacing: 10px;
     }
+    .home-backdrop{
+        height: 375px;
+    }
 
 }
 @media only screen and (max-width : 480px) 
 {
+    .home-backdrop{
+        height: 310px;
+    }   
 
     .links-slider.home-hero{
-        margin-top: 0px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2)
+        /* margin-top: 0px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2) */
     }
 .top-menu-wrapper img.logo{
 border:0px solid green;
