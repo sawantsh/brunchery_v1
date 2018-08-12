@@ -3917,6 +3917,12 @@ padding: 0
   }
     .section-custom-page .bruncherry-story-page .section-heading{
     font-size: 20px;
+    text-align: left;
+    position: relative;
+    margin: 30px 0px;
+  }
+  .section-custom-page .bruncherry-story-page .section-heading-center{
+    font-size: 20px;
     text-align: center;
     position: relative;
     margin: 30px 0px;
@@ -3930,7 +3936,7 @@ padding: 0
   .section-custom-page{
     background-color: #fff;
   }
-  .section-custom-page .bruncherry-story-page .section-heading::after{
+  .section-custom-page .bruncherry-story-page .section-heading-center::after{
     content: "";
     height: 1px;
     width: 20px;
@@ -3950,6 +3956,17 @@ padding: 0
   }
   .bruncherry-story-page .mast{
     background: #c6fcd8;
+  }
+  .section-custom-page .faqmast{
+    height: 145px;
+    position: absolute;
+    top: -64px;
+    width: 100%;
+    left: 0;
+    transform: skewY(-5deg);
+  }
+  .bruncherry-story-page .faqmast{
+    background: #D2EBFA;
   }
   .section-custom-page p:empty, .item_not_available a.menu-item, .soldout{
     display: none
