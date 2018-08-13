@@ -145,9 +145,9 @@ if ( $enabled_advance_search=="yes"){
           <!-- <?php //echo FunctionsV3::displayCuisine($val['cuisine'],$cuisine_list);?> -->
           </p>
           
-          <p class="desc"><?php echo getOption($merchant_id,'merchant_information')?></p>
+          <p class="desc"><?php echo getOption($val['merchant_id'],'merchant_information')?></p>
           <?php $isOpen = false;?>
-          <?php if ( $openHrs=FunctionsV3::getMerchantOpeningHours($merchant_id)):?>
+          <?php if ( $openHrs=FunctionsV3::getMerchantOpeningHours($val['merchant_id'])):?>
             <?php foreach ($openHrs as $o):?>
               <?php if (strtolower(date('l')) == $o['day']):?>
                 <?php $isOpen = true;?>
