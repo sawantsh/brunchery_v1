@@ -352,7 +352,7 @@ class ApiController extends CController
 				}
 				$isOpen = false;
 				$openTimings = '';
-				if ( $openHrs=FunctionsV3::getMerchantOpeningHours($merchant_id)) {
+				if ( $openHrs=FunctionsV3::getMerchantOpeningHours($val['merchant_id'])) {
 					foreach ($openHrs as $o) {
 						if (strtolower(date('l')) == $o['day']) {
 							$isOpen = true;
@@ -475,7 +475,7 @@ class ApiController extends CController
 	 			$data[]=array(
 	 			  'merchant_id'=>$val['merchant_id'],
 				  'restaurant_name'=>stripslashes($val['restaurant_name']),
-				  'description'=>getOption($val['merchant_id'],'merchant_information'),
+				  'description'=>getOption($mtid,'merchant_information'),
 				  'address'=>$val['street']." ".$val['city']." ".$val['state']." ".$val['post_code'],
 				  'openTimings'=> $openTimings,
 	 			  'ratings'=>Yii::app()->functions->getRatings($val['merchant_id']),
@@ -1843,6 +1843,64 @@ class ApiController extends CController
 	   );
 	   $this->details=$next_step;
 	   $this->output();
+	}
+
+	public function actionPartnerUsSubmit() {
+		FunctionsV3::sendPartnerSignupEmail($this->data);
+		$this->code=1;
+		$this->msg=Yii::t("default",'Thanks for your interest.');
+		$this->output();
+	}
+
+	public function actionContactUsSubmit() {
+		$lang=Yii::app()->language;
+		$to=getOptionA('contact_email_receiver');
+		$from='';
+		
+		$contact_us=getOptionA('contact_us_email');
+		if ( $contact_us==""){	    			
+			$this->msg=t("Contact form template is not enabled in template settings");
+			$this->output();
+		}	    	
+		
+		$subject=getOptionA('contact_us_tpl_subject_'.$lang);
+		$tpl=getOptionA('contact_us_tpl_content_'.$lang);
+		if(!empty($tpl)){
+													
+			$tpl=FunctionsV3::smarty('name',
+			isset($this->data['contact_name'])?$this->data['contact_name']:'',$tpl);
+			
+			$tpl=FunctionsV3::smarty('email',
+			isset($this->data['contact_email'])?$this->data['contact_email']:'',$tpl);
+			
+			$tpl=FunctionsV3::smarty('message',
+			isset($this->data['contact_message'])?$this->data['contact_message']:'',$tpl);
+			
+			$tpl=FunctionsV3::smarty('sitename',getOptionA('website_title'),$tpl);
+			$tpl=FunctionsV3::smarty('siteurl',websiteUrl(),$tpl);
+		} 	    	
+			
+		if (empty($to)){
+			$this->msg=Yii::t("default","ERROR: no email to send.");
+			$this->output();
+		}	    	
+		if(empty($subject)){
+			$this->msg=t("Subject is empty");
+			$this->output();
+		}	    	
+		if(empty($tpl)){
+			$this->msg=t("Template is empty");
+			$this->output();
+		}	    	
+						
+		if ( Yii::app()->functions->sendEmail($to,$from,$subject,$tpl) ){
+			$this->code=1;    		
+			$this->msg=Yii::t("default","Your message was sent successfully. Thanks.");
+		} else {
+			$this->code=2;
+			$this->msg=Yii::t("default","ERROR: Cannot sent email.");
+		}
+		$this->output();
 	}
 	
 	public function actionSignup()
@@ -3728,6 +3786,9 @@ class ApiController extends CController
 					$total_price=displayPrice(getCurrencyCode(),prettyFormat($val['total_w_tax']));
 					$data[]=array(
 					  'order_id'=>$val['order_id'],
+					  'merchant_name'=>stripslashes($val['merchant_name']),
+					  'order_date'=>Yii::app()->functions->translateDate(prettyDate($val['date_created'])),
+					  'order_price'=>$val['total_w_tax'],
 					  'title'=>"#".$val['order_id']." ".stripslashes($val['merchant_name'])." ".Yii::app()->functions->translateDate(prettyDate($val['date_created']))." ($total_price)",
 					  'status_raw'=>$val['status'],
 					  'status'=>AddonMobileApp::t($val['status'])
