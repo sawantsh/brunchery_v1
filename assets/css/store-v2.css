@@ -3610,7 +3610,8 @@ padding:5px;
 font-size:14px;
 }
 .avatar-thumb img {
-  width: 100px;
+  width: 75px;
+  height: 75px;
 }
 .avatar-thumb {
   float: left;
