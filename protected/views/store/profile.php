@@ -28,6 +28,10 @@ echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCou
                           </div>
                           <div class='trim-text text-right profile-link'><a class='pull-right' href='/logout'>Logout</a></div>
                         <?php else: ?>
+                      
+                      <div class="avatar-thumb-logo">
+                            <img src="<?php echo '/assets/images/bruncherry-logo.png';?>" class="img-circle-white" >
+                          </div>
                           <div class='trim-text text-right profile-link'><a class='pull-right' href='/checkout?redirect=profile'>Login/Signup</a></div>
                         <?php endif; ?>
                         
