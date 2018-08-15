@@ -2862,7 +2862,9 @@ jQuery(document).ready(function() {
 		dump(class_name);
 		$(".goto-category").removeClass("active");
 		$(this).addClass("active");
-		scroll_class(class_name);
+		// scroll_class(class_name);
+		$("#menu-list-wrapper .menu-cat").css({"display":"none"});
+    	$("#menu-list-wrapper ." + class_name).css({"display":"block"});
 	});
    
 }); /*END DOCU*/

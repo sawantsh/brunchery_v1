@@ -4,7 +4,9 @@
 <?php foreach ($menu as $val):?>
 
 <?php if(is_array($val['item'])!=0):?>
- <a href="javascript:;" class="category-child relative goto-category" data-id="cat-<?php echo $val['category_id']?>" >
+ <a href="javascript:;" 
+    class="category-child relative goto-category <?php echo $menu[0]['category_id'] == $val['category_id'] ? 'active' :''?>" 
+    data-id="cat-<?php echo $val['category_id']?>" >
   <?php echo qTranslate($val['category_name'],'category_name',$val)?>
  </a>
  <?php endif;?>

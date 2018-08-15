@@ -777,7 +777,118 @@ class FunctionsV3
     	}
     	return false;
     }
-    
+	
+	public static function getDurationBetweenPlot($lat1, $lon1, $lat2, $lon2, $unit)
+    {
+    	  /*dump("$lat1,$lon1");
+    	  dump("$lat2,$lon2");
+    	  dump($unit);
+    	  die();*/
+    	      	  
+    	  self::$distance_type_result='';
+    	  
+    	  if(empty($lat2) && empty($lon2)){
+    	  	  return false;
+    	  }
+    	  if(empty($lat1) && empty($lon1)){
+    	  	  return false;
+    	  }
+    	  
+    	  $units_params='';
+    	  
+    	  switch ($unit) {
+    	  	case "M":
+    	  	case "Miles":
+    	  		$units_params='imperial';
+    	  		break;
+    	  
+    	  	default:
+    	  		$units_params='metric';
+    	  		break;
+    	  }
+    	  
+    	  $method=getOptionA('google_distance_method');
+    	  $use_curl=getOptionA('google_use_curl');
+    	  
+    	  $protocol = isset($_SERVER["https"]) ? 'https' : 'http';
+    	  $key=Yii::app()->functions->getOptionAdmin('google_geo_api_key');
+    	  
+    	  //dump($method);
+    	  
+    	  if ($method=="driving" || $method=="transit"){
+    	  	 $url="https://maps.googleapis.com/maps/api/distancematrix/json";
+    	  	 $url.="?origins=".urlencode("$lat1,$lon1");
+    	  	 $url.="&destinations=".urlencode("$lat2,$lon2");
+    	  	 $url.="&mode=".urlencode($method);    	  
+    	  	 $url.="&units=".urlencode($units_params);
+    	  	 if(!empty($key)){
+    	  	 	$url.="&key=".urlencode($key);
+    	  	 }
+    	  	 
+    	  	 if(isset($_GET['debug'])){
+    	  	    dump($url);
+    	  	 }
+    	  	 
+    	  	 if ($use_curl==2){
+    	  	 	$data = Yii::app()->functions->Curl($url);
+    	  	 } else $data = @file_get_contents($url);	
+    	  	 $data = json_decode($data);  
+    	  	 //dump($data);
+    	  	 if (is_object($data)){
+    	  	 	if ($data->status=="OK"){ 
+    	  	 		if($data->rows[0]->elements[0]->status=="ZERO_RESULTS"){
+    	  	 			return false;
+    	  	 		}
+    	  	 		if($data->rows[0]->elements[0]->status=="NOT_FOUND"){
+    	  	 			return false;
+    	  	 		}    	  	 		
+    	  	 		    	  	 		
+    	  	 		$distance_value=$data->rows[0]->elements[0]->duration->text;    	  	 		    	  	 
+    	  	 		
+    	  	 		// if ($units_params=="imperial"){
+    	  	 		//    $distance_raw=str_replace(array(" ","mi","ft"),"",$distance_value);
+    	  	 		//    if (preg_match("/ft/i", $distance_value)) {
+    	  	 		//    	  self::$distance_type_result='ft';
+    	  	 		//    }
+    	  	 		// } else {
+    	  	 		// 	$distance_raw=str_replace(array(" ","km","m",'mt'),"",$distance_value);
+    	  	 			
+    	  	 		// 	if (preg_match("/km/i", $distance_value)) {       	  	 				
+    	  	 		// 	} else {
+    	  	 		// 		if (preg_match("/m/i", $distance_value)) {
+    	  	 		//    	        self::$distance_type_result='meter';
+    	  	 		//         }
+    	  	 		// 	}    	  	 			
+    	  	 		//     if (preg_match("/mt/i", $distance_value)) {
+    	  	 		//    	   self::$distance_type_result='mt';
+    	  	 		//     }
+    	  	 		// }
+					   // return $distance_raw;
+					   return $distance_value;
+    	  	 	}	
+    	  	 }
+    	  	 return false;
+    	  }
+    	  
+    	  if (empty($lat1)){ return false; }
+    	  if (empty($lon1)){ return false; }
+    	  
+    	  $theta = $lon1 - $lon2;
+		  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+		  $dist = acos($dist);
+		  $dist = rad2deg($dist);
+		  $miles = $dist * 60 * 1.1515;
+		  $unit = strtoupper($unit);
+		
+		  if ($unit == "K") {
+		      return ($miles * 1.609344);
+		  } else if ($unit == "N") {
+		      return ($miles * 0.8684);
+		  } else {
+		      return $miles;
+		  }
+	}
+	
     public static function getDistanceBetweenPlot($lat1, $lon1, $lat2, $lon2, $unit)
     {
     	  /*dump("$lat1,$lon1");

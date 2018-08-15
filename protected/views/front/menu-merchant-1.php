@@ -9,7 +9,8 @@ dump($merchant_tax);*/
 <?php foreach ($menu as $val):?>
 <div class="menu-1" style="margin-top:0;">
 
-  <div class="menu-cat meal-preview cat-<?php echo $val['category_id']?> ">
+  <div class="menu-cat meal-preview cat-<?php echo $val['category_id']?>" 
+    style="<?php echo $menu[0]['category_id'] == $val['category_id'] ? 'display:block;' :'display:none;'?>">
      <!-- <a href="javascript:;">       
        <span class="bold">
           <i class="<?php// echo $tc==2?"ion-ios-arrow-thin-down":'ion-ios-arrow-thin-right'?>"></i>
@@ -43,8 +44,10 @@ dump($merchant_tax);*/
      
      <div class="meal-info">
         <div class="">
-        <div class="food-thumbnail pic" style="background:url('<?php echo FunctionsV3::getFoodDefaultImage($val_item['photo'],false)?>');"></div>
-        <div class="meal-particulars">
+        <?php if(!empty($val_item['photo'])):?>
+          <div class="food-thumbnail pic" style="background:url('<?php echo FunctionsV3::getFoodDefaultImage($val_item['photo'],false)?>');"></div>
+        <?php endif;?>
+        <div class="meal-particulars" style="<?php echo empty($val_item['photo']) ? 'padding-left:0px' : ''?>">
           <?php echo "<p class='food-item-title'>".qTranslate($val_item['item_name'],'item_name',$val_item)."</p>"?>
           <p><?php echo stripslashes($val_item['item_description'])?></p>
           <div class="food-price-wrap">

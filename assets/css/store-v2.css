@@ -2603,14 +2603,7 @@ width:auto;
 height:60px;
 width:60px;
 }
-.img-circle-white{
-  height:70px;
-  width: 70px;
-  background-color: #ffffff;
-  border-radius: 100%;
-  float: left;
-  margin-left: 5%
-}
+
 .cookie-wrap,
 .language-selection-wrap
 {
@@ -2773,9 +2766,12 @@ margin-top:4px;
 .social-wrap .mycol{
 width:16%;
 }
-.resto-pic{
-  height: 150px;
+.resto-pic-wrap{
+  height: 225px;
   overflow: hidden;
+}
+.resto-pic{
+  position: relative;
 }
 .resto-tile {
   overflow: hidden;
@@ -3925,12 +3921,6 @@ padding: 0
   }
     .section-custom-page .bruncherry-story-page .section-heading{
     font-size: 20px;
-    text-align: left;
-    position: relative;
-    margin: 30px 0px;
-  }
-  .section-custom-page .bruncherry-story-page .section-heading-center{
-    font-size: 20px;
     text-align: center;
     position: relative;
     margin: 30px 0px;
@@ -3944,7 +3934,7 @@ padding: 0
   .section-custom-page{
     background-color: #fff;
   }
-  .section-custom-page .bruncherry-story-page .section-heading-center::after{
+  .section-custom-page .bruncherry-story-page .section-heading::after{
     content: "";
     height: 1px;
     width: 20px;
@@ -3964,17 +3954,6 @@ padding: 0
   }
   .bruncherry-story-page .mast{
     background: #c6fcd8;
-  }
-  .section-custom-page .faqmast{
-    height: 145px;
-    position: absolute;
-    top: -64px;
-    width: 100%;
-    left: 0;
-    transform: skewY(-5deg);
-  }
-  .bruncherry-story-page .faqmast{
-    background: #D2EBFA;
   }
   .section-custom-page p:empty, .item_not_available a.menu-item, .soldout{
     display: none
@@ -4018,5 +3997,34 @@ padding: 0
     margin: 20px auto;
     background-size: contain;
     background-repeat: no-repeat;
+  }
+  .rest-discount, .rest-duration{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 100px;
+    text-align: center;
+    right: 10px;
+    bottom: -23px;  
+    font-size: 18px;
+    font-family: 'verlagbold', sans-serif;
+    padding: 5px;
+  }
+  .rest-discount{
+    right: 70px;
+    background-image: url(../images/coffee.png);
+    background-repeat: no-repeat;
+    background-size: 32px;
+    background-position: 10px 5px;
+  }
+  .resto-pic .unit{
+    font-size: 14px;
+    font-family: 'verlagbook', sans-serif;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    bottom: 3px;
   }
   

@@ -136,7 +136,20 @@ if ( $enabled_advance_search=="yes"){
     <div class="col-md-4 resto-tile">
       <div class="resto-tile-content">
         <div class="resto-pic">
+        <div class="resto-pic-wrap">
           <img class="logo-small" src="<?php echo FunctionsV3::getMerchantLogo($val['merchant_id'],$val['logo']);?>">
+          <?php if ($cups_disc=getOption($val['merchant_id'],'merchant_delivery_charges')):?>
+          <div class='rest-discount'>
+           <span class="unit">-<?php echo $cups_disc?>c</span>
+          </div>
+        <?php endif;?>
+          <?php if ($prep_time=getOption($val['merchant_id'],'merchant_delivery_estimation')):?>
+          <div class='rest-duration'>
+            <?php echo $prep_time?>
+            <span class="unit">MIN</span>
+          </div>
+        <?php endif;?>
+        </div>
         </div>
           <h4 class="concat-name"><?php echo clearString($val['restaurant_name'])?></h4>
           <p class="addr"><?php echo clearString($val['street'])?></p>

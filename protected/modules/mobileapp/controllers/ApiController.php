@@ -364,26 +364,32 @@ class ApiController extends CController
 		        
 		        // get distance			
 		        $distance='';	 $distance_type=''; $delivery_distance='';
-		        
+				
+				$user_lat = $this->data['lat'];
+				$user_lng = $this->data['lng'];
 		        $merchant_lat=!empty($val['latitude'])?$val['latitude']:0;
 		        $merchant_lng=!empty($val['lontitude'])?$val['lontitude']:0;				        
 		        $distance_type=FunctionsV3::getMerchantDistanceType($mtid);					        
 		        $distance_type_raw= $distance_type=="M"?"mi":"km";
 		        
 		        FunctionsV3::$distance_type_result='';
-		        
-		        if ($search_mode!="postcode"){		        
-		        	
-			        $distance=FunctionsV3::getDistanceBetweenPlot(
-				        $lat,
-				        $long,
+				
+				$duration = FunctionsV3::getDurationBetweenPlot($user_lat,
+					$user_lng,
+					$merchant_lat,
+					$merchant_lng,
+					$distance_type
+				);
+				if ($search_mode!="postcode"){		        
+		        	$distance=FunctionsV3::getDistanceBetweenPlot(
+				        $user_lat,
+				        $user_lng,
 				        $merchant_lat,
 				        $merchant_lng,
 				        $distance_type
-				    ); 
-		        
-			    					    
-				    $straight_line=getOptionA('google_distance_method');
+					); 
+					
+					$straight_line=getOptionA('google_distance_method');
 				    if ( $straight_line=="straight_line"){
 				    	if(is_numeric($distance)){
 				    	   $distance=round($distance,PHP_ROUND_HALF_UP);
@@ -499,7 +505,9 @@ class ApiController extends CController
 	 			  'delivery_estimation'=>$this->t("Delivery Est").": ".getOption($mtid,'merchant_delivery_estimation'),
 	 			  'delivery_distance'=>$delivery_distance,
 	 			  'is_sponsored'=>$val['is_sponsored'],
-	 			  'payment_available'=>$payment_available
+				   'payment_available'=>$payment_available,
+				   'cups_discount'=>getOption($val['merchant_id'],'merchant_delivery_charges'),
+				   'prep_time'=>getOption($val['merchant_id'],'merchant_delivery_estimation')
 	 			);
 	 		}			 		
 	 					 		
@@ -6771,7 +6779,7 @@ class ApiController extends CController
 			      'item_name'=>$val['item_name'],
 			      'item_description'=>$val['item_description'],
 			      'discount'=>$val['discount'],
-			      'photo'=>AddonMobileApp::getImage($val['photo']),
+			      'photo'=>!empty($val['photo']) ? AddonMobileApp::getImage($val['photo']):'',
 			      'spicydish'=>$val['spicydish'],
 			      'dish'=>$val['dish'],			      
 			      'prices'=>$price_new,				

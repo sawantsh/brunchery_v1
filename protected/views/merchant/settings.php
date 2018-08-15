@@ -581,7 +581,8 @@ echo CHtml::textField('merchant_extenal',$merchant_extenal,array(
 </div>
 
 <div class="uk-form-row">
-  <label class="uk-form-label"><?php echo Yii::t("default","Delivery Charges")?></label>
+  <label class="uk-form-label"><?php echo Yii::t("default","Cups Discount")?></label>
+  <?php echo "-"?>
   <?php 
   //echo CHtml::dropDownList('merchant_delivery_charges_type',$merchant_delivery_charges_type
   //,Yii::app()->functions->deliveryChargesType());
@@ -590,7 +591,7 @@ echo CHtml::textField('merchant_extenal',$merchant_extenal,array(
     //'style'=>"width:80px;"
   ));
   ?>
-  <?php echo Yii::app()->functions->getCurrencyCode(Yii::app()->functions->getMerchantID());?>      
+  <?php echo "c"?>      
 </div>
 
 <div class="uk-form-row">
@@ -605,12 +606,13 @@ Yii::app()->functions->getOption("merchant_tax_charges",$merchant_id)==2?true:fa
 </div>
 
 <div class="uk-form-row">
-<label class="uk-form-label"><?php echo Yii::t("default","Delivery Estimation")?></label>
+<label class="uk-form-label"><?php echo Yii::t("default","Preparation time")?></label>
 <?php 
   echo CHtml::textField('merchant_delivery_estimation',$merchant_delivery_estimation,array(
-  'placeholder'=>Yii::t("default","1 hour approx.")
+  'placeholder'=>Yii::t("default","5-10")
   ));
   ?>
+  <?php echo "min"?>  
 </div>
 
 <div class="uk-form-row">
