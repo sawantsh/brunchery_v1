@@ -305,7 +305,7 @@ width:auto;
 }
   @media screen and (max-width: 991px){
     .home-backdrop{
-        height: 400px;
+        /* height: 400px; */
     }
     .store-topbar.search-wraps{
       width: 750px;
@@ -345,7 +345,11 @@ width:auto;
       #edit-order-pop .item-order-wrap .ordered-items .item-order-list.item-row .b.col-md-10{
         float: left
       }
+      .home-hero .slick-slide img{
+          height: 100%
+      }
   }
+
 
 
   @media only screen and (max-width : 768px) {
@@ -547,10 +551,15 @@ margin:0 0 8px;
 padding-bottom: 10px;
 padding-top: 15px;
 }
-
+.sections.section-feature-resto{
+    padding-top: 0px;
+}
 .section-cuisine a{
 text-align:center;
 display:block;
+}
+.row.home-resto-content .resto-tile:first-child{
+    padding-top: 10px;
 }
 
 .section-feature-resto h2, .section-cuisine .sub-text
@@ -603,12 +612,20 @@ font-size:20px;
 html, body{
     /* background-color: #fff; */
 }
+.home-backdrop{
+    top: -364px;
+    transform: skewY(-8deg);
+    HEIGHT: 435px;
+}
+.home-hero .slide-next, .home-hero .slide-back{
+    font-size: 35px;
+}
 
 }
 
 @media only screen and (max-width : 540px) {
     .home-backdrop{
-        height: 350px;
+        top: -269px;
     }
     #edit-order-pop{
         width: 100%;
@@ -634,7 +651,7 @@ html, body{
 @media only screen and (max-width : 480px) 
 {
     .home-backdrop{
-        height: 310px;
+        /* height: 310px; */
     }   
 
     .links-slider.home-hero{
@@ -884,6 +901,9 @@ border:0px solid orange;
 .bruncherry-branding h1{
     font-size: 30px;
     letter-spacing: 5px;
+}
+.search-settings{
+        margin-left: -10px;
 }
 
 }

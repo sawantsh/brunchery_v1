@@ -14,7 +14,7 @@
           'placeholder'=>$placholder_search,
           // 'required'=>true
           ))?> 
-        <button type="submit" class="bruncherry-search"><i class="ion-ios-search"></i></button>                
+        <button type="submit" class="bruncherry-search"></button>                
         </div>        
         <div class="col-md-1  col-sm-2 col-xs-2 relative search-settings-holder">
           <a href="#" class="search-settings">
