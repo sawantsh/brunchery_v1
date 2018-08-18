@@ -6862,7 +6862,16 @@ $params['cart_tip_value']=$raw['total']['tips'];
 	        $this->code=1;
 	    	$this->msg=Yii::t("default","Settings saved.");
 	        } else $this->msg=Yii::t("default","Contact field must have 1 or more fields");
-	    }		
+		}
+		
+		public function partnerSignupSettings()
+	    {	    	
+	    	yii::app()->functions->updateOptionAdmin('partner_signup_email_tpl_content',$this->data['partner_signup_email_tpl_content']);
+	        yii::app()->functions->updateOptionAdmin('partner_signup_email_subject',$this->data['partner_signup_email_subject']);
+	        yii::app()->functions->updateOptionAdmin('partner_signup_admin_email',$this->data['partner_signup_admin_email']);
+	        $this->code=1;
+	    	$this->msg=Yii::t("default","Settings saved.");
+	    }
 	    
 	    public function adminSocialSettings()
 	    {	    	

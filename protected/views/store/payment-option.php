@@ -91,7 +91,7 @@ Yii::app()->functions->getOptionAdmin("admin_currency_position"));
       
       <div class="radio-group">
       <?php echo CHtml::radioButton('dining-opt',true,
-         array('class'=>"icheck",'value'=>'pickup'))?> 
+         array('class'=>"icheck",'value'=>'dashout'))?> 
         <label for="dashout">Dash Out</label>
       </div>
       </div>
@@ -224,7 +224,7 @@ Yii::app()->functions->getOptionAdmin("admin_currency_position"));
      echo CHtml::hiddenField('action','placeOrder');
      echo CHtml::hiddenField('country_code',$merchant_info['country_code']);
      echo CHtml::hiddenField('currentController','store');
-     echo CHtml::hiddenField('delivery_type',$s['kr_delivery_options']['delivery_type']);
+    //  echo CHtml::hiddenField('delivery_type',$s['kr_delivery_options']['delivery_type']);
      echo CHtml::hiddenField('cart_tip_percentage','');
      echo CHtml::hiddenField('cart_tip_value','');
      echo CHtml::hiddenField('client_order_sms_code');

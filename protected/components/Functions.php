@@ -1419,7 +1419,11 @@ class Functions extends CApplicationComponent
                 
                 array('visible'=>$this->AA('ContactSettings'),'tag'=>"ContactSettings",
                 'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Contact Settings"),
-                'url'=>array('/admin/ContactSettings')),                
+				'url'=>array('/admin/ContactSettings')),  
+				
+				array('visible'=>$this->AA('PartnerSignupSettings'),'tag'=>"PartnerSignupSettings",
+                'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Partner Signup Settings"),
+                'url'=>array('/admin/PartnerSignupSettings')),
                 
                 array('visible'=>$this->AA('SocialSettings'),'tag'=>"SocialSettings",
                 'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Social Settings"),

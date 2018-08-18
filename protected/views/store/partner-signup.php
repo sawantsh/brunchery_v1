@@ -13,7 +13,23 @@
     <?php echo CHtml::hiddenField('action','partnerSignupSubmit')?>
 	  <?php echo CHtml::hiddenField('currentController','store')?>
 	  <?php FunctionsV3::addCsrfToken();?>
-      
+
+    <div class="partner-photo clearfix">
+      <div class="relative">
+        <h4 class="rgt-border" >Your Premier Food Photo (Optional)</h4>
+        <div id="photouploader">
+        <a href="javascript:;" id="uploadpartnerphoto">Browse</a> 
+          <DIV  style="display:none;" class="uploadpartnerphoto_chart_status" >
+            <div id="percent_bar" class="uploadpartnerphoto_percent_bar"></div>
+            <div id="progress_bar" class="uploadpartnerphoto_progress_bar">
+              <div id="status_bar" class="uploadpartnerphoto_status_bar"></div>
+            </div>
+          </DIV>
+        </div>
+        <div class="partner-photo-img center top10" style="width: 200px; height: 200px; border: 4px dashed #b5b5b5">
+        </div>
+      </div>
+    </div>
     <div class="partner-basics clearfix">
    <div class="relative">
     <h4 class="rgt-border" >The Basics</h4>

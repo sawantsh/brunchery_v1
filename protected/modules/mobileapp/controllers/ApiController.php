@@ -6968,6 +6968,32 @@ class ApiController extends CController
 	    
     	echo "$this->code|$this->msg|$profile_photo|".$request;
     	Yii::app()->end();
+	}
+	
+	public function actionUploadImage()
+    {
+    	$this->data=$_REQUEST;    	
+    	$request=json_encode($_REQUEST);
+    	
+    	$path_to_upload= FunctionsV3::uploadPath();
+    	
+	    $profile_photo='';
+	    	    	    
+	    if(isset($_FILES['file'])){
+	    	
+	    	header('Access-Control-Allow-Origin: *');
+	    	
+		    $new_image_name = urldecode($_FILES["file"]["name"]).".jpg";	
+		    $new_image_name=str_replace(array('?',':'),'',$new_image_name);
+		        
+			$upload_res = @move_uploaded_file($_FILES["file"]["tmp_name"], "$path_to_upload/".$new_image_name);
+			$this->code=1;
+			$this->msg=self::t("Upload successful");
+			$this->details=$new_image_name;
+			$profile_photo = AddonMobileApp::getImage($new_image_name);
+	    } else $this->msg=self::t("Image is missing");
+	    echo "$this->code|$this->msg|$profile_photo|$this->details|".$request;
+    	Yii::app()->end();
     }
 
     public function actionclearMyCart()

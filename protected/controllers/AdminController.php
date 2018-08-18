@@ -286,6 +286,12 @@ class AdminController extends CController
 		$this->crumbsTitle=Yii::t("default","Contact Settings");
 		$this->render('contact-settings');
 	}
+
+	public function actionPartnerSignupSettings()
+	{
+		$this->crumbsTitle=Yii::t("default","Contact Settings");
+		$this->render('partnersignup-settings');
+	}
 	
 	public function actionSocialSettings()
 	{

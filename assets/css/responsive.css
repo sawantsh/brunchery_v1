@@ -346,6 +346,7 @@ width:auto;
         float: left
       }
       .home-hero .slick-slide img{
+        width: 100%;
           height: 100%
       }
   }
@@ -395,9 +396,18 @@ width:auto;
   .bruncherry-branding img {
     max-width: 15%;
     }
+    .profile-mast .brun-logo{
+        left: 10px;
+    }
 }
 @media only screen and (max-width : 750px) 
 {
+    .profile-nav-content{
+        margin-top: 5px;
+    }
+    .container.section-profile.logged-in .profile-nav-content{
+        margin-top: 20px
+    }
 
 .result-merchant .logo-medium {
 max-width: 100px;
@@ -617,6 +627,13 @@ html, body{
     transform: skewY(-8deg);
     HEIGHT: 435px;
 }
+.home-backdrop.profile-header{
+    top: -336px;
+    height:435px; 
+}
+.profile-mast{
+height: 165px;
+}
 .home-hero .slide-next, .home-hero .slide-back{
     font-size: 35px;
 }
@@ -645,6 +662,9 @@ html, body{
     }
     .home-backdrop{
         height: 375px;
+    }
+    .home-backdrop.profile-header {
+        top: -320px;
     }
 
 }
@@ -886,8 +906,24 @@ display: inline;
     padding: 0 0 15px 0;
 }
 .profile-link{
-    float: left;
-    margin-top: 10px;
+    /* float: left;
+    margin-top: 10px; */
+    padding: 10px 20px;
+    margin-left: 40px;
+}
+.container.section-profile.logged-in .avatar-det,
+.container.section-profile.logged-in .profile-mast .profile-link{
+    float: none;
+}
+.container.section-profile.logged-in .profile-mast .profile-link{
+    margin-left: 0;
+}
+.container.section-profile.logged-in .avatar-det{
+margin-left: 75px;}
+
+.container.section-profile.logged-in .profile-mast{
+    padding: 10px;
+    text-align: left;
 }
 
 }

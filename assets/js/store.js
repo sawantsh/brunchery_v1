@@ -335,7 +335,7 @@ function form_submit(formid)
     if ( action == "placeOrder" || action == "InitPlaceOrder" ){
 		params+="&cc_id="+$(".cc_id:checked").val();
 		params+="&delivery_time="+ $("#arrival-time").val();
-		params+="&delivery_type="+ $("#dining-opt").val();
+		params+="&delivery_type="+ $('input[name="dining-opt"]:checked').val();
 		params+="&total_price="+ $("#total_price").val();
     }    	
     

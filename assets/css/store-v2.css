@@ -424,7 +424,7 @@ top:0px;
     border-radius: 100px;
     background: url(../images/search-icon.png);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 30px;
     width: 30px;
     height: 100%;
     background-color: #fff;
@@ -3635,6 +3635,7 @@ font-size:14px;
 .avatar-det{
   float: left;
   padding-left: 15px;
+  text-align: left
 }
 .avatar-det .name{
   font-size: 25px;
@@ -3761,7 +3762,26 @@ padding: 0
     margin-top: 30px;
   }
   .profile-mast{
-    background-color: #ffb49a
+    border-bottom: 0 none;
+    height: 135px;
+    text-align: center;
+    padding: 10px;
+  }
+  .home-backdrop.profile-header{
+    box-shadow: 0 0 10px 4px rgba(0,0,0,0.1);
+    height: 375px
+  }
+  .profile-mast .brun-logo{
+    background: url(../images/bruncherry-logo.png);
+    width: 75px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-size: 62px;
+    background-color: #fff;
+    border-radius: 100px;
+    position: absolute;
+    left: 0;
+    background-position: center;
   }
   .profile-link{
     border: 1px solid #fff;
@@ -3771,8 +3791,7 @@ padding: 0
     display: inline-block;
     border-radius: 30px;
     color: #fff;
-    float: right
-
+    margin-top: 10px;
   }
   .profile-link a, .profile-link a:hover{
     color: #fff;
@@ -3822,6 +3841,7 @@ padding: 0
   } */
   .profile-nav-content{
     margin-bottom: 50px;
+    margin-top: 20px;
   }
   .sections.partner-signup, .sections.section-order-history{
     padding-top: 0
@@ -4041,4 +4061,47 @@ padding: 0
     left: 0;
     bottom: 3px;
   }
-  
+  .container.section-profile.logged-in   .brun-logo{
+    display: none
+  }
+  .container.section-profile.logged-in .profile-mast{
+    background-color: #fff;
+    height: auto;
+    border-top:1px solid rgba(0,0,0,0.1);
+    border-bottom:1px solid rgba(0,0,0,0.1);
+    margin-top: 20px;
+    padding: 20px;
+  }
+  .container.section-profile.logged-in .profile-mast .profile-link{
+    background-color: #ffb49a;
+    float: right
+  }
+.user-contact{
+  opacity: 0.5;
+  background: url(../images/mobile-icon.png);
+  background-repeat: no-repeat;
+  background-size: 11px;
+  padding-left: 20px;
+  margin-top: 6px;
+  background-position: left center;
+  font-size: 18px;
+}
+.partner-photo-img {
+  margin: 0 auto;
+  border-radius: 3px;
+}
+.partner-photo{
+  border-top:1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 20px;
+}
+.partner-photo  .qq-uploader{
+width: 100px;
+margin: 20px auto;
+padding: 4px;
+background: #ffb49a;
+border-radius: 25px;
+margin-bott: 10px;
+text-align: center;
+color: #fff;
+}

@@ -2933,11 +2933,20 @@ class FunctionsV3
 	
 	public static function sendPartnerSignupEmail($data='')
     {
-		$lang=Yii::app()->language;
 		$to=getOptionA("partner_signup_admin_email");
-		$subject = getOptionA("partner_signup_email_subject_$lang");
-		$tpl=getOptionA("partner_signup_email_tpl_content_$lang");
+		$subject = getOptionA("partner_signup_email_subject");
+		$tpl=getOptionA("partner_signup_email_tpl_content");
 		if(!empty($tpl)){
+			$upload_path=Yii::getPathOfAlias('webroot')."/upload";    
+			$partnerPhoto = $data['partner_photo']; 
+			if (!empty($partnerPhoto)){
+				if (file_exists($upload_path."/".$partnerPhoto)){
+					$partnerPhoto=uploadURL()."/$partnerPhoto";    
+				}
+			}
+			$tpl=self::smarty('partner_photo',
+			isset($data['partner_photo'])?"<img src='$partnerPhoto' style='width:200px;height:200px'>":"",$tpl);
+
 			$tpl=self::smarty('partner_name',
 			isset($data['partner_name'])?$data['partner_name']:"",$tpl);
 			

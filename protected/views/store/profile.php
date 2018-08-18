@@ -6,8 +6,15 @@ $this->renderPartial('/front/banner-receipt',array(
 echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCountrySet(true));
 ?>
 
-
+<?php if(Yii::app()->functions->isClientLogin()):?>
+  <div class="container section-profile relative logged-in">
+<?php else: ?>
+  <div class='home-backdrop profile-header'></div>
   <div class="container section-profile relative">
+<?php endif; ?>
+
+
+  
 
 
   <div class="row">
@@ -18,13 +25,15 @@ echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCou
        
                         <!-- pane -->
                         <div class="pane clearfix profile-mast ">
+                        <div class="brun-logo"></div>
                         <?php if(Yii::app()->functions->isClientLogin()):?>
+                        
                           <div class="avatar-thumb">
                             <img src="<?php echo $avatar;?>" class="img-circle">
                           </div>
                           <div class="avatar-det">
                             <div class="name"><?php echo $info['first_name']." ".$info['last_name']?></div>
-                            <div class="medium"><?php echo $info['contact_phone']?></div>
+                            <div class="medium user-contact"><?php echo $info['contact_phone']?></div>
                           </div>
                           <div class='trim-text text-right profile-link'><a class='pull-right' href='/logout'>Logout</a></div>
                         <?php else: ?>
@@ -94,7 +103,7 @@ echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCou
 <?php endif;?>
 
 <ul class="misc-links">
-      <li class="seperator"></li>
+      <!-- <li class="seperator"></li> -->
       <li class="pane brun-faq">
         <a href="/page-faq">
           <i class="ion-information-circled"></i> FAQ

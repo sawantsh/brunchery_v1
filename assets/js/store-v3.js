@@ -413,7 +413,10 @@ jQuery(document).ready(function() {
 	if( $('#uploadavatar').exists() ) {    	
        createUploader('uploadavatar','uploadAvatar');
     }    
-      
+	
+	if( $('#uploadpartnerphoto').exists() ) {    	
+		createUploader('uploadpartnerphoto','uploadPartnerPhoto');
+	 }
     
     if ( $(".search_resto_name").exists() ){    	
     	iniRestoSearch('search_resto_name','AutoResto');  
@@ -966,6 +969,22 @@ function uploadAvatar(data)
 	} else {
 		uk_msg(data.msg);
 	}
+}
+
+function uploadPartnerPhoto(data)
+{
+	dump(data);
+	if ( data.code==1){
+		// $(".avatar-wrap").html( '<img src="'+upload_url+"/"+data.details.file +'" class="img-circle" />' );
+		// callAjax("saveAvatar",'filename='+data.details.file );
+	} else {
+		uk_msg(data.msg);
+	}
+
+	var img='';	
+	img+="<img src=\""+upload_url+"/"+data.details.file+"\" alt=\"\" title=\"\" class=\"uk-thumbnail uk-thumbnail-mini\" >";
+	img+="<input type=\"hidden\" name=\"partner_photo\" value=\""+data.details.file+"\" >";
+	$(".partner-photo-img").html(img);
 }
 
 function iniRestoSearch(fields,actions)

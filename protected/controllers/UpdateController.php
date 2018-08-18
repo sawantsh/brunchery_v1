@@ -695,14 +695,14 @@ echo "(Done)<br/>";
         {{admin_user}}
         WHERE
         user_access<>''      
-        ";        
+		";       	 
         if ( !$DbExt->rst($stmt)){
-        	$user_all_access='["autologin","dashboard","merchant","sponsoredMerchantList","packages","Cuisine","dishes","dashboardLinks","OrderStatus","settings","commisionsettings","voucher","merchantcommission","withdrawal","incomingwithdrawal","withdrawalsettings","emailsettings","emailtpl","customPage","Ratings","ContactSettings","SocialSettings","ManageCurrency","ManageLanguage","Seo","analytics","customerlist","subscriberlist","reviews","bankdeposit","paymentgatewaysettings","paymentgateway","paypalSettings","stripeSettings","mercadopagoSettings","sisowsettings","payumonenysettings","obdsettings","payserasettings","payondelivery","barclay","epaybg","authorize","sms","smsSettings","smsPackage","smstransaction","smslogs","fax","faxtransaction","faxpackage","faxlogs","faxsettings","reports","rptMerchantReg","rptMerchantPayment","rptMerchanteSales","rptmerchantsalesummary","rptbookingsummary","userList"]
+        	$user_all_access='["autologin","dashboard","merchant","sponsoredMerchantList","packages","Cuisine","dishes","dashboardLinks","OrderStatus","settings","commisionsettings","voucher","merchantcommission","withdrawal","incomingwithdrawal","withdrawalsettings","emailsettings","emailtpl","customPage","Ratings","ContactSettings","PartnerSignupSettings","SocialSettings","ManageCurrency","ManageLanguage","Seo","analytics","customerlist","subscriberlist","reviews","bankdeposit","paymentgatewaysettings","paymentgateway","paypalSettings","stripeSettings","mercadopagoSettings","sisowsettings","payumonenysettings","obdsettings","payserasettings","payondelivery","barclay","epaybg","authorize","sms","smsSettings","smsPackage","smstransaction","smslogs","fax","faxtransaction","faxpackage","faxlogs","faxsettings","reports","rptMerchantReg","rptMerchantPayment","rptMerchanteSales","rptmerchantsalesummary","rptbookingsummary","userList"]
 ';
         	$stmt_update_admin="UPDATE {{admin_user}}
         	SET user_access='$user_all_access'
         	";        	
-        	$DbExt->qry($stmt_update_admin);
+			$DbExt->qry($stmt_update_admin);	
         }
         
         
