@@ -3644,7 +3644,8 @@ font-size:14px;
   display: block;
   text-align: left;
   padding: 15px;
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size: 16px;
   position: relative;
 }
 ul.misc-links li.pane{
@@ -3998,6 +3999,11 @@ padding: 0
     color: #fff;
     padding: 5px;
     font-size: 15px;
+    /* float: right; */
+    position: absolute;
+    width: 75px;
+    right: -36px;
+    text-align: center;
 
   }
   .home-backdrop{
@@ -4041,7 +4047,7 @@ padding: 0
     text-align: center;
     right: 10px;
     bottom: -23px;  
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'verlagbold', sans-serif;
     padding: 5px 0px;
   }
@@ -4049,8 +4055,8 @@ padding: 0
     right: 70px;
     background-image: url(../images/coffee.png);
     background-repeat: no-repeat;
-    background-size: 32px;
-    background-position: 10px 5px;
+    background-size: 25px;
+    background-position: 14px 6px;
   }
   .resto-pic .unit{
     font-size: 14px;

@@ -124,14 +124,19 @@ echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCou
 			    </a>     
 			  </div>    
 			  
-			   <div class="row top15">
-		        <div class="col-md-12 ">
+			  <div class="row fields top15">
+			  <div class="field-set clearfix fieldset-border-btm">
+			  <div class="col-md-3 ">
+		     	<label>Email</label>
+				 </div>
+		        <div class="col-md-9 ">
 			     <?php echo CHtml::textField('username-email','',
-	                array('class'=>'grey-fields',
+	                array(
 	                'placeholder'=>t("Email address"),
 	               'required'=>true
 	               ))?>
-			     </div>
+				 </div>
+				 </div>
 			  </div> <!--row-->	
 			  
 			   <div class="row top10">		   		   
@@ -140,8 +145,8 @@ echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCou
 			     <?php echo t("Close");?>
 			     </a>      
 			   </div>
-			   <div class="col-md-6 ">
-			     <input type="submit" value="<?php echo t("Retrieve Password")?>" class="green-button medium full-width">
+			   <div class="col-md-12 ">
+			     <input type="submit" value="<?php echo t("Retrieve Password")?>" class="button orange-button medium rounded full-width">
 			   </div>
 			  </div>  
 		  

@@ -1180,9 +1180,11 @@ class FunctionsV3
 			if ($discount>0){
 				$regular_price=$regular_price-$discount;
 			}
-			if(!empty($size)){
-				return $size." ".self::prettyPrice($regular_price);
-			} else return self::prettyPrice($regular_price);			
+			// if(!empty($size)){
+			// 	return $size." ".self::prettyPrice($regular_price);
+			// } else {
+				return self::prettyPrice($regular_price);			
+			// }
 		}
 		return '-';
 	}
