@@ -2857,14 +2857,44 @@ jQuery(document).ready(function() {
            
    //isImageLoaded('featured-restaurant-list');
     
+	var topBar = $(".store-topbar");
+	var topMenu = $(".category");
+	var topMenuHeight = topBar.outerHeight() + topMenu.outerHeight() + 15;
+	var menuItems = topMenu.find("a")
+	var scrollItems = menuItems.map(function() {
+		var item = $($(this).attr("href"));
+		if (item) {
+			return item;
+		}
+	});
+	// console.log(topMenuHeight);
+	var lastId = 0;
+	$(window).scroll(function() {
+		var fromTop = $(this).scrollTop() + topMenuHeight;
+		var cur = scrollItems.map(function() {
+			// console.warn("checking top", $(this).offset().top, fromTop);
+			if ($(this).offset().top < fromTop) {
+				return this;
+			}
+		});
+		cur = cur[cur.length - 1];
+		var id = cur && cur.length ? cur[0].id : "";
+		console.warn("cur id", id);
+		if (!empty(id) && lastId !== id) {
+			lastId = id;
+			menuItems.removeClass("active");
+			menuItems.filter("[href='#"+id+"']").addClass("active");
+		}
+	});
+
     $( document ).on( "click", ".goto-category", function(ev) {
 		var class_name= $(this).data("id");		
 		dump(class_name);
 		$(".goto-category").removeClass("active");
 		$(this).addClass("active");
-		// scroll_class(class_name);
-		$("#menu-list-wrapper .menu-cat").css({"display":"none"});
-    	$("#menu-list-wrapper ." + class_name).css({"display":"block"});
+		scroll_class(class_name);
+		//$("#menu-list-wrapper .menu-cat").css({"display":"none"});
+    	//$("#menu-list-wrapper ." + class_name).css({"display":"block"});
 	});
    
 }); /*END DOCU*/
