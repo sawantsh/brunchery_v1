@@ -1,5 +1,5 @@
 <div class="login_wrap">
-<div class="login_logo"></div>
+<!--<div class="login_logo"></div>-->
 <div class="uk-panel uk-panel-box uk-width-medium-1-3">
 
    <?php $name=Yii::app()->functions->getOptionAdmin('website_title');?>

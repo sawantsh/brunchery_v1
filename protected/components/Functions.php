@@ -1011,8 +1011,8 @@ class Functions extends CApplicationComponent
                 array('visible'=>$this->hasMerchantAccess("Settings"),'tag'=>"Settings",'label'=>'<i class="fa fa-cog"></i>'.Yii::t("default","Settings"),
                 'url'=>array('/merchant/Settings')),
                 
-                array('visible'=>$this->hasMerchantAccess("tablebook"),'tag'=>"tablebook",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Table Booking"),
-                'url'=>array('/merchant/tablebooking')),
+                /*array('visible'=>$this->hasMerchantAccess("tablebook"),'tag'=>"tablebook",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Table Booking"),
+                'url'=>array('/merchant/tablebooking')),*/
                                                 
                 array('visible'=>$this->hasMerchantAccess("orderStatus"),'tag'=>"orderStatus",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Order Status"),
                 'url'=>array('/merchant/orderStatus')),
@@ -1043,17 +1043,17 @@ class Functions extends CApplicationComponent
                 array('visible'=>$this->hasMerchantAccess("invoice"),'tag'=>"invoice",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Invoice"),
                 'url'=>array('/merchant/invoice')),
                 
-                array('visible'=>$this->hasMerchantAccess("shippingrate"),'tag'=>"shippingrate",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Delivery Charges Rates"),
-                'url'=>array('/merchant/shippingrate')),
+                /*array('visible'=>$this->hasMerchantAccess("shippingrate"),'tag'=>"shippingrate",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Delivery Charges Rates"),
+                'url'=>array('/merchant/shippingrate')),*/
                 
-                array('visible'=>$this->hasMerchantAccess("mintable"),'tag'=>"mintable",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Minimum Order Table"),
-                'url'=>array('/merchant/mintable')),
+                /*array('visible'=>$this->hasMerchantAccess("mintable"),'tag'=>"mintable",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Minimum Order Table"),
+                'url'=>array('/merchant/mintable')),*/
                 
                 array('visible'=>$this->hasMerchantAccess("offers"),'tag'=>"offers",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Offers"),
                 'url'=>array('/merchant/offers')),
                 
-                array('visible'=>$this->hasMerchantAccess("gallerysettings"),'tag'=>"gallerysettings",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Gallery Settings"),
-                'url'=>array('/merchant/gallerysettings')),
+               /* array('visible'=>$this->hasMerchantAccess("gallerysettings"),'tag'=>"gallerysettings",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Gallery Settings"),
+                'url'=>array('/merchant/gallerysettings')),*/
                 
                 /*array('visible'=>$this->hasMerchantAccess("receiptSettings"),'tag'=>"receiptSettings",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Receipt Settings"),
                 'url'=>array('/merchant/receiptSettings')),*/
@@ -1081,7 +1081,7 @@ class Functions extends CApplicationComponent
                       
                 $payment_list,
                 
-                array('visible'=>$this->hasMerchantAccess("sms-gateway"),'tag'=>'sms-gateway','label'=>'<i class="fa fa-mobile"></i>'.Yii::t("default",'SMS'),
+                /*array('visible'=>$this->hasMerchantAccess("sms-gateway"),'tag'=>'sms-gateway','label'=>'<i class="fa fa-mobile"></i>'.Yii::t("default",'SMS'),
                    'itemOptions'=>array('class'=>''), 'items'=>array(
                    array('visible'=>$this->hasMerchantAccess("smsSettings"),'tag'=>'smsSettings', 'label'=>'<i class="fa fa-paypal"></i>'.Yii::t("default","SMS Alert Settings"), 
                    'url'=>array('merchant/smsSettings')),                
@@ -1091,7 +1091,7 @@ class Functions extends CApplicationComponent
                    'url'=>array('merchant/purchasesms')),                           
                    array('visible'=>$this->hasMerchantAccess("purchasesmstransaction"),'tag'=>'purchasesmstransaction', 'label'=>'<i class="fa fa-paypal"></i>'.Yii::t("default","Purchase Credit Transactions"), 
                    'url'=>array('merchant/purchasesmstransaction')),                           
-                )),
+                )),*/
                                 
                 $fax_menu,
                 
@@ -1109,11 +1109,11 @@ class Functions extends CApplicationComponent
                 /*array('tag'=>"home",'label'=>'<i class="fa fa-cog"></i>'.Yii::t("default","Receipt Settings"),
                 'url'=>array('/merchant/ReceiptSettings')),*/
                 
-                array('visible'=>$this->hasMerchantAccess("review"),'tag'=>"review",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Customer reviews"),
-                'url'=>array('/merchant/review')),               
+                /*array('visible'=>$this->hasMerchantAccess("review"),'tag'=>"review",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Customer reviews"),
+                'url'=>array('/merchant/review')),  */             
                 
-                array('visible'=>$this->hasMerchantAccess("SocialSettings"),'tag'=>"SocialSettings",'label'=>'<i class="fa fa-facebook-square"></i>'.Yii::t("default","Social Settings"),
-                'url'=>array('/merchant/SocialSettings')),               
+                /*array('visible'=>$this->hasMerchantAccess("SocialSettings"),'tag'=>"SocialSettings",'label'=>'<i class="fa fa-facebook-square"></i>'.Yii::t("default","Social Settings"),
+                'url'=>array('/merchant/SocialSettings')),  */             
                 
                 array('visible'=>$this->hasMerchantAccess("AlertSettings"),'tag'=>"AlertSettings",'label'=>'<i class="fa fa-bell"></i>'.Yii::t("default","Alert Notification"),
                 'url'=>array('/merchant/AlertSettings')),               
@@ -1301,10 +1301,10 @@ class Functions extends CApplicationComponent
                 'url'=>array('/admin/merchant')),
                 
                 
-                array('visible'=>$this->AA('sponsoredMerchantList'),
+                /*array('visible'=>$this->AA('sponsoredMerchantList'),
                 'tag'=>"sponsoredMerchantList",
                 'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Sponsored Listing"),                
-                'url'=>array('/admin/sponsoredMerchantList')),
+                'url'=>array('/admin/sponsoredMerchantList')),*/
                 
                 array('visible'=>$this->AA('packages'),
                 'tag'=>"packages",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Packages"),
@@ -1314,12 +1314,12 @@ class Functions extends CApplicationComponent
                 'tag'=>"Cuisine",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Cuisine"),
                 'url'=>array('/admin/Cuisine')),
                                
-                array('visible'=>$this->AA('dishes'),
+                /*array('visible'=>$this->AA('dishes'),
                 'tag'=>"dishes",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Dishes"),
-				'url'=>array('/admin/dishes')),
+				'url'=>array('/admin/dishes')),*/
 				
 				array('visible'=>$this->AA('dashboardLinks'),
-                'tag'=>"dashboardLinks",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Dashboard Links"),
+                'tag'=>"dashboardLinks",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Slider Layer"),
                 'url'=>array('/admin/dashboardLinks')),
                 
                 /*array('visible'=>$this->AA('category'),
@@ -1339,9 +1339,9 @@ class Functions extends CApplicationComponent
                 'tag'=>"settings",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Settings"),
                 'url'=>array('/admin/settings')),       
                 
-                array('visible'=>$this->AA('themesettings'),
+                /*array('visible'=>$this->AA('themesettings'),
                 'tag'=>"themesettings",'label'=>'<i class="fa fa-list-alt"></i>'.t("Theme settings"),
-                'url'=>array('/admin/themesettings')),                     
+                'url'=>array('/admin/themesettings')),  */                   
                 
                 /*array('visible'=>$this->AA('zipcode'),
                 'tag'=>"zipcode",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Post codes"),
@@ -1384,9 +1384,9 @@ class Functions extends CApplicationComponent
                      'url'=>array('admin/withdrawalsettings')),                                   
                  )),          
                                 
-                array('visible'=>$this->AA('emailsettings'),'tag'=>"emailsettings",
+                /*array('visible'=>$this->AA('emailsettings'),'tag'=>"emailsettings",
                 'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Email Settings"),
-                'url'=>array('/admin/emailsettings')),           
+                'url'=>array('/admin/emailsettings')),  */         
                
                 array('visible'=>$this->AA('emailtpl'),
                 'tag'=>"emailtpl",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Notification Template"),
@@ -1400,9 +1400,9 @@ class Functions extends CApplicationComponent
                 'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Email Logs"),
                 'url'=>array('/admin/emailogs')),           
                 
-                array('visible'=>$this->AA('cronjobs'),'tag'=>"cronjobs",
+               /* array('visible'=>$this->AA('cronjobs'),'tag'=>"cronjobs",
                 'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Cron Jobs"),
-                'url'=>array('/admin/cronjobs')),           
+                'url'=>array('/admin/cronjobs')),  */         
                                
                 /*array('visible'=>$this->AA('ordertemplate'),
                 'tag'=>"ordertemplate",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Order Email Template"),
@@ -1411,15 +1411,15 @@ class Functions extends CApplicationComponent
                 
                 array('visible'=>$this->AA('customPage'),
                 'tag'=>"customPage",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Custom Page"),
-                'url'=>array('/admin/customPage')),                
+                'url'=>array('/admin/customPage')),               
                                
-                array('visible'=>$this->AA('Ratings'),
+               /* array('visible'=>$this->AA('Ratings'),
                 'tag'=>"Ratings",'label'=>'<i class="fa fa-star-o"></i>'.Yii::t("default","Ratings"),
-                'url'=>array('/admin/Ratings')),                
+                'url'=>array('/admin/Ratings')),  */              
                 
-                array('visible'=>$this->AA('ContactSettings'),'tag'=>"ContactSettings",
+               /* array('visible'=>$this->AA('ContactSettings'),'tag'=>"ContactSettings",
                 'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Contact Settings"),
-				'url'=>array('/admin/ContactSettings')),  
+				'url'=>array('/admin/ContactSettings')), */ 
 				
 				array('visible'=>$this->AA('PartnerSignupSettings'),'tag'=>"PartnerSignupSettings",
                 'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Partner Signup Settings"),
@@ -1433,17 +1433,17 @@ class Functions extends CApplicationComponent
                 'label'=>'<i class="fa fa-usd"></i>'.Yii::t("default","Manage Currency"),
                 'url'=>array('/admin/ManageCurrency')),                
                 
-                array('visible'=>$this->AA('ManageLanguage'),'tag'=>"ManageLanguage",
+               /* array('visible'=>$this->AA('ManageLanguage'),'tag'=>"ManageLanguage",
                 'label'=>'<i class="fa fa-flag-o"></i>'.Yii::t("default","Manage Language"),
-                'url'=>array('/admin/ManageLanguage')),
+                'url'=>array('/admin/ManageLanguage')),*/
 
-                array('visible'=>$this->AA('Seo'),
+               /* array('visible'=>$this->AA('Seo'),
                 'tag'=>"Seo",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","SEO"),
-                'url'=>array('/admin/Seo')),   
+                'url'=>array('/admin/Seo')),  */ 
                 
                 
                 /**add ons */
-                array('visible'=>$this->AA('addons'),'tag'=>'addons',
+               /* array('visible'=>$this->AA('addons'),'tag'=>'addons',
                 'label'=>'<i class="fa fa-plus-circle"></i>'.Yii::t("default",'Add-ons'),
                    'itemOptions'=>array('class'=>''), 'items'=>array(                   
                    
@@ -1467,12 +1467,12 @@ class Functions extends CApplicationComponent
                    'tag'=>'merchantapp','label'=>'<i class="fa"></i>'.Yii::t("default","MerchantApp"), 
                    'url'=>Yii::app()->getBaseUrl(true)."/merchantapp?lang=".Yii::app()->language),                
               
-                 )),  
+                 )),  */
                 /**add ons */     
                                             
-                array('visible'=>$this->AA('analytics'),
+                /*array('visible'=>$this->AA('analytics'),
                 'tag'=>"analytics",'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Custom Code & Analytics"),
-                'url'=>array('/admin/analytics')),                               
+                'url'=>array('/admin/analytics')),    */                           
                 
                 array('visible'=>$this->AA('customerlist'),'tag'=>"customerlist",
                 'label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default","Customer List"),
@@ -1498,19 +1498,19 @@ class Functions extends CApplicationComponent
                 'label'=>'<i class="fa fa-usd"></i>'.Yii::t("default",'Payment Gateway'),
                    'itemOptions'=>array('class'=>''), 'items'=>array(                   
                    
-                   array('visible'=>$this->AA('paypalSettings'),
+                  /* array('visible'=>$this->AA('paypalSettings'),
                    'tag'=>'paypalSettings','label'=>'<i class="fa fa-paypal"></i>'.Yii::t("default","Paypal"), 
-                   'url'=>array('admin/paypalSettings')),                
+                   'url'=>array('admin/paypalSettings')), */               
                    
-                   array('visible'=>$this->AA('cardpaymentsettings'),  
+                  /* array('visible'=>$this->AA('cardpaymentsettings'),  
                    'tag'=>'cardpaymentsettings','label'=>'<i class="fa fa-paypal"></i>'.Yii::t("default","Offline Credit Card Payment"), 
-                   'url'=>array('admin/cardpaymentsettings')),                                   
+                   'url'=>array('admin/cardpaymentsettings')), */                                  
                    
                    array('visible'=>$this->AA('stripeSettings'),
                    'tag'=>'stripeSettings','label'=>'<i class="fa fa-paypal"></i>'.Yii::t("default","Stripe"), 
                    'url'=>array('admin/stripeSettings')),                
                    
-                   array('visible'=>$this->AA('mercadopagoSettings'),'tag'=>'mercadopagoSettings',
+                  /* array('visible'=>$this->AA('mercadopagoSettings'),'tag'=>'mercadopagoSettings',
                    'label'=>'<i class="fa fa-paypal"></i>'.Yii::t("default","Mercadopago"), 
                    'url'=>array('admin/mercadopagoSettings')),                                   
                    
@@ -1556,7 +1556,7 @@ class Functions extends CApplicationComponent
                    
                    array('visible'=>$this->AA('voguepay'),'tag'=>'voguepay',
                    'label'=>'<i class="fa fa-paypal"></i>'.Yii::t("default","voguepay"), 
-                   'url'=>array('admin/voguepay')),                             
+                   'url'=>array('admin/voguepay')),   */                          
                    
                    /*array('visible'=>$this->AA('mollie'),'tag'=>'mollie',
                    'label'=>'<i class="fa fa-paypal"></i>'.Yii::t("default","Mollie"), 
@@ -1572,7 +1572,7 @@ class Functions extends CApplicationComponent
                    
                  )),                               
                  
-                 array('visible'=>$this->AA('sms'),
+                /* array('visible'=>$this->AA('sms'),
                  'tag'=>'sms','label'=>'<i class="fa fa-list-alt"></i>'.Yii::t("default",'SMS'),
                    'itemOptions'=>array('class'=>''), 'items'=>array(
                    
@@ -1611,7 +1611,7 @@ class Functions extends CApplicationComponent
                    array('visible'=>$this->AA('faxsettings'),
                    'tag'=>'faxsettings','label'=>'<i class="fa fa-paypal"></i>'.Yii::t("default","Settings"), 
                    'url'=>array('admin/faxsettings')),                                   
-                 )),          
+                 )),  */        
                        
                 
                 array('visible'=>$this->AA('reports'),

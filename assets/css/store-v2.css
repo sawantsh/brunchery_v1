@@ -4111,3 +4111,15 @@ margin-bott: 10px;
 text-align: center;
 color: #fff;
 }
+
+.section-custom-page .faqmast{
+  height: 145px;
+  position: absolute;
+  top: -64px;
+  width: 100%;
+  left: 0;
+  transform: skewY(-5deg);
+}
+.bruncherry-story-page .faqmast{
+  background: #D2EBFA;
+}

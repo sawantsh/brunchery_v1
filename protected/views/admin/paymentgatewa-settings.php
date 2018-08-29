@@ -13,6 +13,7 @@ $list=FunctionsV3::PaymentOptionList();
   
   <?php foreach ($list as $key=>$val):?>
    <li><?php 
+   if($val=="Stripe"){
    echo CHtml::checkBox('paymentgateway[]',
    in_array($key,(array)$paymentgateway)?true:false
    ,array(
@@ -20,6 +21,7 @@ $list=FunctionsV3::PaymentOptionList();
     'value'=>$key
    ));
    echo "<span>".$val."</span>";
+  }
    ?>
    </li>
    <?php endforeach;?>
