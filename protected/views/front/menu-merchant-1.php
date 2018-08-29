@@ -9,8 +9,7 @@ dump($merchant_tax);*/
 <?php foreach ($menu as $val):?>
 <div class="menu-1" style="margin-top:0;">
 
-  <div class="menu-cat meal-preview cat-<?php echo $val['category_id']?>" 
-    style="<?php echo $menu[0]['category_id'] == $val['category_id'] ? 'display:block;' :'display:none;'?>">
+  <div class="menu-cat meal-preview cat-<?php echo $val['category_id']?>" id="cat-<?php echo $val['category_id']?>">
      <!-- <a href="javascript:;">       
        <span class="bold">
           <i class="<?php// echo $tc==2?"ion-ios-arrow-thin-down":'ion-ios-arrow-thin-right'?>"></i>
