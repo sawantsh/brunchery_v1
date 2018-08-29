@@ -128,48 +128,48 @@ if (!empty($merchant_specific_country)){
 </div>
 
 
-<hr></hr>
+<!--<hr></hr>
 
-<h3><?php echo Yii::t("default","Google Recaptcha Settings")?></h3>
+<h3><?php //echo Yii::t("default","Google Recaptcha Settings")?></h3>
 
-<p class="uk-text-small uk-text-muted"><?php echo t("These section is optional")?></p>
+<p class="uk-text-small uk-text-muted"><?php //echo t("These section is optional")?></p>
 
 <div class="uk-form-row">
-  <label class="uk-form-label"><?php echo Yii::t("default","Site Key")?></label>
+  <label class="uk-form-label"><?php //echo Yii::t("default","Site Key")?></label>
   <?php 
-  echo CHtml::textField('captcha_site_key',
+  /*echo CHtml::textField('captcha_site_key',
   Yii::app()->functions->getOptionAdmin('captcha_site_key')
   ,array(
     'class'=>"uk-form-width-large"
-  ))
+  ))*/
   ?>
 </div>
 
 <div class="uk-form-row">
-  <label class="uk-form-label"><?php echo Yii::t("default","Secret Key")?></label>
+  <label class="uk-form-label"><?php //echo Yii::t("default","Secret Key")?></label>
   <?php 
-  echo CHtml::textField('captcha_secret',
+  /*echo CHtml::textField('captcha_secret',
   Yii::app()->functions->getOptionAdmin('captcha_secret')
   ,array(
     'class'=>"uk-form-width-large"
-  ))
+  ))*/
   ?>
 </div>
 
 <div class="uk-form-row">
-  <label class="uk-form-label"><?php echo Yii::t("default","Language")?></label>
+  <label class="uk-form-label"><?php// echo Yii::t("default","Language")?></label>
   <?php 
-  echo CHtml::textField('captcha_lang',
+  /*echo CHtml::textField('captcha_lang',
   Yii::app()->functions->getOptionAdmin('captcha_lang')
   ,array(
     'class'=>"uk-form-width-medium"
-  ));  
+  ));  */
   ?>
-  <span class="uk-text-muted"><?php echo t("default is = en");?></span>
+  <span class="uk-text-muted"><?php //echo t("default is = en");?></span>
 </div>
 
 <div class="uk-form-row">
-  <label class="uk-form-label"><?php echo Yii::t("default","Enable Customer signup")?></label>  
+  <label class="uk-form-label"><?php /*echo Yii::t("default","Enable Customer signup")?></label>  
   <?php 
   echo CHtml::checkBox('captcha_customer_signup',
    Yii::app()->functions->getOptionAdmin('captcha_customer_signup')==2?true:false
@@ -236,14 +236,14 @@ if (!empty($merchant_specific_country)){
    ,array(
    'class'=>"icheck",
    'value'=>2
-  ))
+  ))*/
   ?>    
-</div>
+</div>-->
 
 
-<hr>
+<!--<hr>
 
-<h2><?php echo Yii::t("default","Printing Options")?></h2>
+<h2><?php /*echo Yii::t("default","Printing Options")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Receipt Width")?></label>
@@ -266,30 +266,30 @@ if (!empty($merchant_specific_country)){
     'class'=>"numeric_only"
   ))
   ?>  
-  <span><?php echo t("px")?></span>
-</div>
+  <span><?php echo t("px")*/?></span>
+</div>-->
 
 
-<hr>
+<!--<hr>
 
-<h2><?php echo Yii::t("default","Customer popup address options")?></h2>
+<h2><?php //echo Yii::t("default","Customer popup address options")?></h2>
 
 <div class="uk-form-row">
-  <label class="uk-form-label"><?php echo Yii::t("default","Disabled popup asking customer address")?>?</label>  
+  <label class="uk-form-label"><?php //echo Yii::t("default","Disabled popup asking customer address")?>?</label>  
   <?php 
-  echo CHtml::checkBox('customer_ask_address',
+  /*echo CHtml::checkBox('customer_ask_address',
    Yii::app()->functions->getOptionAdmin('customer_ask_address')==2?true:false
    ,array(
    'class'=>"icheck",
    'disabled'=>"disabled",
    'value'=>2
-  ))
+  ))*/
   ?>  
 </div>
 
-<hr/>
+<hr/>-->
 
-<h2><?php echo Yii::t("default","Merchant change order options")?></h2>
+<!--<h2><?php/* echo Yii::t("default","Merchant change order options")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Disabled send sms/email after change order")?>?</label>  
@@ -299,40 +299,40 @@ if (!empty($merchant_specific_country)){
    ,array(
    'class'=>"icheck",
    'value'=>2
-  ))
+  ))*/
   ?>  
 </div>
 
-<hr/>
+<hr/>-->
 
-<h2><?php echo Yii::t("default","Table Booking")?></h2>
+<!--<h2><?php //echo Yii::t("default","Table Booking")?></h2>
 <div class="uk-form-row">
-  <label class="uk-form-label"><?php echo Yii::t("default","Disabled")?>?</label>  
+  <label class="uk-form-label"><?php //echo Yii::t("default","Disabled")?>?</label>  
   <?php 
-  echo CHtml::checkBox('merchant_tbl_book_disabled',
+  /*echo CHtml::checkBox('merchant_tbl_book_disabled',
    Yii::app()->functions->getOptionAdmin('merchant_tbl_book_disabled')==2?true:false
    ,array(
    'class'=>"icheck",
    'value'=>2
-  ))
+  ))*/
   ?>  
 </div>
 
 
-<h2><?php echo Yii::t("default","Cash on delivery change")?></h2>
+<h2><?php //echo Yii::t("default","Cash on delivery change")?></h2>
 <div class="uk-form-row">
-  <label class="uk-form-label"><?php echo t("Required")?>?</label>  
+  <label class="uk-form-label"><?php //echo t("Required")?>?</label>  
   <?php 
-  echo CHtml::checkBox('cod_change_required',
+  /*echo CHtml::checkBox('cod_change_required',
    Yii::app()->functions->getOptionAdmin('cod_change_required')==2?true:false
    ,array(
    'class'=>"icheck",
    'value'=>2
-  ))
+  ))*/
   ?>  
 </div>
 
-<hr/><!--
+<hr/>--><!--
 
 <h2><?php echo Yii::t("default","View Restaurant by map options")?></h2>
 
@@ -370,7 +370,7 @@ if (!empty($merchant_specific_country)){
 
 <!--<hr/>-->
 
-<h2><?php echo Yii::t("default","Receipt Options")?></h2>
+<!--<h2><?php /*echo Yii::t("default","Receipt Options")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Default email subject")?></label>  
@@ -416,17 +416,17 @@ if (!empty($merchant_specific_country)){
  <input type="hidden" name="website_receipt_logo" value="<?php echo $website_receipt_logo;?>">
  <img class="uk-thumbnail rc_logo" src="<?php echo Yii::app()->request->baseUrl."/upload/".$website_receipt_logo;?>?>" alt="" title="">
  <p><a href="javascript:rc_rm_preview();"><?php echo Yii::t("default","Remove image")?></a></p>
- <?php endif;?>
+ <?php endif;*/?>
 </div>
 </div>
 
 
-<hr/>
-
+<hr/>-->
+<hr>
 <h2><?php echo Yii::t("default","Login & Signup")?></h2>
 
-<div class="uk-form-row">
-  <label class="uk-form-label"><?php echo Yii::t("default","Disabled Popup")?>?</label>  
+<!--<div class="uk-form-row">
+  <label class="uk-form-label"><?php /*echo Yii::t("default","Disabled Popup")?>?</label>  
   <?php 
   echo CHtml::checkBox('website_disabled_login_popup',
    Yii::app()->functions->getOptionAdmin('website_disabled_login_popup')=="yes"?true:false
@@ -484,10 +484,10 @@ if (!empty($merchant_specific_country)){
   array(
     'class'=>"uk-form-width-large",
     'placeholder'=>t("Field name")
-  ));
+  ));*/
   ?>  
 </div>
-
+-->
 <h3><?php echo t("Block email address list")?></h3>
 <div class="uk-form-row">
 <?php 
@@ -508,7 +508,7 @@ echo CHtml::textArea('blocked_mobile',getOptionA('blocked_mobile'),array(
 
 <hr/>
 
-<h2><?php echo Yii::t("default","Terms and Conditions")?></h2>
+<!--<h2><?php /*echo Yii::t("default","Terms and Conditions")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Enabled On Merchant Signup")?>?</label>  
@@ -550,13 +550,13 @@ echo CHtml::textArea('blocked_mobile',getOptionA('blocked_mobile'),array(
   echo CHtml::textField('website_terms_customer_url',
   Yii::app()->functions->getOptionAdmin('website_terms_customer_url'),array(
   'class'=>"uk-form-width-large"
-  ));
+  ));*/
   ?>    
 </div>
 
-<hr/>
+<hr/>-->
 
-<h2><?php echo Yii::t("default","Reviews")?></h2>
+<!--<h2><?php /*echo Yii::t("default","Reviews")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Allow only those who has actual purchases")?></label>  
@@ -578,11 +578,11 @@ echo CHtml::textArea('blocked_mobile',getOptionA('blocked_mobile'),array(
    ,array(
    'class'=>"icheck",
    'value'=>"yes"
-  ))
+  ))*/
   ?>  
 </div>
 
-<hr/>
+<hr/>-->
 <h2><?php echo Yii::t("default","Website Security")?></h2>
 
 <div class="uk-form-row">
@@ -609,8 +609,8 @@ echo CHtml::textArea('blocked_mobile',getOptionA('blocked_mobile'),array(
   ?>  
 </div>
 
-<hr/>
-<h2><?php echo Yii::t("default","Guest Checkout")?></h2>
+<!--<hr/>
+<h2><?php /*echo Yii::t("default","Guest Checkout")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Disabled Guest Checkout")?>?</label>  
@@ -620,9 +620,9 @@ echo CHtml::textArea('blocked_mobile',getOptionA('blocked_mobile'),array(
    ,array(
    'class'=>"icheck",
    'value'=>"yes"
-  ))
+  ))*/
   ?>  
-</div>
+</div>-->
 
 <!--<h2><?php echo t("Spicy Dish")?></h2>
 
@@ -730,8 +730,8 @@ Yii::app()->functions->getOptionAdmin("website_time_picker_format")
 </div>
 
 
-<hr/>
-<h2><?php echo Yii::t("default","Website Ordering")?></h2>
+<!--<hr/>
+<h2><?php /*echo Yii::t("default","Website Ordering")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Disabled")?>?</label>  
@@ -877,10 +877,10 @@ Yii::app()->functions->getOptionAdmin("website_time_picker_format")
   ?>  
 </div>
 <p class="uk-text-muted">
-<?php echo t("This options enabled the customer to select his/her address from the map during checkout")?></p>
+<?php echo t("This options enabled the customer to select his/her address from the map during checkout")*/?></p>
 
-<hr/>
-<h2><?php echo Yii::t("default","Order Status")?></h2>
+<hr/>-->
+<!--<h2><?php echo Yii::t("default","Order Status")?></h2>
 <div class="uk-form-row">
   <label class="uk-form-label">
   <?php echo Yii::t("default","Nos. of days merchant can change the order status")?>  
@@ -922,7 +922,7 @@ Yii::app()->functions->getOptionAdmin("website_time_picker_format")
     'class'=>"icheck"
   ))
   ?>
-</div>  
+</div> --> 
 
 <hr/>
 <h2><?php echo Yii::t("default","Credit Card Payment Management")?></h2>
@@ -939,8 +939,8 @@ Yii::app()->functions->getOptionAdmin("website_time_picker_format")
   ?>  
 </div>
 
-<hr/>
-<h2><?php echo Yii::t("default","Featured Restaurants")?></h2>
+<!--<hr/>
+<h2><?php /*echo Yii::t("default","Featured Restaurants")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Disabled")?>?</label>  
@@ -950,12 +950,12 @@ Yii::app()->functions->getOptionAdmin("website_time_picker_format")
    ,array(
    'class'=>"icheck",
    'value'=>"yes"
-  ))
+  ))*/
   ?>  
 </div>
 
-<hr/>
-<h2><?php echo Yii::t("default","Subscription")?></h2>
+<hr/>-->
+<!--<h2><?php /*echo Yii::t("default","Subscription")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Disabled")?>?</label>  
@@ -965,12 +965,12 @@ Yii::app()->functions->getOptionAdmin("website_time_picker_format")
    ,array(
    'class'=>"icheck",
    'value'=>"yes"
-  ))
+  ))*/
   ?>  
 </div>
 
-<hr/>
-<h2><?php echo Yii::t("default","Merchant Registration")?></h2>
+<hr/>-->
+<!--<h2><?php echo Yii::t("default","Merchant Registration")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Disabled Registration")?>?</label>  
@@ -1045,7 +1045,7 @@ Yii::app()->functions->getOptionAdmin("website_time_picker_format")
   ))
   ?>
   <p class="uk-text-muted"><?php echo Yii::t("default","Check this if you want to disabled merchant Verification")?></p>
-</div>
+</div>-->
 
 <!--<div class="uk-form-row">
   <label class="uk-form-label">Enabled Payment?</label>  

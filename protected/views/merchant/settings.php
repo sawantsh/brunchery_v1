@@ -79,7 +79,7 @@ $merchant_info=(array)Yii::app()->functions->getMerchantInfo();
 </div>
 
 
-<div class="uk-form-row"> 
+<!--<div class="uk-form-row"> 
  <label class="uk-form-label"><?php echo Yii::t('default',"Merchant Header/Background")?></label>
   <div style="display:inline-table;margin-left:1px;" class="button uk-button" id="photo2"><?php echo Yii::t('default',"Browse")?></div>	  
   <DIV  style="display:none;" class="photo2_chart_status" >
@@ -107,7 +107,7 @@ $merchant_info=(array)Yii::app()->functions->getMerchantInfo();
  </div>
  <?php endif;?>
 </div>
-</div>
+</div>-->
 
 <hr/>
 
@@ -144,8 +144,8 @@ $merchant_info=(array)Yii::app()->functions->getMerchantInfo();
   ))
   ?>
 </div>-->
-  <!--
-<h3><?php echo Yii::t("default","Menu Options")?></h3>
+ 
+ <!--<h3><?php /*echo Yii::t("default","Menu Options")?></h3>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Default Menu")?></label>
@@ -179,10 +179,10 @@ $merchant_info=(array)Yii::app()->functions->getMerchantInfo();
   ,array(
     'value'=>"2",
     'class'=>"icheck"
-  ))
+  ))*/
   ?> 
-</div>
--->  
+</div>--> 
+ 
   
 <?php if ( getOptionA('mechant_sms_enabled')==""):?>
 <h2><?php echo t("Order Options")?></h2>
@@ -276,7 +276,7 @@ $merchant_info=(array)Yii::app()->functions->getMerchantInfo();
 
 <!--MENU OPTIONS SETTINGS FOR MERCHANT-->
 <?php if (getOptionA('admin_menu_allowed_merchant')==2):?>
-<h2><?php echo t("Menu Options")?></h2>
+<!--<h2><?php echo t("Menu Options")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Default Menu")?></label>
@@ -313,7 +313,7 @@ $merchant_info=(array)Yii::app()->functions->getMerchantInfo();
   ))
   ?> 
 </div>
-<hr/>
+<hr/>-->
 <?php endif;?>
 <!--MENU OPTIONS SETTINGS FOR MERCHANT-->
 
@@ -362,7 +362,7 @@ $merchant_info=(array)Yii::app()->functions->getMerchantInfo();
 
 <hr>
 
-<h2><?php echo Yii::t("default","Free Delivery Options")?></h2>
+<!--<h2><?php echo Yii::t("default","Free Delivery Options")?></h2>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Free delivery above Sub Total Order")?></label>
@@ -374,7 +374,7 @@ $merchant_info=(array)Yii::app()->functions->getMerchantInfo();
   <span style="padding-left:8px;"><?php echo adminCurrencySymbol();?></span>
 </div>
 
-<hr>
+<hr>-->
 
 <h2><?php echo Yii::t("default","Merchant Open/Close")?></h2>
 
@@ -416,7 +416,7 @@ $merchant_info=(array)Yii::app()->functions->getMerchantInfo();
 </div>
   
 
-<h3><?php echo Yii::t("default","External Website")?></h3>
+<!--<h3><?php echo Yii::t("default","External Website")?></h3>
 
 <div class="uk-form-row">
 <label class="uk-form-label"><?php echo Yii::t("default","Website address")?></label>
@@ -425,7 +425,7 @@ echo CHtml::textField('merchant_extenal',$merchant_extenal,array(
 'class'=>"uk-width-1-2"
 ))
 ?>
-</div>
+</div>-->
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Enabled Voucher")?>?</label>
@@ -440,7 +440,7 @@ echo CHtml::textField('merchant_extenal',$merchant_extenal,array(
 </div>
 
 
-<div class="uk-form-row">
+<!--<div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Make Delivery Time Required")?>?</label>
   <?php 
   echo CHtml::checkBox('merchant_required_delivery_time',
@@ -450,11 +450,9 @@ echo CHtml::textField('merchant_extenal',$merchant_extenal,array(
     'class'=>"icheck"
   ))
   ?> 
-</div>
+</div>-->
 
-
-
-<h3><?php echo Yii::t("default","Minimum Order")?> <?php echo t("Delivery")?></h3>
+<!--<h3><?php echo Yii::t("default","Minimum Order")?> <?php echo t("Delivery")?></h3>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Minimum purchase amount.")?></label>
@@ -478,7 +476,7 @@ echo CHtml::textField('merchant_extenal',$merchant_extenal,array(
   ))
   ?>
   <?php echo Yii::app()->functions->getCurrencyCode(Yii::app()->functions->getMerchantID());?>
-</div>
+</div>-->
 
 <h3><?php echo Yii::t("default","Minimum Order")?> <?php echo t("Pickup")?></h3>
 
@@ -557,7 +555,8 @@ echo CHtml::textField('merchant_extenal',$merchant_extenal,array(
   ?>  
 </div>
 
-<h3><?php echo Yii::t("default","Tax & Delivery Charges")?></h3>
+<!--<h3><?php //echo Yii::t("default","Tax & Delivery Charges")?></h3>-->
+<h3><?php echo Yii::t("default","Tax")?></h3>
 
 <div class="uk-form-row">
   <label class="uk-form-label"><?php echo Yii::t("default","Tax")?></label>
@@ -594,7 +593,7 @@ echo CHtml::textField('merchant_extenal',$merchant_extenal,array(
   <?php echo "c"?>      
 </div>
 
-<div class="uk-form-row">
+<!--<div class="uk-form-row">
 <label class="uk-form-label"><?php echo Yii::t("default","Do not apply tax to delivery charges")?></label>
 <?php echo CHtml::checkBox('merchant_tax_charges',
 Yii::app()->functions->getOption("merchant_tax_charges",$merchant_id)==2?true:false
@@ -603,7 +602,7 @@ Yii::app()->functions->getOption("merchant_tax_charges",$merchant_id)==2?true:fa
 'value'=>2
 ));  
 ?>
-</div>
+</div>-->
 
 <div class="uk-form-row">
 <label class="uk-form-label"><?php echo Yii::t("default","Preparation time")?></label>
@@ -615,7 +614,7 @@ Yii::app()->functions->getOption("merchant_tax_charges",$merchant_id)==2?true:fa
   <?php echo "min"?>  
 </div>
 
-<div class="uk-form-row">
+<!--<div class="uk-form-row">
 <label class="uk-form-label"><?php echo Yii::t("default","Delivery Distance Covered")?></label>
 <?php 
   echo CHtml::textField('merchant_delivery_miles',
@@ -631,7 +630,7 @@ Yii::app()->functions->getOption("merchant_tax_charges",$merchant_id)==2?true:fa
   Yii::app()->functions->getOption("merchant_distance_type",$merchant_id),Yii::app()->functions->distanceOption());
   ?>
 </div>
-<p class="uk-text-muted"><?php echo Yii::t("default","Leave the fields empty to not check the distance")?></p>
+<p class="uk-text-muted"><?php echo Yii::t("default","Leave the fields empty to not check the distance")?></p>-->
 
 
 
@@ -744,7 +743,7 @@ Yii::app()->functions->getOption("merchant_preorder",$merchant_id)==1?true:false
 ?>
 </div>
 
-<div class="uk-form-row">
+<!--<div class="uk-form-row">
 <label class="uk-form-label"><?php echo Yii::t("default","Close Message")?></label>
 <?php 
 echo CHtml::textArea('merchant_close_msg',
@@ -753,7 +752,7 @@ Yii::app()->functions->getOption("merchant_close_msg",$merchant_id)
 'class'=>"uk-form-width-large"
 ));
 ?>
-</div>
+</div>-->
 
 
 
@@ -789,7 +788,7 @@ Yii::app()->functions->getOption("merchant_close_msg",$merchant_id)
 
 </div>
 
-<div class="uk-form-row">
+<!--<div class="uk-form-row">
 <label class="uk-form-label"><?php echo Yii::t("default","Holiday Close Message")?></label>
 <?php 
 echo CHtml::textArea('merchant_close_msg_holiday',
@@ -798,7 +797,7 @@ Yii::app()->functions->getOption("merchant_close_msg_holiday",$merchant_id)
 'class'=>"uk-form-width-large"
 ));
 ?>
-</div>
+</div>-->
 
 <div class="uk-form-row">
 <label class="uk-form-label"></label>

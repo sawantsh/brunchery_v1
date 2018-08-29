@@ -46,11 +46,12 @@
   </div> <!--section-process-->
 </div>
 
-<div class="orange-header">
+<div class="logo-install-tpl">
    <div class="container">
-     <img src="<?php echo Yii::app()->request->baseUrl."/assets/images/logo-desktop.png"?>">
-   </div> 
-</div> <!--orange-header-->
+        <img src="<?php echo Yii::app()->request->baseUrl."/assets/images/bruncherry-logo.png"?>" width="100" height="100">
+        <!--<img src="/assets/images/bruncherry-logo.png">-->
+      </div> 
+   </div><!--orange-header-->
 
 <div class="container">
 <div class="row">

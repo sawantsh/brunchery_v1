@@ -846,7 +846,7 @@ class AdminController extends CController
 
 	public function actionDashboardLinks()
 	{
-		$this->crumbsTitle=t("Dashboard Links");
+		$this->crumbsTitle=t("Slider Layer");
 		if (isset($_GET['Do'])){
 			$this->render('dashboardLinks-add');
 		} else $this->render('dashboardLinks-list');
