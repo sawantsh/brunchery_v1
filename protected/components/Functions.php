@@ -4281,7 +4281,7 @@ $htm.='<div class="b uk-text-muted">'."$addon_raw_price ".qTranslate($val_subs[2
 				$total=$subtotal+$taxable_subtotal+$delivery_charges+$merchant_packaging_charge;
 				
 				
-				$htm.="<div class=\"store-cart-summary\"><a href=\"#edit-order-pop\" class=\"edit-order-pop\"><div class=\"cart-icon icon center-cropped\"><i class=\"ion-ios-cart\"></i><span class=\"item-count\">$total_cart_items</span></div></a>";
+				$htm.="<div class=\"store-cart-summary\"><a href=\"#edit-order-pop\" class=\"edit-order-pop\"><div class=\"cart-icon icon center-cropped\"><i class=\"ion-ios-cart\"></i><span style=\"color:white\" class=\"item-count\">$total_cart_items</span></div></a>";
     			$htm.="<div class=\"cart_total_new\">".displayPrice(baseCurrency(),prettyFormat($total,$mid))."</div></div>";	 		
 				
 				$htm.='<div class="summary-wrap">';
