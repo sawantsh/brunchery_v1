@@ -1339,11 +1339,11 @@ class FunctionsV3
     	*/
     	
     	return array(
-    	  'cod'=>t("Cash On delivery"),
+    	  /*'cod'=>t("Cash On delivery"),
     	  'ocr'=>t("Offline Credit Card Payment"),
     	  'pyr'=>t("Pay On Delivery"),
-    	  'pyp'=>t("Paypal"),
-    	  'stp'=>t("Stripe"),
+    	  'pyp'=>t("Paypal"),*/
+    	  'stp'=>t("Stripe")/*,
     	  'mcd'=>t("Mercapado"),
     	  'ide'=>t("Sisow"),
     	  'payu'=>t("Payumoney"),
@@ -1354,7 +1354,7 @@ class FunctionsV3
     	  'obd'=>t("Offline Bank Deposit"),
     	  'btr' =>t("Braintree"),
     	  'rzr'=>t("Razorpay"),
-    	  'vog'=>t("voguepay"),
+    	  'vog'=>t("voguepay"),*/
     	  /*'mol'=>t("Mollie"),
     	  'ip8'=>t("Ipay88"),
     	  'mri'=>t("moneris"),*/

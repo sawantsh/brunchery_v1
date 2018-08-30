@@ -8086,8 +8086,7 @@ $menu_html.="</li>";
 			if ( $db_ext->rst($stmt)){
 				$paymentgateway=array();
 			} else {
-			   //$paymentgateway=array('pyp','stp','mcd','ide','payu','pys');
-			   $paymentgateway=array('stp');
+			   $paymentgateway=array('pyp','stp','mcd','ide','payu','pys');
 			}
 		}
 		return $paymentgateway;
