@@ -48,7 +48,7 @@ dump($merchant_tax);*/
         <?php endif;?>
         <div class="meal-particulars" style="<?php echo empty($val_item['photo']) ? 'padding-left:0px' : ''?>">
           <?php echo "<p class='food-item-title'>".qTranslate($val_item['item_name'],'item_name',$val_item)."</p>"?>
-          <p><?php echo stripslashes($val_item['item_description'])?></p>
+          <p class="food-item-desc"><?php echo stripslashes($val_item['item_description'])?></p>
           <div class="food-price-wrap">
            <?php echo FunctionsV3::getItemFirstPrice($val_item['prices'],$val_item['discount'],$merchant_apply_tax,$merchant_tax) ?>
            <div class="pull-right relative food-price-wrap addto-cart <?php echo $val_item['not_available']==2?"item_not_available":''?>">
