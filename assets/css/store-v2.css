@@ -3956,10 +3956,18 @@ padding: 0
   }
     .section-custom-page .bruncherry-story-page .section-heading{
     font-size: 20px;
+    text-align: left;
+    position: relative;
+    margin: 30px 0px;
+  }
+
+  .section-custom-page .bruncherry-story-page .section-heading-center{
+    font-size: 20px;
     text-align: center;
     position: relative;
     margin: 30px 0px;
   }
+  
   .section-custom-page .bruncherry-story-page .title-img{
     width: 59px;
     margin: 0 auto;
@@ -3969,7 +3977,7 @@ padding: 0
   .section-custom-page{
     background-color: #fff;
   }
-  .section-custom-page .bruncherry-story-page .section-heading::after{
+  .section-custom-page .bruncherry-story-page .section-heading-center::after{
     content: "";
     height: 1px;
     width: 20px;
@@ -3980,9 +3988,11 @@ padding: 0
     top: 32px;
   }
   .section-custom-page .mast{
-    height: 145px;
+    /*height: 145px;*/
+    height: 175px;
     position: absolute;
-    top: -64px;
+    /*top: -64px;*/
+    top: -82px;
     width: 100%;
     left: 0;
     transform: skewY(-5deg);
@@ -4107,19 +4117,34 @@ margin: 20px auto;
 padding: 4px;
 background: #ffb49a;
 border-radius: 25px;
-margin-bott: 10px;
+margin-bottom: 10px;
 text-align: center;
 color: #fff;
 }
 
 .section-custom-page .faqmast{
-  height: 145px;
+  /*height: 145px;*/
+  height: 175px;
   position: absolute;
-  top: -64px;
+  /*top: -64px;*/
+  top: -82px;
   width: 100%;
   left: 0;
   transform: skewY(-5deg);
 }
 .bruncherry-story-page .faqmast{
-  background: #D2EBFA;
+  background: #D5E9F7;
+}
+
+.top10 input[type="submit"]{
+  color:#fff;
+}
+.store-cart-banner a{
+    color:#fff;
+}
+.top15 input[type="submit"]{
+    color:#fff;
+}
+.search-filters input[type="submit"]{
+      color:#fff;
 }
