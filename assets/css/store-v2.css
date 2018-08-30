@@ -1107,13 +1107,14 @@ margin: 15px;
   font-family: 'verlagbold'
 }
 .food-item-desc{
-  color: #464646;
+  color: #a9a9a9;
   font-family: 'verlagbook'
 }
 .food-price-wrap{
   text-align: left;
   /*color: #f75d34;*/
   color: #ffb49a;
+  font-family: 'verlagbold'
 }
 .meal-particulars{
   padding-left: 86px;
@@ -1695,7 +1696,7 @@ padding: 10px;
 .category a{
 display:inline-block;
 border:0 none;
-color:#a1a1a1;
+color:#a9a9a9;
 padding:0px 5px 10px 0px;
 background:#fff;
 line-height: normal;
