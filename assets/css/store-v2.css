@@ -1103,12 +1103,17 @@ margin: 15px;
   border-bottom: 1px sol  id #ccc;
 }
 .food-item-title{
-  font-weight: bold
+  /*font-weight: bold;*/
+  font-family: 'verlagbold'
+}
+.food-item-desc{
+  color: #464646;
+  font-family: 'verlagbook'
 }
 .food-price-wrap{
   text-align: left;
-  color: #f75d34;
-
+  /*color: #f75d34;*/
+  color: #ffb49a;
 }
 .meal-particulars{
   padding-left: 86px;
