@@ -1564,7 +1564,18 @@ jQuery(document).ready(function() {
 
      
    $( document ).on( "click", ".print-receipt", function() {  
-       $('#receipt-content').printElement();
+	//    $('#receipt-content').printElement();
+	var divToPrint=document.getElementById('receipt-content');
+
+  var newWin=window.open('','Print-Window');
+
+  newWin.document.open();
+
+  newWin.document.write('<html><body onload="window.print()">'+divToPrint.outerHTML+'</body></html>');
+
+  newWin.document.close();
+
+  setTimeout(function(){newWin.close();},10);
    });	
    
    $( document ).on( "click", ".view-receipt", function() {    	       	 	

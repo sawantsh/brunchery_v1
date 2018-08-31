@@ -494,7 +494,7 @@ $transaction_type=$data['trans_type'];
 	   </table>
 	   
 	    <div class="receipt-wrap order-list-wrap">
-	    <?php echo $item_details=Yii::app()->functions->details['html'];?>
+	    <?php //echo $item_details=Yii::app()->functions->details['html'];?>
 	    </div>
 	   
 	   </div> <!--box-grey-->
