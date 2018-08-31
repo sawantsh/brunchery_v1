@@ -951,7 +951,7 @@ class StoreController extends CController
 		}
 
 		//$_SESSION['google_http_refferer']=websiteUrl()."/store/paymentoption";		
-		$_SESSION['google_http_refferer']=websiteUrl()."/paymentoption";		
+		$_SESSION['google_http_refferer']=websiteUrl()."/profile";		
 		
 		$seo_title=Yii::app()->functions->getOptionAdmin('seo_checkout');
 		$seo_meta=Yii::app()->functions->getOptionAdmin('seo_checkout_meta');

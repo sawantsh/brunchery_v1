@@ -41,6 +41,7 @@ echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCou
          <?php echo CHtml::hiddenField('action','clientLogin')?>
          <?php echo CHtml::hiddenField('currentController','store')?>
          <?php echo CHtml::hiddenField('redirect', Yii::app()->createUrl('/store/'.$_GET['redirect']) )?>
+		 <?php $_SESSION['google_http_refferer']=Yii::app()->createUrl('/store/'.$_GET['redirect'])?>
          <?php FunctionsV3::addCsrfToken(false);?>
 					
 				 <div class="default-login">
