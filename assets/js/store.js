@@ -2624,9 +2624,16 @@ jQuery(document).ready(function() {
 		if ( $("#google_default_country").val()=="yes" ){			
 			$("#s").geocomplete({
 			  country: $("#admin_country_set").val()			
-		   });			   
+		    }).bind("geocode:result", function(event, result) {
+				// console.warn("result received from geocomplete");
+				$("#forms-search").submit();
+			});			   
 		} else {			
-			$("#s").geocomplete();	
+			$("#s").geocomplete()
+			.bind("geocode:result", function(event, result) {
+				// console.warn("result received from geocomplete");
+				$("#forms-search").submit();
+			});
 		}
 	}
 	$("#origin").geocomplete({
