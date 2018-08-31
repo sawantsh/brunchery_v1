@@ -1097,10 +1097,14 @@ jQuery(document).ready(function() {
 		if (!is_twelve_period){
 			dump('24 hour');
 			time_format='H:mm';
-		} 
+		}
+		var defaultTime = new Date();
+		defaultTime.setMinutes(defaultTime.getMinutes() + 5); 
 		$('.timepick').timepicker({
 			timeFormat: time_format,
-			//interval:15
+			interval:5,
+			minTime: defaultTime,
+			defaultTime: defaultTime
 		});
 	    $('#booking_time').timepicker({
 	    	timeFormat: time_format
