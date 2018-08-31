@@ -3125,8 +3125,48 @@ class Functions extends CApplicationComponent
 					echo "total->".$this->search_result_total;
 				}		
 			}
+
+			$sortedResults = array();
+			foreach ($res as $val) {
+				$ratings=Yii::app()->functions->getRatings($val['merchant_id']);
+				$restaurantSlug = $val['restaurant_slug'];
+				$restaurantLogo = FunctionsV3::getMerchantLogo($val['merchant_id'],$val['logo']);
+			    $cups_disc = getOption($val['merchant_id'],'merchant_delivery_charges');
+				$prep_time = getOption($val['merchant_id'],'merchant_delivery_estimation');
+				$name = $val['restaurant_name'];
+				$street = $val['street'];
+				$merchantDesc = getOption($val['merchant_id'],'merchant_information');
+				$isOpen = false;
+				$openHrs = FunctionsV3::getMerchantOpeningHours($val['merchant_id']);
+				// $openHours = '';
+				// foreach ($openHrs as $o) {
+				// 	if (strtolower(date('l')) == $o['day']) {
+				// 		$isOpen = true;
+				// 		$openHrs = $o['hours'];
+				// 	}
+				// }
+
+				$sortedResults[] = array(
+					"restaurant_name" => $name,
+					"desc" => $merchantDesc,
+					"street" => $street,
+					"city" => $val['city'],
+					"post_code" => $val['post_code'],
+					"ratings" => $ratings,
+					"restaurant_slug" => $restaurantSlug,
+					"logo" => $restaurantLogo,
+					"cups_disc" => $cups_disc,
+					"prep_time" => $prep_time,
+					"is_open" => $isOpen,
+					"open_hrs" => $openHrs
+				);
+			}
+
+			usort ($sortedResults, function ($left, $right) {
+				return $left['is_open'] - $right['is_open'];
+			});
 			
-			return $res;
+			return $sortedResults;
 		}
 		return false;
 	}

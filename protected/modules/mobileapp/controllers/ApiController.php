@@ -483,6 +483,7 @@ class ApiController extends CController
 				  'restaurant_name'=>stripslashes($val['restaurant_name']),
 				  'description'=>getOption($mtid,'merchant_information'),
 				  'address'=>$val['street']." ".$val['city']." ".$val['state']." ".$val['post_code'],
+				  'open'=>isOpen,
 				  'openTimings'=> $openTimings,
 	 			  'ratings'=>Yii::app()->functions->getRatings($val['merchant_id']),
 	 			  'cuisine'=>AddonMobileApp::prettyCuisineList($val['cuisine']),
@@ -510,7 +511,10 @@ class ApiController extends CController
 				   'prep_time'=>getOption($val['merchant_id'],'merchant_delivery_estimation')
 	 			);
 	 		}			 		
-	 					 		
+						 
+			usort ($data, function ($left, $right) {
+				return $left['open'] - $right['open'];
+			});
 	 		$this->details=array(
 	 		  'total'=>$total_records,
 	 		  'data'=>$data

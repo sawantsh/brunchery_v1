@@ -137,13 +137,13 @@ if ( $enabled_advance_search=="yes"){
       <div class="resto-tile-content">
         <div class="resto-pic">
         <div class="resto-pic-wrap">
-          <img class="logo-small" src="<?php echo FunctionsV3::getMerchantLogo($val['merchant_id'],$val['logo']);?>">
-          <?php if ($cups_disc=getOption($val['merchant_id'],'merchant_delivery_charges')):?>
+          <img class="logo-small" src="<?php echo $val['logo'];?>">
+          <?php if ($cups_disc=$val['cups_disc']):?>
           <div class='rest-discount'>
            <span class="unit">-<?php echo $cups_disc?>c</span>
           </div>
         <?php endif;?>
-          <?php if ($prep_time=getOption($val['merchant_id'],'merchant_delivery_estimation')):?>
+          <?php if ($prep_time=$val['prep_time']):?>
           <div class='rest-duration'>
             <?php echo $prep_time?>
             <span class="unit">MIN</span>
@@ -158,9 +158,9 @@ if ( $enabled_advance_search=="yes"){
           <!-- <?php //echo FunctionsV3::displayCuisine($val['cuisine'],$cuisine_list);?> -->
           </p>
           
-          <p class="desc"><?php echo getOption($val['merchant_id'],'merchant_information')?></p>
+          <p class="desc"><?php echo $val['desc']?></p>
           <?php $isOpen = false;?>
-          <?php if ( $openHrs=FunctionsV3::getMerchantOpeningHours($val['merchant_id'])):?>
+          <?php if ( $openHrs=$val['open_hrs']):?>
             <?php foreach ($openHrs as $o):?>
               <?php if (strtolower(date('l')) == $o['day']):?>
                 <?php $isOpen = true;?>
@@ -170,7 +170,7 @@ if ( $enabled_advance_search=="yes"){
           <?php endif;?>
           <?php if (!$isOpen):?>
             <p class="text-danger"><?php echo t("Closed")?></p>
-          <?php endif;?>           
+          <?php endif;?>
           <!-- <div class="rating-stars" data-score="<?php //echo $ratings['ratings']?>"></div>    -->
           </div>
     </div> <!--col-6-->
