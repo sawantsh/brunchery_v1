@@ -861,7 +861,38 @@ jQuery(document).ready(function() {
     	var params="action=viewFoodItem&currentController=store&item_id="+id+"&tbl=viewFoodItem";
     	params+="&category_id=" + $(this).data("category_id");
     	open_fancy_box(params);
-    });
+	});
+	
+	$(document).on("click", ".show_item_details", function() {
+		/** check if the item is available*/
+    	if ( $(this).hasClass("item_not_available")){
+    		uk_msg(js_lang.trans_51);
+    		return;
+    	}    
+    	    	
+    	if ( $("#merchant_close_store").exists() ){	
+    		if  (  $("#merchant_close_store").val()=="yes"){
+    			var close_msg=$("#merchant_close_msg").val();
+		        uk_msg(close_msg);
+		        return;
+    		}
+    	}	
+    	
+    	/** auto add item if food is single */
+    	var id=$(this).attr("rel");
+    	
+    	/*mobile issue*/
+			if ( $(this).hasClass("mbile")){
+			var mbile_url=sites_url+"/item/?item_id="+id+"&mtid="+ $("#merchant_id").val();
+			mbile_url+= "&slug="+$("#restaurant_slug").val();
+			window.location.href=mbile_url;
+			return;
+		}
+		
+		var params="action=viewFoodItem&currentController=store&item_id="+id+"&tbl=viewFoodItem";
+		params+="&category_id=" + $(this).data("category_id");
+		open_fancy_box(params);
+	})
     
     $( document ).on( "click", ".edit_item", function() {
     	
@@ -4040,4 +4071,10 @@ function empty(data)
 		return true;
 	}
 	return false;
+}
+
+function openItemDetails() {
+	var params="action=viewFoodItem&currentController=store&item_id="+id+"&tbl=viewFoodItem";
+	params+="&category_id=" + $(this).data("category_id");
+	open_fancy_box(params);
 }

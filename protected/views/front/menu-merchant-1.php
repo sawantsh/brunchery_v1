@@ -47,7 +47,9 @@ dump($merchant_tax);*/
           <div class="food-thumbnail pic" style="background:url('<?php echo FunctionsV3::getFoodDefaultImage($val_item['photo'],false)?>');"></div>
         <?php endif;?>
         <div class="meal-particulars" style="<?php echo empty($val_item['photo']) ? 'padding-left:0px' : ''?>">
+          <a href="javascript:;" class="show_item_details" rel="<?php echo $val_item['item_id']?>">
           <?php echo "<p class='food-item-title'>".qTranslate($val_item['item_name'],'item_name',$val_item)."</p>"?>
+          </a>
           <p class="food-item-desc"><?php echo stripslashes($val_item['item_description'])?></p>
           <div class="food-price-wrap">
            <?php echo FunctionsV3::getItemFirstPrice($val_item['prices'],$val_item['discount'],$merchant_apply_tax,$merchant_tax) ?>
