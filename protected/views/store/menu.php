@@ -609,15 +609,15 @@ if ($food_viewing_private==2){
 				<div class="item-order-wrap"></div>
 				
 	 			<?php if ( $checkout['code']==1):?>
-				<a href="javascript:;" class="orange-button medium checkout"><?php echo $checkout['button']?></a>
+				<!-- <a href="javascript:;" class="orange-button medium checkout"><?php //echo $checkout['button']?></a> -->
 				<?php else :?>
 					<?php if ( $checkout['holiday']==1):?>
-					<?php echo CHtml::hiddenField('is_holiday',$checkout['msg'],array('class'=>'is_holiday'));?>
-					<p class="text-danger"><?php echo $checkout['msg']?></p>
+					<!-- <?php //echo CHtml::hiddenField('is_holiday',$checkout['msg'],array('class'=>'is_holiday'));?> -->
+					<!-- <p class="text-danger"><?php //echo $checkout['msg']?></p> -->
 				<?php else :?>
-					<p class="text-danger"><?php echo $checkout['msg']?></p>
+					<!-- <p class="text-danger"><?php //echo $checkout['msg']?></p>
 					<p class="small">
-					<?php echo Yii::app()->functions->translateDate(date('F d l')."@".timeFormat(date('c'),true));?></p>
+					<?php //echo Yii::app()->functions->translateDate(date('F d l')."@".timeFormat(date('c'),true));?></p> -->
 				<?php endif;?>
 			<?php endif;?>
 
