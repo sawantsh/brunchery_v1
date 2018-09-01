@@ -350,12 +350,12 @@ class ApiController extends CController
 		        		$tag_raw='pre-order';
 		        	}
 				}
-				$isOpen = false;
+				$isOpen = 0;
 				$openTimings = '';
 				if ( $openHrs=FunctionsV3::getMerchantOpeningHours($val['merchant_id'])) {
 					foreach ($openHrs as $o) {
 						if (strtolower(date('l')) == $o['day']) {
-							$isOpen = true;
+							$isOpen = 1;
 							$openTimings = $o['hours'];
 						}
 					}
@@ -513,7 +513,7 @@ class ApiController extends CController
 	 		}			 		
 						 
 			usort ($data, function ($left, $right) {
-				return $left['open'] - $right['open'];
+				return $right['open'] - $left['open'];
 			});
 	 		$this->details=array(
 	 		  'total'=>$total_records,
