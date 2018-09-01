@@ -1384,7 +1384,7 @@ display:none;
 }
 
 .search-result-loader i{
-background:url("../images/Coffee-cup.gif") no-repeat center right;
+background:url("../images/loading.gif") no-repeat center right;
 height:64px;
 width:64px;
 display:block;
