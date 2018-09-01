@@ -1001,7 +1001,7 @@ display: none
 .filter-box a:hover
 {
 text-decoration:none;
-color:#f75d34;
+color:#ffb49a;
 font-weight:600;
 }
 
@@ -1009,7 +1009,7 @@ font-weight:600;
 .filter-box a:hover{
 font-weight:normal;
 text-decoration:none;
-color:#f75d34;
+color:#ffb49a;
 }
 
 .order-progress-bar a.active.current{

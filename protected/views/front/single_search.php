@@ -39,8 +39,8 @@
           <div class="filter-box col-md-3">
             <a href="javascript:;">	             
               <span>
-              <i class="<?php echo $fc==2?"ion-ios-arrow-thin-down":'ion-ios-arrow-thin-right'?>"></i>
-              <?php echo t("By Delivery")?>
+              <!-- <i class="<?php //echo $fc==2?"ion-ios-arrow-thin-down":'ion-ios-arrow-thin-right'?>"></i> -->
+              <?php echo t("Dine in or Dash out")?>
               </span>   
               <b></b>
             </a>
@@ -48,7 +48,7 @@
               <?php foreach ($services as $key=> $val):?>
               <li>	           	              
               <?php 
-               echo CHtml::checkBox('filter_delivery_type[]',
+               echo CHtml::radioButton('filter_delivery_type[]',
                in_array($key,(array)$_GET['filter_delivery_type'])?true:false
                ,array(
                'value'=>$key,
@@ -77,8 +77,8 @@
           <div class="filter-box col-md-9">
             <a href="javascript:;">	             
               <span>
-              <i class="<?php echo $fc==2?"ion-ios-arrow-thin-down":'ion-ios-arrow-thin-right'?>"></i>
-              <?php echo t("By Cuisines")?>
+              <!-- <i class="<?php //echo $fc==2?"ion-ios-arrow-thin-down":'ion-ios-arrow-thin-right'?>"></i> -->
+              <?php echo t("Cuisines")?>
               </span>   
               <b></b>
             </a>
