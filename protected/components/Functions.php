@@ -3136,15 +3136,15 @@ class Functions extends CApplicationComponent
 				$name = $val['restaurant_name'];
 				$street = $val['street'];
 				$merchantDesc = getOption($val['merchant_id'],'merchant_information');
-				$isOpen = false;
+				$isOpen = 0;
 				$openHrs = FunctionsV3::getMerchantOpeningHours($val['merchant_id']);
-				// $openHours = '';
-				// foreach ($openHrs as $o) {
-				// 	if (strtolower(date('l')) == $o['day']) {
-				// 		$isOpen = true;
-				// 		$openHrs = $o['hours'];
-				// 	}
-				// }
+				$openHours = '';
+				foreach ($openHrs as $o) {
+					if (strtolower(date('l')) == $o['day']) {
+						$isOpen = 1;
+						$openHours = $o['hours'];
+					}
+				}
 
 				$sortedResults[] = array(
 					"restaurant_name" => $name,
@@ -3163,8 +3163,10 @@ class Functions extends CApplicationComponent
 			}
 
 			usort ($sortedResults, function ($left, $right) {
-				return $left['is_open'] - $right['is_open'];
+				return $right['is_open'] - $left['is_open'];
 			});
+
+			// dump($sortedResults);
 			
 			return $sortedResults;
 		}
