@@ -4023,6 +4023,13 @@ jQuery(document).ready(function() {
 			$(".areas").addClass("area-hidden");
 		}
 	});	
+
+	/*auto get geolocation*/
+	if ( $(".index-menu").exists() ) {
+		if(!$(".index-menu #menu li").hasClass("active")) {
+			$(".index-menu #menu li:first").addClass("active")
+		}
+	}
 		
 }); /*end ready*/
 /** END ADDED CODE VERSION 2.6*/
