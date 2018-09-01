@@ -74,11 +74,10 @@ $transaction_type=$data['trans_type'];
 		</div>
    <?php if ($ok==TRUE):?>
    <div class="inner section-border" id="receipt-content">
-	   <h1 class="f-hide"><?php echo t("Order Details")?></h1>
 	   <div class="">     
 	   
 	   <div class="text-center bottom10">
-	   <i class="ion-ios-checkmark-outline i-big-extra green-text"></i>
+	   <a class="" href="/"><i class="ion-ios-home"></i> Home</a>
 	   </div>
 	   	   
 	   <table class="table table-striped">
@@ -90,10 +89,10 @@ $transaction_type=$data['trans_type'];
 	       </tr>	       
 	       <?php $print[]=array( 'label'=>Yii::t("default","Customer Name"), 'value'=>$data['full_name'] );?>	       
 	       <tr>
-	         <td><?php echo Yii::t("default","Merchant Name")?></td>
+	         <td><?php echo Yii::t("default","Restaurant Name")?></td>
 	         <td class="text-right"><?php echo clearString($data['merchant_name'])?></td>
 	       </tr>       
-	       <?php $print[]=array( 'label'=>Yii::t("default","Merchant Name"), 'value'=>$data['merchant_name']); ?>
+	       <?php $print[]=array( 'label'=>Yii::t("default","Restaurant Name"), 'value'=>$data['merchant_name']); ?>
 	       
 	       <?php if (isset($data['abn']) && !empty($data['abn'])):?>	       
 	       <tr>
@@ -145,13 +144,13 @@ $transaction_type=$data['trans_type'];
 	       <?php endif;?>
 	       	       
 	       <tr>
-	         <td><?php echo Yii::t("default","TRN Type")?></td>
+	         <td><?php echo Yii::t("default","Dine in or Dash out")?></td>
 	         <td class="text-right"><?php echo Yii::t("default",$data['trans_type'])?></td>
 	       </tr>
 	       
 	       <?php 	       
 	       $print[]=array(
-	         'label'=>Yii::t("default","TRN Type"),
+	         'label'=>Yii::t("default","Dine in or Dash out"),
 	         'value'=>t($data['trans_type'])
 	       );
 	       ?>
@@ -238,7 +237,7 @@ $transaction_type=$data['trans_type'];
 	       <?php endif;?>
 	       	       
 	       <tr>
-	         <td><?php echo Yii::t("default","TRN Date")?></td>
+	         <td><?php echo Yii::t("default","Order Date")?></td>
 	         <td class="text-right">
 	         <?php 
 	         $trn_date=date('M d,Y G:i:s',strtotime($data['date_created']));
@@ -248,7 +247,7 @@ $transaction_type=$data['trans_type'];
 	       </tr>
 	       <?php 	       
 	       $print[]=array(
-	         'label'=>Yii::t("default","TRN Date"),
+	         'label'=>Yii::t("default","Order Date"),
 	         'value'=>$trn_date
 	       );
 	       ?>

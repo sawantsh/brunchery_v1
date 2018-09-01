@@ -2290,6 +2290,9 @@ class FunctionsV3
 	public static function prettyPaymentType($transaction_type='', $payment_code='',$data='',$trn_type='')
 	{		
 		$payment_prefix=''; $db=new DbExt;
+		if ($payment_code=='stp') {
+			$payment_code='Card';
+		}
 		
 		switch ($trn_type) {
 			case "dinein":
