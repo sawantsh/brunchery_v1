@@ -5,7 +5,8 @@
 <form method="POST" id="frm-otable" class="frm-otable"> 
 <?php echo CHtml::hiddenField('otable_action','ClientCCList')?> 
 <?php echo CHtml::hiddenField('tbl','client_cc')?>
-  
+
+<?php if (!empty($data)):?>
 <table class="otable table table-striped">
  <thead>
   <tr>
@@ -15,7 +16,7 @@
   </tr>
  </thead>
 </table>
-
+<?php endif;?>
 </form>
 <div class="clear"></div>
 <div class="bottom10 top10">

@@ -135,6 +135,7 @@ $do=isset($_GET['do'])?$_GET['do']:'';
 <input type="hidden" name="whereid"  id="whereid" value="id">
 <input type="hidden" name="slug" id="slug" value="store/addressbook">
 
+<?php if (!empty($data)):?>
 <table id="table_list" class="table table-striped">
   <thead>
   <tr>
@@ -144,6 +145,7 @@ $do=isset($_GET['do'])?$_GET['do']:'';
   </tr>
   </thead>
 </table>  
+<?php endif;?>
 <div class="clear"></div>
 </form>
 
