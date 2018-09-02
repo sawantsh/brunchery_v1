@@ -482,6 +482,7 @@ class Functions extends CApplicationComponent
 		  'trans_54'=>t("Arrival time is required"),
 		  'trans_55'=>t("Arrival time is invalid"),
 		  'trans_56'=>t("Arrival time is already past"),
+		  'trans_57'=>t("Sorry, Restaurant is closed at your arrival time"),
     	      	  
     	  'find_restaurant_by_name'=>t("Find restaurant by name"),
     	  'find_restaurant_by_streetname'=>t("Find by street name"),

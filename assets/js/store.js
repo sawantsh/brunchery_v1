@@ -1354,9 +1354,53 @@ jQuery(document).ready(function() {
 	var arrival_time_obj = new Date();
 	arrival_time_obj.setHours(arrival_time_hr);
 	arrival_time_obj.setMinutes(arrival_time_min);
+	arrival_time_obj.setSeconds(59);
 	if (arrival_time_obj < new Date()) {
 		uk_msg(js_lang.trans_56);
 		return;
+	}
+
+	var openTimings = $("#openTimings").val();
+	if (empty(openTimings)) {
+		uk_msg(js_lang.trans_57);
+		return;
+	}
+	var openTimes = [];
+	if (openTimings.indexOf("/") > 0) {
+		var time1 = openTimings.substr(0, openTimings.indexOf("/"));
+		var time2 = openTimings.substr(openTimings.indexOf("/") + 1);
+		openTimes[0] = time1;
+		openTimes[1] = time2;
+	} else {
+		openTimes[0] = openTimings;
+	}
+	for (var i in openTimes) {
+		var openTime = openTimes[i];
+		var starttime = openTime.substr(0, openTime.indexOf("-"));
+		var endtime = openTime.substr(openTime.indexOf("-") + 1);
+		
+		var starttime_hr = parseInt(
+			starttime.substr(0, starttime.indexOf(":")));
+		var starttime_min = parseInt(
+			starttime.substr(starttime.indexOf(":") + 1));
+		var starttime_obj = new Date();
+		starttime_obj.setHours(starttime_hr);
+		starttime_obj.setMinutes(starttime_min);
+		starttime_obj.setSeconds(59);
+
+		var endtime_hr = parseInt(
+			endtime.substr(0, endtime.indexOf(":")));
+		var endtime_min = parseInt(
+			endtime.substr(endtime.indexOf(":") + 1));
+		var endtime_obj = new Date();
+		endtime_obj.setHours(endtime_hr);
+		endtime_obj.setMinutes(endtime_min);
+		endtime_obj.setSeconds(59);
+		
+		if (arrival_time_obj < starttime_obj || arrival_time_obj > endtime_obj) {
+			uk_msg(js_lang.trans_57);
+			return;
+		}
 	}
    	   
    	   if ( $("#contact_phone").exists() ){

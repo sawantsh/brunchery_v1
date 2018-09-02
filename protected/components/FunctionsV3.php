@@ -1274,7 +1274,7 @@ class FunctionsV3
 				
 				$full_time='';
 				if (!empty($open_starts) && !empty($open_ends)){					
-					$full_time=$open_starts." - ".$open_ends."&nbsp;&nbsp;";
+					$full_time=$open_starts." - ".$open_ends."";
 				}			
 				if (!empty($pm_starts) && !empty($pm_ends)){
 					if ( !empty($full_time)){

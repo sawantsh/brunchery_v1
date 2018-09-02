@@ -196,6 +196,14 @@ Yii::app()->functions->getOptionAdmin("admin_currency_position"));
 
   <!-- arrival-time -->
 
+  <?php $openHrs = FunctionsV3::getMerchantOpeningHours($val['merchant_id']);?>
+				<?php $openHours = '';?>
+				<?php foreach ($openHrs as $o):?>
+					<?php if (strtolower(date('l')) == $o['day']):?>
+						<?php $openHours = $o['hours'];?>
+        <?php endif;?>
+        <?php endforeach;?>
+  <input type="hidden" value="<?php echo $openHours?>" id="openTimings"/>
    <div class="arrival-time section-border">
       <div class="relative">
         <h4 class="rgt-border">When will you be arriving?</h4>
