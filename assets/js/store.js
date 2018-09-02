@@ -406,8 +406,10 @@ function form_submit(formid)
         	btn.val(btn_cap);        	
         	//scroll(form_id);
         	if (data.code==1){
-        		        		
-				uk_msg_sucess(data.msg);
+								
+				if (action !== "addToCart") {
+					uk_msg_sucess(data.msg);
+				}
 				
 				if (action == "partnerSignupSubmit" || action == "contactUsSubmit") {
 					window.location.href = "/profile";
@@ -3367,7 +3369,7 @@ function single_food_item_add(item_id,price,size,category_id)
     success: function(data){ 
     	busy(false);      		
     	if (data.code==1) {    	   
-    		uk_msg_sucess(data.msg);
+    		// uk_msg_sucess(data.msg);
     		load_item_cart();
     	} else {
     		uk_msg(data.msg);
