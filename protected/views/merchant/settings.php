@@ -678,7 +678,7 @@ Yii::app()->functions->getOption("merchant_timezone",$merchant_id)
   <?php echo Yii::t("default","Store days(s) Open:")?>  
   </label>  
   <div class="clear"></div>
-  <p class="uk-text-muted"><?php echo Yii::t("default","If days has not been selected then merchant will be set to open")?></p>
+  <p class="uk-text-muted"><?php echo Yii::t("default","If days has not been selected then merchant will be set to closed")?></p>
   <ul class="uk-list uk-list-striped">
   <?php foreach ($days as $key=>$val):?>
   <li>
