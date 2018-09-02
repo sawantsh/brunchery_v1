@@ -58,13 +58,13 @@ $this->renderPartial('/front/order-progress-bar',array(
 $now=date('Y-m-d');
 $now_time='23:59:59';
 
-$checkout=FunctionsV3::isMerchantcanCheckout($merchant_id); 
+// $checkout=FunctionsV3::isMerchantcanCheckout($merchant_id); 
 $menu=Yii::app()->functions->getMerchantMenu($merchant_id , isset($_GET['sname'])?$_GET['sname']:'' ); 
 //dump($menu);die();
 
 //dump($checkout);
 
-echo CHtml::hiddenField('is_merchant_open',isset($checkout['code'])?$checkout['code']:'' );
+//echo CHtml::hiddenField('is_merchant_open',isset($checkout['code'])?$checkout['code']:'' );
 
 /*hidden TEXT*/
 echo CHtml::hiddenField('restaurant_slug',$data['restaurant_slug']);
@@ -139,8 +139,8 @@ echo CHtml::hiddenField('merchant_close_store',getOption($merchant_id,'merchant_
 if(empty($close_msg)){
 	$close_msg=t("This restaurant is closed now. Please check the opening times.");
 }*/
-echo CHtml::hiddenField('merchant_close_msg',
-isset($checkout['msg'])?$checkout['msg']:t("Sorry merchant is closed."));
+// echo CHtml::hiddenField('merchant_close_msg',
+// isset($checkout['msg'])?$checkout['msg']:t("Sorry merchant is closed."));
 
 echo CHtml::hiddenField('disabled_website_ordering',getOptionA('disabled_website_ordering'));
 echo CHtml::hiddenField('web_session_id',session_id());
@@ -582,12 +582,12 @@ if ($food_viewing_private==2){
 	          array('class'=>"timepick grey-fields",'placeholder'=>Yii::t("default","Delivery Time")))?>
 	       <?php endif;?>  	          	  
 
-	          <?php if ( $checkout['is_pre_order']==2):?>         
+	          <!-- <?php //if ( $checkout['is_pre_order']==2):?>         
 	          <span class="delivery-asap">
-	           <?php echo CHtml::checkBox('delivery_asap',false,array('class'=>"icheck"))?>
-	            <span class="text-muted"><?php echo Yii::t("default","Delivery ASAP?")?></span>	          
+	           <?php //echo CHtml::checkBox('delivery_asap',false,array('class'=>"icheck"))?>
+	            <span class="text-muted"><?php //echo Yii::t("default","Delivery ASAP?")?></span>	          
 	         </span>       	         	        	     
-	         <?php endif;?>    
+	         <?php //endif;?>     -->
 	         
            </div><!-- delivery_asap_wrap-->
            </div>
@@ -608,18 +608,18 @@ if ($food_viewing_private==2){
 	<div class="container relative">
 				<div class="item-order-wrap"></div>
 				
-	 			<?php if ( $checkout['code']==1):?>
-				<a href="javascript:;" class="orange-button medium checkout"><?php echo $checkout['button']?></a>
-				<?php else :?>
-					<?php if ( $checkout['holiday']==1):?>
+	 			<?php //if ( 1==1):?>
+				<a href="javascript:;" class="orange-button medium checkout">Checkout</a>
+				<?php //else :?>
+					<?php //if ( $checkout['holiday']==1):?>
 					<!-- <?php //echo CHtml::hiddenField('is_holiday',$checkout['msg'],array('class'=>'is_holiday'));?> -->
 					<!-- <p class="text-danger"><?php //echo $checkout['msg']?></p> -->
-				<?php else :?>
+				<?php //else :?>
 					<!-- <p class="text-danger"><?php //echo $checkout['msg']?></p>
 					<p class="small">
 					<?php //echo Yii::app()->functions->translateDate(date('F d l')."@".timeFormat(date('c'),true));?></p> -->
-				<?php endif;?>
-			<?php endif;?>
+				<?php //endif;?>
+			<?php //endif;?>
 
 	</div>
 </div>
