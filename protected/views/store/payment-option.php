@@ -196,7 +196,7 @@ Yii::app()->functions->getOptionAdmin("admin_currency_position"));
 
   <!-- arrival-time -->
 
-  <?php $openHrs = FunctionsV3::getMerchantOpeningHours($val['merchant_id']);?>
+  <?php $openHrs = FunctionsV3::getMerchantOpeningHours($merchant_id);?>
 				<?php $openHours = '';?>
 				<?php foreach ($openHrs as $o):?>
 					<?php if (strtolower(date('l')) == $o['day']):?>
