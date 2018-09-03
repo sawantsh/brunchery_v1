@@ -170,7 +170,8 @@ echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCou
 		     <?php $this->renderPartial('/front/address-book',array(
             'client_id'=>Yii::app()->functions->getClientId(),
             'data'=>Yii::app()->functions->getAddressBookByID( isset($_GET['id'])?$_GET['id']:'' ),
-            'tabs'=>$tabs
+            'tabs'=>$tabs,
+            'count'=>Yii::app()->functions->getAddressBookCount(Yii::app()->functions->getClientId())
           ));?>
 				
          
@@ -190,7 +191,8 @@ echo CHtml::hiddenField('mobile_country_code',Yii::app()->functions->getAdminCou
             ));
           } else {
           $this->renderPartial('/front/manage-credit-card',array(
-            'tabs'=>$tabs
+            'tabs'=>$tabs,
+            'count'=>Yii::app()->functions->getCreditCardCount(Yii::app()->functions->getClientId())
           ));
           }
       ?>     

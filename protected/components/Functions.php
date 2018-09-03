@@ -4653,7 +4653,24 @@ $htm.='<div class="b uk-text-muted">'."$addon_raw_price ".qTranslate($val_subs[2
 			return $rows[0];
 		}
 		return FALSE;
-	}	        
+	}	 
+	
+	public function getCreditCardCount($client_id)
+	{
+		$stmt="
+		SELECT * FROM
+		{{client_cc}}
+		WHERE
+		client_id='".$client_id."'
+		LIMIT 0,1
+		";		
+		$connection=Yii::app()->db;
+		$rows=$connection->createCommand($stmt)->queryAll(); 		
+		// if (is_array($rows) && count($rows)>=1){
+		// 	return $rows[0];
+		// }
+		return count($rows);
+	}	 
 	
 	public function getOrder($order_id='')
 	{
@@ -10080,7 +10097,22 @@ $menu_html.="</li>";
     		return $res[0];
     	}
     	return false;
-    } 	    
+	}
+	
+	public function getAddressBookCount($client_id='')
+    {
+    	$db_ext=new DbExt;    	
+    	$stmt="SELECT * FROM
+    	       {{address_book}}
+    	       WHERE
+    	       client_id='$client_id'    	       
+    	       LIMIT 0,1
+    	";    	    	
+    	if ($res=$db_ext->rst($stmt)){    		
+    		return count($res);
+    	}
+    	return 0;
+    }
     
     public function hasAddressDefault($client_id='')
     {

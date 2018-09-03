@@ -6,7 +6,7 @@
 <?php echo CHtml::hiddenField('otable_action','ClientCCList')?> 
 <?php echo CHtml::hiddenField('tbl','client_cc')?>
 
-<?php if (!empty($data)):?>
+<?php if (!empty($count) && $count > 0):?>
 <table class="otable table table-striped">
  <thead>
   <tr>
