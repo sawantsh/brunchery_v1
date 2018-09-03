@@ -483,7 +483,7 @@ class ApiController extends CController
 				  'restaurant_name'=>stripslashes($val['restaurant_name']),
 				  'description'=>getOption($mtid,'merchant_information'),
 				  'address'=>$val['street']." ".$val['city']." ".$val['state']." ".$val['post_code'],
-				  'open'=>isOpen,
+				  'open'=>$isOpen,
 				  'openTimings'=> $openTimings,
 	 			  'ratings'=>Yii::app()->functions->getRatings($val['merchant_id']),
 	 			  'cuisine'=>AddonMobileApp::prettyCuisineList($val['cuisine']),
