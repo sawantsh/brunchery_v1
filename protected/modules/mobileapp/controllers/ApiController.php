@@ -3986,10 +3986,10 @@ class ApiController extends CController
 		if ( $res=AddonMobileApp::getClientTokenInfo($this->data['client_token'])) {				
 			 if ( $resp=Yii::app()->functions->getOrderInfo($this->data['order_id'])){			 	  
 			 	
-			 	  if ($resp['request_from']=="web"){
-			 	  	 $this->msg=AddonMobileApp::t("Sorry but you cannot re-order this transaction the request was made in web");
-			 	  	 $this->output();	
-			 	  }			 
+			 	//   if ($resp['request_from']=="web"){
+			 	//   	 $this->msg=AddonMobileApp::t("Sorry but you cannot re-order this transaction the request was made in web");
+			 	//   	 $this->output();	
+			 	//   }			 
 			 	
 			 	  $merchant_info=Yii::app()->functions->getMerchant($resp['merchant_id']);
 			 	  			 	  			 	  
