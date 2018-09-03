@@ -3691,7 +3691,8 @@ class ApiController extends CController
 		   $stmt="SELECT * FROM
 		   {{client}}
 		    WHERE
-	    	email_address=".Yii::app()->db->quoteValue($this->data['email_address'])."
+			(email_address=".Yii::app()->db->quoteValue($this->data['email_address'])."
+			OR contact_phone=".Yii::app()->db->quoteValue($this->data['email_address']).")
 	    	AND
 	    	password=".Yii::app()->db->quoteValue(md5($this->data['password']))."
 	    	AND
