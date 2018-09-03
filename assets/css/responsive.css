@@ -11,6 +11,12 @@
     .section-recent-orders .store-topbar{
         width: 970px;
     } */
+    .search-textbox.col-md-10{
+        width: 87%
+    }
+    .search-settings-holder {
+        width: 13%;
+    }
 }
   @media only screen and (max-width : 1024px) 
 {
@@ -349,6 +355,12 @@ width:auto;
         width: 100%;
           height: 100%
       }
+      .search-textbox.col-md-10 {
+        width: 82%;
+        }
+        .search-settings-holder{
+            width: 18%;
+        }
   }
 
 
@@ -639,7 +651,14 @@ height: 165px;
 }
 
 }
-
+@media only screen and (max-width : 675px) {
+    .search-textbox.col-md-10 {
+        width: 76%;
+    }
+    .search-settings-holder {
+        width: 24%;
+    }
+}
 @media only screen and (max-width : 540px) {
     .home-backdrop{
         top: -269px;
@@ -665,6 +684,12 @@ height: 165px;
     }
     .home-backdrop.profile-header {
         top: -320px;
+    }
+    .search-textbox.col-md-10 {
+        width: 72%;
+    }
+    .search-settings-holder {
+        width: 27%;
     }
 
 }
@@ -928,6 +953,36 @@ margin-left: 75px;}
 
 }
 
+@media only screen and (max-width : 460px) 
+{
+    .search-textbox.col-md-10 {
+        width: 70%;
+    }
+    .search-settings-holder {
+        width: 30%;
+    }
+
+}
+@media only screen and (max-width : 420px) 
+{
+    .search-textbox.col-md-10 {
+        width: 65%;
+    }
+    .search-settings-holder {
+        width: 35%;
+    }
+
+}
+@media only screen and (max-width : 350px) 
+{
+    .search-textbox.col-md-10 {
+        width: 60%;
+    }
+    .search-settings-holder {
+        width: 40%;
+    }
+
+}
 @media only screen and (max-width : 320px)
 {
 

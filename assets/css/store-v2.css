@@ -431,7 +431,7 @@ top:0px;
     background-position-x: center;
     background-position-y: 12px;
 }
-.search-settings{
+.search-settings, .mel-home{
   font-size: 30px;
   padding: 10px 0 0 0;
   display: inline-block;
@@ -442,6 +442,9 @@ top:0px;
   text-align: center;
   color: #ffb49a !important;
   box-shadow: 2px 4px 5px rgba(0,0,0,0.2);
+}
+.mel-home{
+  float: left;
 }
 .search-settings-holder{
   text-align: right;
@@ -4153,4 +4156,14 @@ color: #fff;
 }
 .search-filters input[type="submit"]{
       color:#fff;
+}
+.search-textbox.col-md-10{
+  width: 88%;
+}
+.search-settings-holder{
+  width: 12%;
+}
+.pac-icon-marker{
+  background: url(../images/map-pin.png) no-repeat !important; 
+  background-position:  0 0;
 }

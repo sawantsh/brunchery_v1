@@ -9,14 +9,17 @@
   <!-- <form method="GET" class="forms-search" id="forms-search" action="#"> -->
   <div class="search-input-wraps">
      <div class="row">
-        <div class="col-md-11 col-sm-10 col-xs-10 relative search-textbox">
+      <div class="col-md-10 col-sm-9 col-xs-9 relative search-textbox">
           <?php echo CHtml::textField('s',$kr_search_adrress,array(
           'placeholder'=>$placholder_search,
           // 'required'=>true
           ))?> 
         <button type="submit" class="bruncherry-search"></button>                
         </div>        
-        <div class="col-md-1  col-sm-2 col-xs-2 relative search-settings-holder">
+        <div class="col-md-2  col-sm-2 col-xs-2 relative search-settings-holder">
+          <a href="http://www.brunchery.melbourne" target="_blank" class="mel-home">
+            <i class="ion-home"></i>
+          </a>   
           <a href="#" class="search-settings">
             <i class="ion-ios-settings"></i>
           </a>         
