@@ -73,26 +73,199 @@ $transaction_type=$data['trans_type'];
       </div>
 		</div>
    <?php if ($ok==TRUE):?>
-   <div class="inner section-border" id="receipt-content">
-	   <div class="">     
+   <div class="inner" id="receipt-content">
+	   <h1 class="f-hide"><?php echo t("Order Details")?></h1>
+	   <div class="" style="margin-bottom: 50px;">     
+		 <div class="receipt-head">
+			<p>Thank you for ordering with Bombay Barbeque! We are sending your order to them now!</p>	
+			<p>Please ensure that you arrive <strong>on time.</strong></p>	
+			<p>Keep your <strong>order number</strong> handy so that you can quote it if needed.</p>	
+		 </div>
 	   
-	   <div class="text-center bottom10">
-	   <a class="" href="/"><i class="ion-ios-home"></i> Home</a>
-	   </div>
-	   	   
+		 <div class="receipt-container">
+			<div class="text-center bottom10">
+			<i class="ion-ios-checkmark-outline green-text"></i>
+			</div>
+		 
 	   <table class="table table-striped">
 	    <tbody>	     
-	       
 	       <tr>
-	         <td><?php echo Yii::t("default","Customer Name")?></td>
-	         <td class="text-right"><?php echo $data['full_name']?></td>
-	       </tr>	       
-	       <?php $print[]=array( 'label'=>Yii::t("default","Customer Name"), 'value'=>$data['full_name'] );?>	       
-	       <tr>
-	         <td><?php echo Yii::t("default","Restaurant Name")?></td>
-	         <td class="text-right"><?php echo clearString($data['merchant_name'])?></td>
-	       </tr>       
-	       <?php $print[]=array( 'label'=>Yii::t("default","Restaurant Name"), 'value'=>$data['merchant_name']); ?>
+				 <td colspan="2" class="text-center"><span class="highlight">Ordered for: </span>
+				 <?php if (isset($_SESSION['kr_delivery_options']['delivery_time'])):?>
+		       <?php if ( !empty($_SESSION['kr_delivery_options']['delivery_time'])):?>		       
+		         <?php echo Yii::app()->functions->timeFormat($_SESSION['kr_delivery_options']['delivery_time'],true)?>
+		       <?php 	       
+						$print[]=array(
+						'label'=>$label_time,
+						'value'=>Yii::app()->functions->timeFormat($_SESSION['kr_delivery_options']['delivery_time'],true)
+						);
+						?>
+		       <?php endif;?>
+		       <?php endif;?>
+				 </td>
+				 </tr>
+				 <tr>
+				 	<td colspan="2">
+					 <table class="inner-table" style="width: 100%">
+						<tr>
+						<td >
+								<span class="highlight">Order placed:</span>
+								<?php if (isset($_SESSION['kr_delivery_options']['delivery_date'])):?>		       
+								<?php echo $_SESSION['kr_delivery_options']['delivery_date'] ."</td>"?>
+						
+								<?php 	       
+									$print[]=array(
+										'label'=>$label_date,
+										'value'=>$_SESSION['kr_delivery_options']['delivery_date']
+									);
+								?>
+							<?php endif;?>
+						<td class="text-right"><?php //echo Yii::t("default","Reference #")?><span class="highlight">Order Number:</span>
+						<?php echo Yii::app()->functions->formatOrderNumber($data['order_id'])?></td>
+							<?php 	       
+								$print[]=array(
+									'label'=>Yii::t("default","Reference #"),
+									'value'=>Yii::app()->functions->formatOrderNumber($data['order_id'])
+								);
+	       			?>
+						</tr>
+					 </table>
+					 </td>
+				 </tr>
+				 <tr>
+					<td colspan=2>
+					<span class="highlight">To <?php echo Yii::t("default",$data['trans_type'])?>:</span>	
+				<?php 	       
+					$print[]=array(
+						'label'=>Yii::t("default","TRN Type"),
+						'value'=>t($data['trans_type'])
+					);
+	       ?>
+				 <?php if (isset($_SESSION['kr_delivery_options']['delivery_time'])):?>
+		       <?php if ( !empty($_SESSION['kr_delivery_options']['delivery_time'])):?>		       
+		         <?php echo Yii::app()->functions->timeFormat($_SESSION['kr_delivery_options']['delivery_time'],true)?>
+		       <?php 	       
+						$print[]=array(
+						'label'=>$label_time,
+						'value'=>Yii::app()->functions->timeFormat($_SESSION['kr_delivery_options']['delivery_time'],true)
+						);
+						?>
+		       <?php endif;?>
+		       <?php endif;?>
+					</td>
+				 </tr>
+				
+				 <tr>
+	         <td>
+							From <br><br>
+							<?php $print[]=array( 'label'=>Yii::t("default","Customer Name"), 'value'=>$data['full_name'] );?>
+							<span class="highlight"><?php echo $data['full_name']?>	       </span>
+							<?php 
+							if (isset($data['contact_phone1'])){
+								if (!empty($data['contact_phone1'])){
+									$data['contact_phone']=$data['contact_phone1'];
+								}
+							}
+			   			?>		  <br>    
+		       		<?php echo $data['contact_phone']?><?php 	       
+				$print[]=array(
+				  'label'=>Yii::t("default","Contact Number"),
+				  'value'=>$data['contact_phone']
+				);
+				?>
+		    	   </td>
+	         <td style="width: 50%">
+					 To <br><br>
+					 <span class="highlight"><?php echo clearString($data['merchant_name'])?></span><br>
+					 <?php echo $data['merchant_contact_phone']?>
+		       <?php 	       
+	       $print[]=array(
+	         'label'=>Yii::t("default","Telephone"),
+	         'value'=>$data['merchant_contact_phone']
+	       );
+	       ?>
+					 <br>
+				  <?php echo $full_merchant_address?>
+	       <?php 	       
+	       $print[]=array(
+	         'label'=>Yii::t("default","Address"),
+	         'value'=>$full_merchant_address
+	       );
+	       ?>
+				 <?php $print[]=array( 'label'=>Yii::t("default","Merchant Name"), 'value'=>$data['merchant_name']); ?>
+					 
+					 </td>
+	       </tr>
+
+				 <tr>
+				 <td colspan=2>
+				 	<span class="highlight">Items</span><br><br>
+							<?php //print_r($data);?>
+						 <ul class="receipt-items">
+
+						 <?php foreach (Yii::app()->functions->clientHistyOrderDetails($data['order_id']) as $row => $item):?>
+							 <?php
+							 	$price=$item['normal_price'];
+     						if ( $item['discount']>0){
+     							$price=$item['discounted_price'];
+		 						}
+		 					?>
+				 			<li><?php echo $item['qty']." x ".qTranslate($item['item_name'],'item_name',$item['item_name_trans'])." &nbsp;&nbsp; ".displayPrice( baseCurrency(), normalPrettyPrice($price))?></li>
+						 <?php endforeach;?>
+						 </ul>
+				 </td>
+				 </tr>
+
+				 <tr>
+				 <td colspan="2">
+
+				 <table class="inner-table" style="width: 100%">
+				 	<tr>
+				 		<td>
+							<?php 
+							$label_date=t("Pickup Date");
+							$label_time=t("Pickup Time");
+							if ($transaction_type=="dinein"){
+									$label_date=t("Dine in Date");
+									$label_time=t("Dine in Time");
+							}
+							?>
+		       		<?php if ($data['order_change']>=0.1):?>					
+		         	<?php echo displayPrice( baseCurrency(), normalPrettyPrice($data['order_change']))?>
+		        <?php 	       
+							$print[]=array(
+								'label'=>Yii::t("default","Change"),
+								'value'=>$data['order_change']
+							);
+						?>
+					<?php endif;?>
+					<?php if (isset($_SESSION['kr_delivery_options']['total_price'])):?>		       
+						<span class="highlight big"><?php echo t("Total")?></span>
+					</td>
+					<td>
+						<span class="highlight big"><?php echo "$".$_SESSION['kr_delivery_options']['total_price']?>
+						 <?php 	       
+							$print[]=array(
+								'label'=>t("Total Price"),
+								'value'=>"$".$_SESSION['kr_delivery_options']['total_price']
+							);
+						?><?php endif;?>
+						</span>
+	       </td>
+				 <td class="text-right"><span class="highlight">PAID: </span>
+					<?php echo FunctionsV3::prettyPaymentType('payment_order',$data['payment_type'],$_GET['id'],$data['trans_type'])?>
+				</td>
+	       <?php 	       
+	       $print[]=array(
+	         'label'=>Yii::t("default","Payment Type"),
+	         'value'=>FunctionsV3::prettyPaymentType('payment_order',$data['payment_type'],$_GET['id'],$data['trans_type'])
+	       );	       
+	       ?>
+				 </td>
+				 </table>
+				 </td>
+				 </tr>
+
 	       
 	       <?php if (isset($data['abn']) && !empty($data['abn'])):?>	       
 	       <tr>
@@ -107,27 +280,6 @@ $transaction_type=$data['trans_type'];
 	       ?>
 	       <?php endif;?>
 	       
-	       <tr>
-	         <td><?php echo Yii::t("default","Telephone")?></td>
-	         <td class="text-right"><?php echo $data['merchant_contact_phone']?></td>
-	       </tr>	       
-	       <?php 	       
-	       $print[]=array(
-	         'label'=>Yii::t("default","Telephone"),
-	         'value'=>$data['merchant_contact_phone']
-	       );
-	       ?>
-		   		   
-	       <tr>
-	         <td><?php echo Yii::t("default","Address")?></td>
-	         <td class="text-right"><?php echo $full_merchant_address?></td>
-	       </tr>    
-	       <?php 	       
-	       $print[]=array(
-	         'label'=>Yii::t("default","Address"),
-	         'value'=>$full_merchant_address
-	       );
-	       ?>
 	       
 	       <?php $merchant_tax_number=getOption($merchant_id,'merchant_tax_number');?>
 	       <?php if (!empty($merchant_tax_number)):?>
@@ -143,32 +295,8 @@ $transaction_type=$data['trans_type'];
 		       ?>
 	       <?php endif;?>
 	       	       
-	       <tr>
-	         <td><?php echo Yii::t("default","Dine in or Dash out")?></td>
-	         <td class="text-right"><?php echo Yii::t("default",$data['trans_type'])?></td>
-	       </tr>
 	       
-	       <?php 	       
-	       $print[]=array(
-	         'label'=>Yii::t("default","Dine in or Dash out"),
-	         'value'=>t($data['trans_type'])
-	       );
-	       ?>
-	       	       
-	       <tr>
-	         <td><?php echo Yii::t("default","Payment Type")?></td>
-	         <!--<td class="text-right"><?php echo strtoupper(t($data['payment_type']))?></td>-->
-	         <td class="text-right">
-	         <?php echo FunctionsV3::prettyPaymentType('payment_order',
-	         $data['payment_type'],$_GET['id'],$data['trans_type'])?>
-	         </td>
-	       </tr>
-	       <?php 	       
-	       $print[]=array(
-	         'label'=>Yii::t("default","Payment Type"),
-	         'value'=>FunctionsV3::prettyPaymentType('payment_order',$data['payment_type'],$_GET['id'],$data['trans_type'])
-	       );	       
-	       ?>
+	       
 	       	       
 	       <?php if ( $data['payment_provider_name']):?>	      
 	       <tr>
@@ -199,16 +327,7 @@ $transaction_type=$data['trans_type'];
 	       ?>
 	       <?php endif;?>
 	       	       
-	       <tr>
-	         <td><?php echo Yii::t("default","Reference #")?></td>
-	         <td class="text-right"><?php echo Yii::app()->functions->formatOrderNumber($data['order_id'])?></td>
-	       </tr>
-	       <?php 	       
-	       $print[]=array(
-	         'label'=>Yii::t("default","Reference #"),
-	         'value'=>Yii::app()->functions->formatOrderNumber($data['order_id'])
-	       );
-	       ?>
+	       
 	       
 	       <?php if ( !empty($data['payment_reference'])):?>	      
 	       <tr>
@@ -236,21 +355,21 @@ $transaction_type=$data['trans_type'];
 	       ?>
 	       <?php endif;?>
 	       	       
-	       <tr>
-	         <td><?php echo Yii::t("default","Order Date")?></td>
+	       <!-- <tr>
+	         <td><?php echo Yii::t("default","TRN Date")?></td>
 	         <td class="text-right">
 	         <?php 
-	         $trn_date=date('M d,Y G:i:s',strtotime($data['date_created']));
-	         echo Yii::app()->functions->translateDate($trn_date);
+	        	/*$trn_date=date('M d,Y G:i:s',strtotime($data['date_created']));
+	         echo Yii::app()->functions->translateDate($trn_date);*/
 	         ?>
 	         </td>
 	       </tr>
 	       <?php 	       
-	       $print[]=array(
-	         'label'=>Yii::t("default","Order Date"),
+	       /*$print[]=array(
+	         'label'=>Yii::t("default","TRN Date"),
 	         'value'=>$trn_date
-	       );
-	       ?>
+	       );*/
+	       ?> -->
 	       
 	       <?php if ($data['trans_type']=="delivery"):?>
 		       	       
@@ -385,94 +504,7 @@ $transaction_type=$data['trans_type'];
 								
 		   <?php else :?>   
 		   
-		      <?php 
-		      $label_date=t("Pickup Date");
-		      $label_time=t("Pickup Time");
-		      if ($transaction_type=="dinein"){
-		      	  $label_date=t("Dine in Date");
-		          $label_time=t("Dine in Time");
-		      }
-		      ?>
-		   		   		  
-               <?php 
-				if (isset($data['contact_phone1'])){
-					if (!empty($data['contact_phone1'])){
-						$data['contact_phone']=$data['contact_phone1'];
-					}
-				}
-			   ?>		      
-		       <tr>
-		         <td><?php echo Yii::t("default","Contact Number")?></td>
-		         <td class="text-right"><?php echo $data['contact_phone']?></td>
-		       </tr>
-		       <?php 	       
-				$print[]=array(
-				  'label'=>Yii::t("default","Contact Number"),
-				  'value'=>$data['contact_phone']
-				);
-				?>
-		       		     		  
-		      <?php if (isset($_SESSION['kr_delivery_options']['delivery_date'])):?>		       
-		       <tr>
-		         <td><?php echo $label_date?></td>
-		         <td class="text-right">
-		         <?php echo $_SESSION['kr_delivery_options']['delivery_date']?>
-		         </td>
-		       </tr>
-		       <?php 	       
-				$print[]=array(
-				  'label'=>$label_date,
-				  'value'=>$_SESSION['kr_delivery_options']['delivery_date']
-				);
-				?>
-		       <?php endif;?>
-		       
-		       <?php if (isset($_SESSION['kr_delivery_options']['delivery_time'])):?>
-		       <?php if ( !empty($_SESSION['kr_delivery_options']['delivery_time'])):?>		       
-		       <tr>
-		         <td><?php echo $label_time?></td>
-		         <td class="text-right">
-		         <?php echo Yii::app()->functions->timeFormat($_SESSION['kr_delivery_options']['delivery_time'],true)?>
-		         </td>
-		       </tr>
-		       <?php 	       
-				$print[]=array(
-				 'label'=>$label_time,
-				 'value'=>Yii::app()->functions->timeFormat($_SESSION['kr_delivery_options']['delivery_time'],true)
-				);
-				?>
-		       <?php endif;?>
-		       <?php endif;?>
-		       
-		       <?php if ($data['order_change']>=0.1):?>					
-		       <tr>
-		         <td><?php echo Yii::t("default","Change")?></td>
-		         <td class="text-right">
-		         <?php echo displayPrice( baseCurrency(), normalPrettyPrice($data['order_change']))?>
-		         </td>
-		       </tr>  
-		        <?php 	       
-				$print[]=array(
-				  'label'=>Yii::t("default","Change"),
-				  'value'=>$data['order_change']
-				);
-				?>
-				<?php endif;?> 
-				
-				<?php if (isset($_SESSION['kr_delivery_options']['total_price'])):?>		       
-		       <tr>
-		         <td><?php echo t("Total Price")?></td>
-		         <td class="text-right">
-		         <?php echo "$".$_SESSION['kr_delivery_options']['total_price']?>
-		         </td>
-		       </tr>
-		       <?php 	       
-				$print[]=array(
-				  'label'=>t("Total Price"),
-				  'value'=>"$".$_SESSION['kr_delivery_options']['total_price']
-				);
-				?>
-	       <?php endif;?>
+		      
 				 
 				 <tr>
 		         <td colspan="2" class="text-center">
@@ -483,15 +515,15 @@ $transaction_type=$data['trans_type'];
 				 <?php endif;?>
 				 
 	       
-	       <tr>
+	       <!-- <tr>
 			 <td colspan="2"></td>
-			 </tr>
+			 </tr> -->
 			 
 			
 	       	    
 	    </tbody>
 	   </table>
-	   
+	   </div>
 	    <div class="receipt-wrap order-list-wrap">
 	    <?php //echo $item_details=Yii::app()->functions->details['html'];?>
 	    </div>

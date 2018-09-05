@@ -4167,3 +4167,38 @@ color: #fff;
   background: url(../images/map-pin.png) no-repeat !important; 
   background-position:  0 0;
 }
+.section-receipt .highlight{
+  background: none; 
+    color: #323232; 
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    font-weight: bold;
+}
+.receipt-head{
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+.section-receipt .table>tbody>tr>td, 
+.section-receipt .table>tbody>tr>th, 
+.section-receipt .table>tfoot>tr>td, 
+.section-receipt .table>tfoot>tr>th, 
+.section-receipt .table>thead>tr>td, 
+.section-receipt .table>thead>tr>th{
+  background: #feefe8;
+  border: none
+}
+.receipt-container{
+  background: #feefe8;
+  border: 1px solid #e6beb2;
+  padding: 10px;
+  font-size: 18px;
+
+}
+.receipt-container .ion-ios-checkmark-outline.green-text{
+  font-size: 60px;
+}
+.section-receipt .highlight.big{
+ font-size: 28px;
+}
