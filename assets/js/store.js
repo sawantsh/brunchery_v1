@@ -1344,6 +1344,9 @@ jQuery(document).ready(function() {
 	var arrival_time = $("#arrival-time").val();
 	var arrival_time_hr = parseInt(
 						arrival_time.substr(0, arrival_time.indexOf(":")));
+	if (arrival_time_hr < 12 && arrival_time.toUpperCase().indexOf("PM") > 0) {
+		arrival_time_hr += 12;
+	}
 	var arrival_time_min = parseInt(
 						arrival_time.substr(arrival_time.indexOf(":") + 1));
 	if (!(arrival_time_hr >= 0 && arrival_time_hr <= 23 
@@ -1383,6 +1386,9 @@ jQuery(document).ready(function() {
 			
 			var starttime_hr = parseInt(
 				starttime.substr(0, starttime.indexOf(":")));
+			if (starttime_hr < 12 && starttime.toUpperCase().indexOf("PM") > 0) {
+				starttime_hr += 12;
+			}
 			var starttime_min = parseInt(
 				starttime.substr(starttime.indexOf(":") + 1));
 			var starttime_obj = new Date();
@@ -1392,6 +1398,9 @@ jQuery(document).ready(function() {
 
 			var endtime_hr = parseInt(
 				endtime.substr(0, endtime.indexOf(":")));
+			if (endtime_hr < 12 && endtime.toUpperCase().indexOf("PM") > 0) {
+				endtime_hr += 12;
+			}
 			var endtime_min = parseInt(
 				endtime.substr(endtime.indexOf(":") + 1));
 			var endtime_obj = new Date();
