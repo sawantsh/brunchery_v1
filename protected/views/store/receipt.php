@@ -69,7 +69,8 @@ $transaction_type=$data['trans_type'];
    <div class="container bruncherry-container relative">
 	 <div class="store-topbar">
       <div class="resto-info">
-        <div class="trim-text text-center"><a class="pull-left" href="/"><i class="ion-ios-arrow-back"></i></a> Order Details</div>
+        <div class="trim-text text-center"><a class="pull-left" href="/"><i class="ion-ios-arrow-back"></i></a> Order Details
+				<a class="pull-right" href="/"><u>Return to Home Screen</u></a></div>				
       </div>
 		</div>
    <?php if ($ok==TRUE):?>
@@ -77,7 +78,7 @@ $transaction_type=$data['trans_type'];
 	   <h1 class="f-hide"><?php echo t("Order Details")?></h1>
 	   <div class="" style="margin-bottom: 50px;">     
 		 <div class="receipt-head">
-			<p>Thank you for ordering with Bombay Barbeque! We are sending your order to them now!</p>	
+			<p>Thank you for ordering with <?php echo $data['merchant_name']?>! We are sending your order to them now!</p>	
 			<p>Please ensure that you arrive <strong>on time.</strong></p>	
 			<p>Keep your <strong>order number</strong> handy so that you can quote it if needed.</p>	
 		 </div>
@@ -111,12 +112,12 @@ $transaction_type=$data['trans_type'];
 						<td >
 								<span class="highlight">Order placed:</span>
 								<?php if (isset($_SESSION['kr_delivery_options']['delivery_date'])):?>		       
-								<?php echo $_SESSION['kr_delivery_options']['delivery_date'] ."</td>"?>
+								<?php echo Yii::app()->functions->FormatDateTime($_SESSION['kr_delivery_options']['delivery_date'], false) ."</td>"?>
 						
 								<?php 	       
 									$print[]=array(
 										'label'=>$label_date,
-										'value'=>$_SESSION['kr_delivery_options']['delivery_date']
+										'value'=>Yii::app()->functions->FormatDateTime($_SESSION['kr_delivery_options']['delivery_date'], false)
 									);
 								?>
 							<?php endif;?>
@@ -134,11 +135,11 @@ $transaction_type=$data['trans_type'];
 				 </tr>
 				 <tr>
 					<td colspan=2>
-					<span class="highlight">To <?php echo Yii::t("default",$data['trans_type'])?>:</span>	
+					<span class="highlight">To <?php echo Yii::t("default",$data['trans_type'] == 'dashout' ? 'Dash-Out' : 'Dine-In')?>:</span>	
 				<?php 	       
 					$print[]=array(
 						'label'=>Yii::t("default","TRN Type"),
-						'value'=>t($data['trans_type'])
+						'value'=>t($data['trans_type'] == 'dashout' ? 'Dash-out' : 'Dine-in')
 					);
 	       ?>
 				 <?php if (isset($_SESSION['kr_delivery_options']['delivery_time'])):?>
@@ -524,6 +525,8 @@ $transaction_type=$data['trans_type'];
 	    </tbody>
 	   </table>
 	   </div>
+		 <!-- receipt-container -->
+				<p style="font-size: 18px; padding: 10px; text-align: center; background:white:">You will receive a <strong>notification</strong> when the order is accepted.</p>
 	    <div class="receipt-wrap order-list-wrap">
 	    <?php //echo $item_details=Yii::app()->functions->details['html'];?>
 	    </div>
