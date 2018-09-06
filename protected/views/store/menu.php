@@ -624,10 +624,46 @@ if ($food_viewing_private==2){
 </div>
 
 <!-- edit-order-pop -->
-<div id="edit-order-pop" class="f-hide">
-	<div class="item-order-wrap"></div>
-</div>
+<div class="action-sheet">
+<div class="expanded-overlay"></div>
+<div id="edit-order-pop">
+	<!-- <div class="item-order-wrap"></div> -->
 
+	<div class="inner">
+		<div class="top">
+			<div class="pull-left clear-cart-action">
+				<i class="icon fa fa-trash-o" aria-hidden="true"></i>
+				<span class="text">Clear</span>
+			</div>
+			<div class="close pull-right">
+				<i class="fa fa-chevron-down"></i>
+			</div>
+			<div class="clear"></div>
+		</div>
+
+		<!-- list -->
+		<div class="brun-foodorder-list">
+			
+		</div>
+		<!-- list -->
+
+		<!-- bottom -->
+		<div class="bottom">
+			<div class="left">
+				<div class="text">
+					Total
+				</div>
+				<div class="brun-foodorder-total total"></div>
+			</div>
+			<div class="checkout ui-btn">
+				<div>Checkout</div>
+			</div>
+		</div>
+	</div>
+	<!-- bottom -->
+<!-- raw html -->
+</div>
+</div>
 <!-- edit-order-pop -->
 
 

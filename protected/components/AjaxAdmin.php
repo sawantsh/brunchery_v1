@@ -2111,7 +2111,13 @@ $resto_info.="<p><span class=\"uk-text-bold\">".Yii::t("default","Delivery Est")
 	    		<?php
 	    	}
 	    	die();
-	    }	
+		}
+		
+		public function clearCart() {
+			unset($_SESSION['kr_item']);
+			$this->code=1;
+			$this->msg='Cleared the cart';
+		}
 	    
 	    public function addToCart()
 	    {	    		    		    	
@@ -2203,9 +2209,11 @@ $resto_info.="<p><span class=\"uk-text-bold\">".Yii::t("default","Delivery Est")
 	    			if (!isset($_SESSION['kr_item'])){
 	    				$_SESSION['kr_item']='';
 	    			}
-	    			if(is_array($_SESSION['kr_item']) && count($_SESSION['kr_item'])>=1){
+					// dump($_SESSION['kr_item']);
+					if(is_array($_SESSION['kr_item']) && count($_SESSION['kr_item'])>=1){
 	    			   $x=0;
 	    			   foreach ($_SESSION['kr_item'] as $key=> $val) {	 	    			   	   
+						//    dump($val['item_id'].' '.$item['item_id']);
 	    			   	   if ($val['item_id']==$item['item_id']){	    			   	   	      			   	   	  
 	    			   	   	   $found_key=$key;	    
 	    			   	   	   
@@ -2230,7 +2238,7 @@ $resto_info.="<p><span class=\"uk-text-bold\">".Yii::t("default","Delivery Est")
     			   	   	   	   
     			   	   	   	   /*check size*/
     			   	   	   	   $item_size=false;
-    			   	   	   	   if ($item['price']==$val['price']){
+    			   	   	   	   if ($item['size']==$val['size']){
     			   	   	   	   	  $item_size=true;
     			   	   	   	   }	    			   	   
     			   	   	   	   
@@ -2303,9 +2311,24 @@ $resto_info.="<p><span class=\"uk-text-bold\">".Yii::t("default","Delivery Est")
 	    			//dump($item); die();
 	    			
 	    			if ( $found==false){
-	    			   $_SESSION['kr_item'][]=$item;
-	    			} else {	    					    			
-	    			   $_SESSION['kr_item'][$found_key]['qty']+=$item['qty'];
+					   $_SESSION['kr_item'][]=$item;
+					   $this->msg=t("New item added: ".$item['item_id']);
+	    			} else {
+						$_SESSION['kr_item'][$found_key]['qty']+=$item['qty'];
+						if ($_SESSION['kr_item'][$found_key]['qty'] == 0) {
+							//if (is_numeric($row_api_id)){
+							if (isset($_SESSION['kr_item'][$found_key]['row_api_id'])){
+								$row_api_id=$_SESSION['kr_item'][$found_key]['row_api_id'];	 
+								$ApiFunctions=new ApiFunctions;
+								$ApiFunctions->deleteItemFromCart($row_api_id);
+							}	    	
+							
+							unset($_SESSION['kr_item'][$found_key]);
+							$this->msg=t("Item deleted: ".$item['item_id']);
+						} else {
+						   $this->msg=t("Item updated: ".$item['item_id']);
+						}
+					//    dump($_SESSION['kr_item'][$found_key]);
 	    			}	
 	    			//dump($_SESSION['kr_item']) ;
 	    		}	    	

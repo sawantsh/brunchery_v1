@@ -910,9 +910,20 @@ jQuery(document).ready(function() {
 	
 	$(".show-user-sign-up").fancybox();
 
-	$(".edit-order-pop").fancybox();
-	
-	
+	// $(".edit-order-pop").fancybox();
+	$( document ).on( "click", ".cart-icon", function() {
+		$(".expanded-overlay").show();
+		$("#edit-order-pop").addClass("edit-order-pop-toggle");
+	});
+
+	$( document ).on( "click", "#edit-order-pop .close", function() {
+		$(".expanded-overlay").hide();
+		$("#edit-order-pop").removeClass("edit-order-pop-toggle");
+	});
+
+	$( document ).on( "click", "#edit-order-pop .clear-cart-action", function() {
+		clearCart();
+	});
     
    /* $(".view-item-wrap").niceScroll( {
     	cursorcolor:"#E57871",
@@ -943,11 +954,31 @@ jQuery(document).ready(function() {
    });
    
    $( document ).on( "click", ".qty-minus", function() {
-   	    var qty=$("#qty").val()-1;
+	    var qty=$("#qty").val()-1;
     	if (qty<=0){
     		qty=1;
     	}
     	$("#qty").val(  qty );
+   });
+
+   $( document ).on( "click", "#edit-order-pop .ion-plus-circled", function() {
+		var elm = $("#edit-order-pop #"+ $(this).attr('id') + "_qty");
+		qty=parseFloat(elm.text())+1;
+		// if (isNaN(qty)){
+		// 	qty=1;
+		// }
+		// elm.text( qty );
+		single_food_item_add($(this).attr('id'), $(this).data("price"), $(this).data("size") , $(this).data("category_id"), 1)
+	});
+
+   $( document ).on( "click", "#edit-order-pop .ion-ios-minus-outline", function() {
+		var elm = $("#edit-order-pop #"+ $(this).attr('id') + "_qty");
+		var qty = elm.text()-1;
+		if (qty<0){
+			return;
+		}
+		// elm.text(  qty );
+		single_food_item_add($(this).attr('id'), $(this).data("price"), $(this).data("size") , $(this).data("category_id"), -1)
    });
    
    $( document ).on( "click", ".qty-addon-plus", function() {
@@ -2082,8 +2113,10 @@ function load_item_cart()
 	    }
     	
     	if (data.code==1){
-    		$(".item-order-wrap").html(data.details.html);
-    		$(".checkout").attr("disabled",false);    		
+			$(".item-order-wrap").html(data.details.html);
+			$(".brun-foodorder-list").html(buildCartHtml(data.details.raw));
+			$(".brun-foodorder-total").html("$"+data.details.raw.total.total);
+			$(".checkout").attr("disabled",false);    		
     		$(".checkout").css({ 'pointer-events' : 'auto' });
     		//$(".checkout").addClass("uk-button-success");
 			$(".checkout").removeClass("disabled-button");
@@ -2097,8 +2130,12 @@ function load_item_cart()
             });
     		
     	} else {
-    		$(".item-order-wrap").html('<div class="center">'+data.msg+'</div>');
-    		$(".checkout").attr("disabled",true);
+			$(".item-order-wrap").html('<div class="center">'+data.msg+'</div>');
+			$(".brun-foodorder-list").html('');
+			$(".brun-foodorder-total").html('');
+			$(".expanded-overlay").hide();
+			$("#edit-order-pop").removeClass("edit-order-pop-toggle");
+			$(".checkout").attr("disabled",true);
     		$(".checkout").css({ 'pointer-events' : 'none' });
     		//$(".checkout").removeClass("uk-button-success");
 			$(".checkout").addClass("disabled-button");
@@ -2111,6 +2148,32 @@ function load_item_cart()
     	busy(false); 
     }		
     });
+}
+
+function buildCartHtml(raw) {
+	var htm = "";
+	if (raw.item) {
+		for (var index in raw.item) {
+			var item = raw.item[index];
+			htm += '<div class="f-item">';
+			htm += '<div class="left">';
+			htm += '<div class="text dot">' + item.item_name + '<span>(' + item.size_words + ')</span></div>';
+			htm += '</div>';
+			htm += '<div class="right cart-unit">';
+			htm += '<div class="minus center-contained">';
+			htm += '<i data-price="' + item.normal_price + '" data-size ="' + item.size_words + '" data-category_id ="' + item.category_id + '" id="' + item.item_id + '" class="icon fa ion-ios-minus-outline" aria-hidden="true"></i>';
+			htm += '</div>';
+			htm += '<div id="' + item.item_id + '_qty" class="count">' + item.qty + '</div>';
+			htm += '<div class="plus center-contained">';
+			htm += '<i data-price="' + item.normal_price + '" data-size ="' + item.size_words + '" data-category_id ="' + item.category_id + '" id="' + item.item_id + '" class="icon fa ion-plus-circled" aria-hidden="true"></i>';
+			htm += '</div>';
+			htm += '</div>';
+			htm += '<div id="' + item.item_id + '_price" class="mid">$' + item.normal_price  + '</div>';
+			htm += '<div class="clear"></div>';
+			htm += '</div>';
+		}
+	}
+	return htm;
 }
 
 function delete_item(row)
@@ -3398,7 +3461,7 @@ function plotMerchantLocationNew(s)
 	}
 }
 
-function single_food_item_add(item_id,price,size,category_id)
+function single_food_item_add(item_id,price,size,category_id, qty)
 {
 	/*dump("item_id:"+item_id);
 	dump("price:"+price);
@@ -3412,7 +3475,7 @@ function single_food_item_add(item_id,price,size,category_id)
 	} else {
 	    params+="&price="+price+"|"+size;
 	}
-	params+="&qty=1";		
+	params+="&qty=" + (qty ? qty : 1);		
 	params+="&discount=";
 	params+="&notes=";
 	params+="&row=";	

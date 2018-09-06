@@ -4202,3 +4202,169 @@ color: #fff;
 .section-receipt .highlight.big{
  font-size: 28px;
 }
+.expanded-overlay{
+  background: rgba(0,0,0,.6);
+  z-index: 20;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: none;
+}
+#edit-order-pop  .ordered-items{
+ max-height: 250px;
+ overflow: auto;
+}
+#edit-order-pop .item-order-wrap{
+ max-width: 500px;
+ margin-left: auto;
+ margin-right: auto;
+}
+#edit-order-pop{
+ position: fixed;
+ left: 0;
+ bottom: 0;
+ -webkit-transform: translateY(100%);
+ transform: translateY(100%);
+ -webkit-backface-visibility: hidden;
+ backface-visibility: hidden;
+ z-index: 5000;
+ width: 100%;
+ background-color: #fff;
+ -webkit-transition: -webkit-transform .3s;
+ transition: -webkit-transform .3s;
+ transition: transform .3s;
+ transition: transform .3s,-webkit-transform .3s;
+}
+#edit-order-pop .item-order-wrap .ordered-items h4{
+ display: none
+}
+#edit-order-pop.edit-order-pop-toggle {
+ will-change: transform;
+ -webkit-transform: translateZ(0);
+ transform: translateZ(0);
+}
+#edit-order-pop .inner{
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+#edit-order-pop .inner .top .clear .text {
+  font-size: 11px;
+  
+}
+
+#edit-order-pop .inner .top{
+line-height: normal;
+position: relative;
+border-bottom: 1px solid #e5e5e5;
+padding: 10px 15px;
+}
+#edit-order-pop .inner .close
+{
+    float: right; 
+    font-size: 11px; 
+    font-weight: 700;
+    line-height: normal;
+    text-shadow: none;
+   
+}
+#edit-order-pop .f-item{
+  border-bottom: 1px solid #e5e5e5;
+  padding: 15px 0px;
+  margin: 0 15px;
+  position: relative
+}
+#edit-order-pop .f-item .left {
+  height: 100%;
+  float: left;
+  max-width: calc(100% - 152px);
+}
+.dot {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#edit-order-pop .mid {
+  float: right;
+  margin-right: 15px;
+}
+#edit-order-pop .f-item .right {
+  float: right;
+  height: 100%;
+}
+#edit-order-pop {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+#edit-order-pop .f-item .plus, #edit-order-pop .f-item .minus {
+  font-size: 30px;
+  cursor: pointer
+}
+#edit-order-pop .cart-unit {
+    position: relative;
+}
+#edit-order-pop .cart-unit>* {
+  float: left;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  color: #ffb49a  
+}
+#edit-order-pop .top .text{
+  font-size: 12px;
+}
+#edit-order-pop .f-item {
+  font-size: 18px;
+}
+#edit-order-pop .brun-foodorder-list{
+  overflow: auto;
+   width: 100%;
+  max-height: 250px;
+}
+#edit-order-pop .bottom .left .total {
+  float: left;
+  color: #ffb49a;
+  margin-left: 6px;
+  font-size: 20px;
+  
+}
+#edit-order-pop .bottom .checkout {
+  float: right;
+  height: 41px;
+  line-height: 41px;
+  border-radius: 5px;
+  margin-top: 7px;
+  width: 110px;
+  display: block;
+  position: relative;
+  display: block;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  background-color: #ffb49a;
+  text-decoration: none;
+}
+#edit-order-pop .bottom .left .text {
+  float: left;
+  font-size: 20px;
+}
+#edit-order-pop .bottom{
+padding-left: 15px;
+padding-right: 15px;
+margin-left: auto;
+margin-right: auto;
+width: 100%;
+height: 56px;
+line-height: 56px;
+}
+#edit-order-pop  .top{
+    color: #a0a0a0;
+    cursor: pointer;
+}
