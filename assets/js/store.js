@@ -2113,6 +2113,7 @@ function load_item_cart()
 	    }
     	
     	if (data.code==1){
+			$(".placeholder-cart-icon").css({"display": "none"});
 			$(".item-order-wrap").html(data.details.html);
 			$(".brun-foodorder-list").html(buildCartHtml(data.details.raw));
 			$(".brun-foodorder-total").html("$"+data.details.raw.total.total);
@@ -2130,6 +2131,7 @@ function load_item_cart()
             });
     		
     	} else {
+			$(".placeholder-cart-icon").css({"display": "block"});
 			$(".item-order-wrap").html('<div class="center">'+data.msg+'</div>');
 			$(".brun-foodorder-list").html('');
 			$(".brun-foodorder-total").html('');
@@ -2148,6 +2150,43 @@ function load_item_cart()
     	busy(false); 
     }		
     });
+}
+
+function showFlyingBall(item_id) {
+	var menuItem = $("#plus_icon_"+ item_id);
+	console.log(menuItem);
+	var ball = $(".food-price-wrap #flying_ball_" + item_id);
+	console.log("ball is"+ball);
+	var r = ball.find(".inner");
+	//console.log(r);
+	var cart = $(".cart-icon");
+	if (cart.length == 0) {
+		cart = $(".placeholder-cart-icon");
+	}
+	//console.log(a);
+	var itemRect = $(menuItem)[0].getBoundingClientRect();
+	//console.log(o);
+	var cartRect = $(cart)[0].getBoundingClientRect();
+	//console.log(i);
+	var l = {};
+	var u = ["z-index", "position", "left", "top", "right"];
+	u.map(function(e) {l[e] = ball.css(e)}); 
+	ball.css({
+		"left": itemRect.left,
+		"top": itemRect.top,
+		"right": "auto",
+		"z-index": 9,
+		"position": "fixed"
+	}).show();
+	var s = cartRect.left + cartRect.width / 2 - itemRect.width / 2 - itemRect.left,
+		c = cartRect.top + cartRect.height / 2 - itemRect.height / 2 - itemRect.top;
+	$(r).css("transform", "translate3d(" + s + "px, 0, 0)");
+	$(ball).css("transform", "translate3d(0, " + c + "px, 0)");
+	$(r).one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function() {
+		$(".food-price-wrap #flying_ball_" + item_id).remove();
+		var html ="<div id='flying_ball_" + item_id + "' class='flyingball' style='transform-origin: 0px 0px 0px; opacity: 1; z-index: -1; position: absolute; left: auto; top: auto; right: 0px; display: none; transform: translate3d(0px, 0px, 0px);'><div class='inner center-contained' style='transform: translate3d(0px, 0px, 0px);'></div></div>";
+		$("#plus_icon_" + item_id).before(html);
+	});
 }
 
 function buildCartHtml(raw) {
@@ -3490,8 +3529,11 @@ function single_food_item_add(item_id,price,size,category_id, qty)
     success: function(data){ 
     	busy(false);      		
     	if (data.code==1) {    	   
-    		// uk_msg_sucess(data.msg);
-    		load_item_cart();
+			// uk_msg_sucess(data.msg);
+			if (!qty) {
+				showFlyingBall(item_id);
+			}
+			load_item_cart();			
     	} else {
     		uk_msg(data.msg);
     	}	    

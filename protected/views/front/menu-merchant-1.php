@@ -55,13 +55,14 @@ dump($merchant_tax);*/
            <?php echo FunctionsV3::getItemFirstPrice($val_item['prices'],$val_item['discount'],$merchant_apply_tax,$merchant_tax) ?>
            <div class="pull-right relative food-price-wrap addto-cart <?php echo $val_item['not_available']==2?"item_not_available":''?>">
           <?php if ( $disabled_addcart==""):?>
+          <div id='flying_ball_<?php echo $val_item['item_id']?>' class='flyingball' style='transform-origin: 0px 0px 0px; opacity: 1; z-index: -1; position: absolute; left: auto; top: auto; right: 0px; display: none; transform: translate3d(0px, 0px, 0px);'><div class='inner center-contained' style='transform: translate3d(0px, 0px, 0px);'></div></div>
           <a href="javascript:;" class="dsktop menu-item" 
             rel="<?php echo $val_item['item_id']?>"
             data-single="<?php echo $val_item['single_item']?>" 
             <?php echo $atts;?>
             data-category_id="<?php echo $val['category_id']?>"
            >
-           <i class="ion-plus" style="color: #ffb49a; font-size:25px"></i>           
+           <i class="ion-plus" id="plus_icon_<?php echo $val_item['item_id']?>" style="color: #ffb49a; font-size:25px"></i>           
           </a>
          
           <a href="javascript:;" class="mbile menu-item" 
