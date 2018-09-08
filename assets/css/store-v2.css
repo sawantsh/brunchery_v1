@@ -3040,6 +3040,9 @@ display: none;
   text-align: center;
   vertical-align: middle;
 }
+.placeholder-cart-icon {
+  opacity: 0.3;
+}
 .cart-icon, .placeholder-cart-icon {
   position: absolute;
     width: 50px;

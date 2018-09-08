@@ -607,7 +607,7 @@ if ($food_viewing_private==2){
 	<div class="container relative">
 				<div class="item-order-wrap">
 				</div>
-				<div class="placeholder-cart-icon icon center-cropped" style="display:none"><i class="ion-ios-cart"></i><span style="color:white" class="item-count">0</span></div>
+				<div class="placeholder-cart-icon icon center-cropped"><i class="ion-ios-cart"></i><span style="color:white" class="item-count">0</span></div>
 				<?php //if ( 1==1):?>
 				<a href="javascript:;" class="orange-button medium checkout">Checkout</a>
 				<?php //else :?>

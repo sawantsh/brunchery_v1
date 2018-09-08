@@ -2116,7 +2116,7 @@ function load_item_cart()
 	    }
     	
     	if (data.code==1){
-			// $(".placeholder-cart-icon").css({"display": "none"});
+			$(".placeholder-cart-icon").css({"display": "none"});
 			$(".item-order-wrap").html(data.details.html);
 			$(".brun-foodorder-list").html(buildCartHtml(data.details.raw));
 			$(".brun-foodorder-total").html("$"+data.details.raw.total.total);
@@ -2134,7 +2134,7 @@ function load_item_cart()
             });
     		
     	} else {
-			// $(".placeholder-cart-icon").css({"display": "block"});
+			$(".placeholder-cart-icon").css({"display": "block"});
 			$(".item-order-wrap").html('<div class="center">'+data.msg+'</div>');
 			$(".brun-foodorder-list").html('');
 			$(".brun-foodorder-total").html('');
