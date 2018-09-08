@@ -977,8 +977,11 @@ jQuery(document).ready(function() {
 		if (qty<0){
 			return;
 		}
-		// elm.text(  qty );
 		single_food_item_add($(this).attr('id'), $(this).data("price"), $(this).data("size") , $(this).data("category_id"), -1)
+		if (qty == 0) {
+			//remove the row...
+			$(this).closest('.f-item').remove();
+		}
    });
    
    $( document ).on( "click", ".qty-addon-plus", function() {
